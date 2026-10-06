@@ -1,0 +1,56 @@
+{
+  "unseen_roads": {
+    "accuracy": 0.8333333333333334,
+    "precision": 0.7,
+    "recall": 1.0,
+    "f1": 0.8235294117647058,
+    "roc_auc": 0.8961038961038961,
+    "confusion_matrix": [
+      [
+        8,
+        3
+      ],
+      [
+        0,
+        7
+      ]
+    ]
+  },
+  "cross_basin_fold_A": {
+    "accuracy": 0.7,
+    "precision": 0.8,
+    "recall": 0.6666666666666666,
+    "f1": 0.7272727272727273,
+    "roc_auc": 0.8541666666666666,
+    "confusion_matrix": [
+      [
+        6,
+        2
+      ],
+      [
+        4,
+        8
+      ]
+    ]
+  },
+  "cross_basin_fold_B": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "confusion_matrix": [
+      [
+        10,
+        0
+      ],
+      [
+        0,
+        6
+      ]
+    ]
+  },
+  "pavement_safety_tier_counts": {
+    "DRY_PASSABLE": 52,
+    "IMPASSABLE_SUBMERGED": 16
+  }
+}

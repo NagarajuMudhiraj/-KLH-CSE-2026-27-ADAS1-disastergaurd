@@ -1,0 +1,227 @@
+{
+  "A. Weather only": {
+    "accuracy": 0.7692307692307693,
+    "precision": 0.5714285714285714,
+    "recall": 1.0,
+    "f1": 0.7272727272727273,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.12919680774211884,
+    "confusion_matrix": [
+      [
+        6,
+        3
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 6,
+      "FP": 3,
+      "FN": 0
+    }
+  },
+  "B. Weather + relative elevation": {
+    "accuracy": 0.7692307692307693,
+    "precision": 0.5714285714285714,
+    "recall": 1.0,
+    "f1": 0.7272727272727273,
+    "roc_auc": 0.8611111111111112,
+    "pr_auc": 0.7714285714285715,
+    "brier_score": 0.19095541536808014,
+    "confusion_matrix": [
+      [
+        6,
+        3
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 6,
+      "FP": 3,
+      "FN": 0
+    }
+  },
+  "C. Weather + upstream rainfall": {
+    "accuracy": 0.7692307692307693,
+    "precision": 0.5714285714285714,
+    "recall": 1.0,
+    "f1": 0.7272727272727273,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.1263599991798401,
+    "confusion_matrix": [
+      [
+        6,
+        3
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 6,
+      "FP": 3,
+      "FN": 0
+    }
+  },
+  "D. Weather + relative elevation + upstream rainfall": {
+    "accuracy": 0.6923076923076923,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1": 0.6666666666666666,
+    "roc_auc": 0.8055555555555556,
+    "pr_auc": 0.4797619047619048,
+    "brier_score": 0.1922975331544876,
+    "confusion_matrix": [
+      [
+        5,
+        4
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 5,
+      "FP": 4,
+      "FN": 0
+    }
+  },
+  "E. Full V3": {
+    "accuracy": 0.6923076923076923,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1": 0.6666666666666666,
+    "roc_auc": 0.6944444444444445,
+    "pr_auc": 0.3693452380952381,
+    "brier_score": 0.20882700383663177,
+    "confusion_matrix": [
+      [
+        5,
+        4
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 5,
+      "FP": 4,
+      "FN": 0
+    }
+  },
+  "F. Full V3 minus relative elevation": {
+    "accuracy": 0.6923076923076923,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1": 0.6666666666666666,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.16963888704776764,
+    "confusion_matrix": [
+      [
+        5,
+        4
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 5,
+      "FP": 4,
+      "FN": 0
+    }
+  },
+  "G. Full V3 minus upstream rainfall": {
+    "accuracy": 0.6153846153846154,
+    "precision": 0.4444444444444444,
+    "recall": 1.0,
+    "f1": 0.6153846153846154,
+    "roc_auc": 0.888888888888889,
+    "pr_auc": 0.8110119047619048,
+    "brier_score": 0.2083495557308197,
+    "confusion_matrix": [
+      [
+        4,
+        5
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 4,
+      "FP": 5,
+      "FN": 0
+    }
+  },
+  "H. Full V3 minus road_type": {
+    "accuracy": 0.7692307692307693,
+    "precision": 0.5714285714285714,
+    "recall": 1.0,
+    "f1": 0.7272727272727273,
+    "roc_auc": 0.7500000000000001,
+    "pr_auc": 0.41309523809523807,
+    "brier_score": 0.19470271468162537,
+    "confusion_matrix": [
+      [
+        6,
+        3
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 6,
+      "FP": 3,
+      "FN": 0
+    }
+  },
+  "I. Full V3 minus road_surface": {
+    "accuracy": 0.6923076923076923,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1": 0.6666666666666666,
+    "roc_auc": 0.8611111111111112,
+    "pr_auc": 0.7714285714285715,
+    "brier_score": 0.19685332477092743,
+    "confusion_matrix": [
+      [
+        5,
+        4
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 5,
+      "FP": 4,
+      "FN": 0
+    }
+  }
+}

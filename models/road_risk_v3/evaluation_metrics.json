@@ -1,0 +1,344 @@
+{
+  "strategy_A_event_held_out": {
+    "validation": {
+      "accuracy": 0.75,
+      "precision": 0.75,
+      "recall": 0.6,
+      "f1": 0.6666666666666666,
+      "roc_auc": 0.8571428571428572,
+      "pr_auc": 0.8605555555555555,
+      "brier_score": 0.15164197981357574,
+      "confusion_matrix": [
+        [
+          6,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "counts": {
+        "TP": 3,
+        "TN": 6,
+        "FP": 1,
+        "FN": 2
+      }
+    },
+    "test": {
+      "accuracy": 0.375,
+      "precision": 0.3333333333333333,
+      "recall": 1.0,
+      "f1": 0.5,
+      "roc_auc": 0.9818181818181818,
+      "pr_auc": 0.9666666666666666,
+      "brier_score": 0.30344143509864807,
+      "confusion_matrix": [
+        [
+          1,
+          10
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "counts": {
+        "TP": 5,
+        "TN": 1,
+        "FP": 10,
+        "FN": 0
+      }
+    }
+  },
+  "strategy_B_unseen_road": {
+    "validation": {
+      "accuracy": 0.6923076923076923,
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6666666666666666,
+      "roc_auc": 0.6944444444444445,
+      "pr_auc": 0.3693452380952381,
+      "brier_score": 0.20882700383663177,
+      "confusion_matrix": [
+        [
+          5,
+          4
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "counts": {
+        "TP": 4,
+        "TN": 5,
+        "FP": 4,
+        "FN": 0
+      }
+    },
+    "test": {
+      "accuracy": 0.6666666666666666,
+      "precision": 0.5454545454545454,
+      "recall": 0.8571428571428571,
+      "f1": 0.6666666666666666,
+      "roc_auc": 0.7792207792207791,
+      "pr_auc": 0.5362399505256648,
+      "brier_score": 0.19350501894950867,
+      "confusion_matrix": [
+        [
+          6,
+          5
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "counts": {
+        "TP": 6,
+        "TN": 6,
+        "FP": 5,
+        "FN": 1
+      }
+    }
+  },
+  "strategy_C_cross_basin": {
+    "fold_A_krishna_to_godavari": {
+      "accuracy": 0.4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.375,
+      "pr_auc": 0.603125,
+      "brier_score": 0.5264151692390442,
+      "confusion_matrix": [
+        [
+          8,
+          0
+        ],
+        [
+          12,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 8,
+        "FP": 0,
+        "FN": 12
+      }
+    },
+    "fold_B_godavari_to_singur": {
+      "accuracy": 0.625,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.6833333333333333,
+      "pr_auc": 0.5982905982905983,
+      "brier_score": 0.28410208225250244,
+      "confusion_matrix": [
+        [
+          10,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 10,
+        "FP": 0,
+        "FN": 6
+      }
+    }
+  },
+  "strategy_D_combined_generalization": {
+    "accuracy": 0.5,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "roc_auc": 0.75,
+    "pr_auc": 0.8333333333333333,
+    "brier_score": 0.26377439498901367,
+    "confusion_matrix": [
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "counts": {
+      "TP": 0,
+      "TN": 2,
+      "FP": 0,
+      "FN": 2
+    }
+  },
+  "feature_importance_gain": {
+    "rainfall_24h_mm": 0.04951813071966171,
+    "rainfall_72h_mm": 0.09146898984909058,
+    "rainfall_7d_mm": 0.08329132944345474,
+    "temperature_c": 0.08701243996620178,
+    "wind_speed_kmh": 0.05451952666044235,
+    "relative_elevation_m": 0.20439006388187408,
+    "upstream_rainfall_72h_mm": 0.19962388277053833,
+    "road_type_arterial": 0.0,
+    "road_type_collector": 0.2301756888628006,
+    "road_type_highway": 0.0,
+    "road_surface_BT": 0.0
+  },
+  "permutation_importance_validation": {
+    "rainfall_24h_mm": 0.0,
+    "rainfall_72h_mm": 0.1769230769230769,
+    "rainfall_7d_mm": 0.0,
+    "temperature_c": 0.0,
+    "wind_speed_kmh": 0.0,
+    "relative_elevation_m": -0.08461538461538465,
+    "upstream_rainfall_72h_mm": 0.038461538461538436,
+    "road_type_arterial": 0.0,
+    "road_type_collector": 0.0,
+    "road_type_highway": 0.0,
+    "road_surface_BT": 0.0
+  },
+  "permutation_importance_test": {
+    "rainfall_24h_mm": 0.0,
+    "rainfall_72h_mm": 0.05555555555555549,
+    "rainfall_7d_mm": 0.0,
+    "temperature_c": 0.0,
+    "wind_speed_kmh": 0.0,
+    "relative_elevation_m": 0.13888888888888884,
+    "upstream_rainfall_72h_mm": 0.0,
+    "road_type_arterial": 0.0,
+    "road_type_collector": 0.0,
+    "road_type_highway": 0.0,
+    "road_surface_BT": 0.0
+  },
+  "errors_unseen_road_test": [
+    {
+      "observation_id": "V8_OBS_002",
+      "event_id": "INDOFLOODS-gauge-925-1",
+      "region": "Godavari_Lower",
+      "road_segment_id": "TGRAC_HIGHWAY_44",
+      "road_name": "Vijayawada - Jagadalpur Road",
+      "error_type": "False Negative",
+      "true_label": 1,
+      "pred_label": 0,
+      "pred_prob": 0.4123,
+      "rainfall_24h_mm": 1.6,
+      "rainfall_72h_mm": 7.2,
+      "rainfall_7d_mm": 23.1,
+      "upstream_rainfall_72h_mm": 10.7,
+      "relative_elevation_m": 25.0,
+      "temperature_c": 26.9,
+      "wind_speed_kmh": 22.6,
+      "road_type": "highway",
+      "road_surface": "BT"
+    },
+    {
+      "observation_id": "V8_OBS_035",
+      "event_id": "BASELINE_DRY_20190315_SINGUR",
+      "region": "Manjira_Singur",
+      "road_segment_id": "TGRAC_COLLECTOR_1731",
+      "road_name": " Tadadanpally'X' road to Singoor Project road",
+      "error_type": "False Positive",
+      "true_label": 0,
+      "pred_label": 1,
+      "pred_prob": 0.5834,
+      "rainfall_24h_mm": 0.0,
+      "rainfall_72h_mm": 0.0,
+      "rainfall_7d_mm": 0.0,
+      "upstream_rainfall_72h_mm": 0.0,
+      "relative_elevation_m": -10.0,
+      "temperature_c": 29.1,
+      "wind_speed_kmh": 19.5,
+      "road_type": "collector",
+      "road_surface": "BT"
+    },
+    {
+      "observation_id": "V8_OBS_040",
+      "event_id": "INDOFLOODS-gauge-939-6",
+      "region": "Manjira_NizamSagar",
+      "road_segment_id": "TGRAC_COLLECTOR_452",
+      "road_name": "Turkapally-Tunikipally road",
+      "error_type": "False Positive",
+      "true_label": 0,
+      "pred_label": 1,
+      "pred_prob": 0.7193,
+      "rainfall_24h_mm": 3.7,
+      "rainfall_72h_mm": 3.7,
+      "rainfall_7d_mm": 3.7,
+      "upstream_rainfall_72h_mm": 3.7,
+      "relative_elevation_m": -10.0,
+      "temperature_c": 30.7,
+      "wind_speed_kmh": 16.6,
+      "road_type": "collector",
+      "road_surface": "BT"
+    },
+    {
+      "observation_id": "V8_OBS_044",
+      "event_id": "INDOFLOODS-gauge-939-7",
+      "region": "Manjira_NizamSagar",
+      "road_segment_id": "TGRAC_COLLECTOR_452",
+      "road_name": "Turkapally-Tunikipally road",
+      "error_type": "False Positive",
+      "true_label": 0,
+      "pred_label": 1,
+      "pred_prob": 0.8042,
+      "rainfall_24h_mm": 2.5,
+      "rainfall_72h_mm": 6.3,
+      "rainfall_7d_mm": 30.2,
+      "upstream_rainfall_72h_mm": 6.3,
+      "relative_elevation_m": -10.0,
+      "temperature_c": 28.2,
+      "wind_speed_kmh": 16.2,
+      "road_type": "collector",
+      "road_surface": "BT"
+    },
+    {
+      "observation_id": "V8_OBS_048",
+      "event_id": "INDOFLOODS-gauge-939-10",
+      "region": "Manjira_NizamSagar",
+      "road_segment_id": "TGRAC_COLLECTOR_452",
+      "road_name": "Turkapally-Tunikipally road",
+      "error_type": "False Positive",
+      "true_label": 0,
+      "pred_label": 1,
+      "pred_prob": 0.7986,
+      "rainfall_24h_mm": 1.5,
+      "rainfall_72h_mm": 23.0,
+      "rainfall_7d_mm": 116.7,
+      "upstream_rainfall_72h_mm": 23.0,
+      "relative_elevation_m": -10.0,
+      "temperature_c": 26.9,
+      "wind_speed_kmh": 24.7,
+      "road_type": "collector",
+      "road_surface": "BT"
+    },
+    {
+      "observation_id": "V8_OBS_052",
+      "event_id": "BASELINE_DRY_20190315_NS",
+      "region": "Manjira_NizamSagar",
+      "road_segment_id": "TGRAC_COLLECTOR_452",
+      "road_name": "Turkapally-Tunikipally road",
+      "error_type": "False Positive",
+      "true_label": 0,
+      "pred_label": 1,
+      "pred_prob": 0.6323,
+      "rainfall_24h_mm": 0.0,
+      "rainfall_72h_mm": 0.0,
+      "rainfall_7d_mm": 0.0,
+      "upstream_rainfall_72h_mm": 0.0,
+      "relative_elevation_m": -10.0,
+      "temperature_c": 28.8,
+      "wind_speed_kmh": 17.7,
+      "road_type": "collector",
+      "road_surface": "BT"
+    }
+  ]
+}

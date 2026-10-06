@@ -1,0 +1,236 @@
+{
+  "timestamp_utc": "2026-09-30T07:09:09.437173+00:00",
+  "sample_counts": {
+    "total_observations": 75,
+    "real_observations": 75,
+    "simulated_observations": 0,
+    "removed_observations": 0,
+    "removal_reasons": []
+  },
+  "target_distribution": {
+    "SAFE": {
+      "count": 44,
+      "percentage": 58.67
+    },
+    "RISKY": {
+      "count": 19,
+      "percentage": 25.33
+    },
+    "BLOCKED": {
+      "count": 12,
+      "percentage": 16.0
+    }
+  },
+  "label_quality_distribution": {
+    "GOLD": 0,
+    "SILVER": 75,
+    "BRONZE": 0,
+    "UNVERIFIED": 0
+  },
+  "label_sources": {
+    "FloodNet_Annotation_Hurricane_Harvey_FloodNet": 35,
+    "UnifiedDisasters_Annotation_Camp_Fire_Wildfire_2018": 25,
+    "Municipal_Corridor_Advisory_Chennai_Velachery_Corridor": 8,
+    "Municipal_Corridor_Advisory_Bengaluru_OuterRingRoad_Corridor": 7
+  },
+  "candidate_partitions": {
+    "TRAIN_CANDIDATE": 28,
+    "VALIDATION_CANDIDATE": 7,
+    "TEST_CANDIDATE": 40
+  },
+  "distinct_events": [
+    "Monsoon_Urban_Waterlogging_2026",
+    "Camp_Fire_Wildfire_2018",
+    "Hurricane_Harvey_FloodNet"
+  ],
+  "distinct_segments_count": 13,
+  "geographic_bounds": {
+    "min_lat": 12.9726,
+    "max_lat": 39.8316,
+    "min_lon": -121.6219,
+    "max_lon": 80.2847
+  },
+  "feature_statistics": {
+    "rainfall_mm_h": {
+      "min": 0.0,
+      "max": 20.6,
+      "mean": 9.613,
+      "std": 10.277,
+      "zero_pct": 53.3
+    },
+    "rainfall_10min_mm": {
+      "min": 0.0,
+      "max": 3.43,
+      "mean": 1.601,
+      "std": 1.711,
+      "zero_pct": 53.3
+    },
+    "rainfall_1h_mm": {
+      "min": 0.0,
+      "max": 20.6,
+      "mean": 9.613,
+      "std": 10.277,
+      "zero_pct": 53.3
+    },
+    "visibility_m": {
+      "min": 800.0,
+      "max": 10000.0,
+      "mean": 6933.333,
+      "std": 4336.922,
+      "zero_pct": 0.0
+    },
+    "temperature_c": {
+      "min": 17.5,
+      "max": 33.5,
+      "mean": 23.36,
+      "std": 4.925,
+      "zero_pct": 0.0
+    },
+    "wind_speed_kmh": {
+      "min": 2.5,
+      "max": 68.0,
+      "mean": 42.511,
+      "std": 21.982,
+      "zero_pct": 0.0
+    },
+    "traffic_level": {
+      "min": 2.0,
+      "max": 2.0,
+      "mean": 2.0,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "vehicle_density": {
+      "min": 20.0,
+      "max": 20.0,
+      "mean": 20.0,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "congestion_change": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "vehicle_speed_kmh": {
+      "min": 40.0,
+      "max": 40.0,
+      "mean": 40.0,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "acceleration_mps2": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "braking_intensity": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "road_slope_pct": {
+      "min": 0.5,
+      "max": 0.5,
+      "mean": 0.5,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "elevation_m": {
+      "min": 5.804,
+      "max": 926.311,
+      "mean": 275.638,
+      "std": 316.701,
+      "zero_pct": 0.0
+    },
+    "road_type": {
+      "min": 1.0,
+      "max": 1.0,
+      "mean": 1.0,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "vehicle_count": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 1.16,
+      "std": 1.96,
+      "zero_pct": 65.3
+    },
+    "person_count": {
+      "min": 0.0,
+      "max": 2.0,
+      "mean": 0.413,
+      "std": 0.802,
+      "zero_pct": 78.7
+    },
+    "fire_detected": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.013,
+      "std": 0.115,
+      "zero_pct": 98.7
+    },
+    "smoke_detected": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "flood_detected": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.053,
+      "std": 0.225,
+      "zero_pct": 94.7
+    },
+    "obstacle_count": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "hazard_count": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.427,
+      "std": 0.495,
+      "zero_pct": 57.3
+    },
+    "hazard_distance_m": {
+      "min": 25.0,
+      "max": 500.0,
+      "mean": 297.333,
+      "std": 234.932,
+      "zero_pct": 0.0
+    },
+    "flood_report": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "road_closure_report": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    }
+  },
+  "audit_summary": {
+    "is_leakage_free": true,
+    "is_valid_ground_truth": true,
+    "critical_violations": 0,
+    "ground_truth_deficiencies": 0
+  }
+}

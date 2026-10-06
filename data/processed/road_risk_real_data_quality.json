@@ -1,0 +1,231 @@
+{
+  "timestamp_utc": "2026-09-30T07:00:26.985911+00:00",
+  "sample_counts": {
+    "total_observations": 50,
+    "real_observations": 50,
+    "simulated_observations": 0,
+    "removed_observations": 0,
+    "removal_reasons": []
+  },
+  "target_distribution": {
+    "SAFE": {
+      "count": 22,
+      "percentage": 44.0
+    },
+    "RISKY": {
+      "count": 10,
+      "percentage": 20.0
+    },
+    "BLOCKED": {
+      "count": 18,
+      "percentage": 36.0
+    }
+  },
+  "label_quality_distribution": {
+    "GOLD": 0,
+    "SILVER": 50,
+    "BRONZE": 0,
+    "UNVERIFIED": 0
+  },
+  "label_sources": {
+    "FloodNet_Annotation_Hurricane_Harvey_FloodNet": 50
+  },
+  "candidate_partitions": {
+    "TRAIN_CANDIDATE": 32,
+    "VALIDATION_CANDIDATE": 9,
+    "TEST_CANDIDATE": 9
+  },
+  "distinct_events": [
+    "Hurricane_Harvey_FloodNet"
+  ],
+  "distinct_segments_count": 8,
+  "geographic_bounds": {
+    "min_lat": 29.7604,
+    "max_lat": 29.8584,
+    "min_lon": -95.3698,
+    "max_lon": -95.2718
+  },
+  "feature_statistics": {
+    "rainfall_mm_h": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "rainfall_10min_mm": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "rainfall_1h_mm": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "visibility_m": {
+      "min": 10000.0,
+      "max": 10000.0,
+      "mean": 10000.0,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "temperature_c": {
+      "min": 25.4,
+      "max": 25.4,
+      "mean": 25.4,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "wind_speed_kmh": {
+      "min": 10.7,
+      "max": 10.7,
+      "mean": 10.7,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "traffic_level": {
+      "min": 2.0,
+      "max": 2.0,
+      "mean": 2.0,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "vehicle_density": {
+      "min": 20.0,
+      "max": 20.0,
+      "mean": 20.0,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "congestion_change": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "vehicle_speed_kmh": {
+      "min": 40.0,
+      "max": 40.0,
+      "mean": 40.0,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "acceleration_mps2": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "braking_intensity": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "road_slope_pct": {
+      "min": 0.5,
+      "max": 0.5,
+      "mean": 0.5,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "elevation_m": {
+      "min": 18.329,
+      "max": 18.329,
+      "mean": 18.329,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "road_type": {
+      "min": 1.0,
+      "max": 1.0,
+      "mean": 1.0,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "vehicle_count": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "person_count": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "fire_detected": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "smoke_detected": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "flood_detected": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.08,
+      "std": 0.271,
+      "zero_pct": 92.0
+    },
+    "obstacle_count": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "hazard_count": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.58,
+      "std": 0.494,
+      "zero_pct": 42.0
+    },
+    "hazard_distance_m": {
+      "min": 25.0,
+      "max": 500.0,
+      "mean": 224.5,
+      "std": 234.44,
+      "zero_pct": 0.0
+    },
+    "flood_report": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "road_closure_report": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    }
+  },
+  "audit_summary": {
+    "is_leakage_free": true,
+    "is_valid_ground_truth": true,
+    "critical_violations": 0,
+    "ground_truth_deficiencies": 0
+  }
+}

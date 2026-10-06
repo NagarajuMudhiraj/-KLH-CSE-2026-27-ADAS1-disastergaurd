@@ -1,0 +1,285 @@
+{
+  "strategy_A_event_held_out": {
+    "validation": {
+      "accuracy": 0.75,
+      "precision": 0.75,
+      "recall": 0.6,
+      "f1": 0.6666666666666666,
+      "roc_auc": 0.7714285714285714,
+      "pr_auc": 0.7968253968253969,
+      "brier_score": 0.17003881931304932,
+      "confusion_matrix": [
+        [
+          6,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "counts": {
+        "TP": 3,
+        "TN": 6,
+        "FP": 1,
+        "FN": 2
+      },
+      "class_diversity": "SUFFICIENT"
+    },
+    "test": {
+      "accuracy": 0.375,
+      "precision": 0.3333333333333333,
+      "recall": 1.0,
+      "f1": 0.5,
+      "roc_auc": 0.8545454545454545,
+      "pr_auc": 0.508095238095238,
+      "brier_score": 0.3343544006347656,
+      "confusion_matrix": [
+        [
+          1,
+          10
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "counts": {
+        "TP": 5,
+        "TN": 1,
+        "FP": 10,
+        "FN": 0
+      },
+      "class_diversity": "SUFFICIENT"
+    }
+  },
+  "strategy_B_unseen_road": {
+    "validation": {
+      "accuracy": 0.5384615384615384,
+      "precision": 0.4,
+      "recall": 1.0,
+      "f1": 0.5714285714285714,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "brier_score": 0.23562787473201752,
+      "confusion_matrix": [
+        [
+          3,
+          6
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "counts": {
+        "TP": 4,
+        "TN": 3,
+        "FP": 6,
+        "FN": 0
+      },
+      "class_diversity": "SUFFICIENT"
+    },
+    "test": {
+      "accuracy": 0.8333333333333334,
+      "precision": 0.7,
+      "recall": 1.0,
+      "f1": 0.8235294117647058,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "brier_score": 0.12305111438035965,
+      "confusion_matrix": [
+        [
+          8,
+          3
+        ],
+        [
+          0,
+          7
+        ]
+      ],
+      "counts": {
+        "TP": 7,
+        "TN": 8,
+        "FP": 3,
+        "FN": 0
+      },
+      "class_diversity": "SUFFICIENT"
+    }
+  },
+  "strategy_C_cross_basin": {
+    "fold_A_krishna_to_godavari": {
+      "accuracy": 0.4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.375,
+      "pr_auc": 0.603125,
+      "brier_score": 0.5164368152618408,
+      "confusion_matrix": [
+        [
+          8,
+          0
+        ],
+        [
+          12,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 8,
+        "FP": 0,
+        "FN": 12
+      },
+      "class_diversity": "SUFFICIENT"
+    },
+    "fold_B_godavari_to_singur": {
+      "accuracy": 0.625,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.5666666666666667,
+      "pr_auc": 0.36019536019536025,
+      "brier_score": 0.2984566390514374,
+      "confusion_matrix": [
+        [
+          10,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 10,
+        "FP": 0,
+        "FN": 6
+      },
+      "class_diversity": "SUFFICIENT"
+    }
+  },
+  "strategy_D_combined_generalization": {
+    "accuracy": 0.5,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "roc_auc": 0.5,
+    "pr_auc": 0.3333333333333333,
+    "brier_score": 0.3211916387081146,
+    "confusion_matrix": [
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "counts": {
+      "TP": 0,
+      "TN": 2,
+      "FP": 0,
+      "FN": 2
+    },
+    "class_diversity": "SUFFICIENT"
+  },
+  "feature_importance_gain": {
+    "rainfall_24h_mm": 0.04727986827492714,
+    "rainfall_72h_mm": 0.1787007749080658,
+    "rainfall_7d_mm": 0.10962637513875961,
+    "temperature_c": 0.08682335913181305,
+    "wind_speed_kmh": 0.06068027392029762,
+    "upstream_rainfall_72h_mm": 0.17295680940151215,
+    "catchment_mean_rainfall_72h_mm": 0.08433159440755844,
+    "hand_m": 0.259600967168808
+  },
+  "permutation_importance_validation": {
+    "rainfall_24h_mm": 0.0,
+    "rainfall_72h_mm": 0.038461538461538436,
+    "rainfall_7d_mm": -0.007692307692307732,
+    "temperature_c": -0.06923076923076929,
+    "wind_speed_kmh": -0.07692307692307696,
+    "upstream_rainfall_72h_mm": 0.02307692307692306,
+    "catchment_mean_rainfall_72h_mm": 0.08461538461538456,
+    "hand_m": -0.030769230769230806
+  },
+  "permutation_importance_test": {
+    "rainfall_24h_mm": 0.0,
+    "rainfall_72h_mm": 0.07222222222222226,
+    "rainfall_7d_mm": 0.050000000000000024,
+    "temperature_c": 0.005555555555555558,
+    "wind_speed_kmh": 0.0,
+    "upstream_rainfall_72h_mm": 0.05555555555555558,
+    "catchment_mean_rainfall_72h_mm": 0.04444444444444447,
+    "hand_m": 0.1555555555555556
+  },
+  "errors_unseen_road_test": [
+    {
+      "observation_id": "V9_OBS_040",
+      "event_id": "INDOFLOODS-gauge-939-6",
+      "region": "Manjira_NizamSagar",
+      "road_segment_id": "TGRAC_COLLECTOR_452",
+      "road_name": "Turkapally-Tunikipally road",
+      "error_type": "False Positive",
+      "true_label": 0,
+      "pred_label": 1,
+      "pred_prob": 0.5966,
+      "rainfall_24h_mm": 3.7,
+      "rainfall_72h_mm": 3.7,
+      "rainfall_7d_mm": 3.7,
+      "upstream_rainfall_72h_mm": 3.7,
+      "catchment_mean_rainfall_72h_mm": 0.91,
+      "hand_m": -3.0,
+      "temperature_c": 30.7,
+      "wind_speed_kmh": 16.6
+    },
+    {
+      "observation_id": "V9_OBS_044",
+      "event_id": "INDOFLOODS-gauge-939-7",
+      "region": "Manjira_NizamSagar",
+      "road_segment_id": "TGRAC_COLLECTOR_452",
+      "road_name": "Turkapally-Tunikipally road",
+      "error_type": "False Positive",
+      "true_label": 0,
+      "pred_label": 1,
+      "pred_prob": 0.6406,
+      "rainfall_24h_mm": 2.5,
+      "rainfall_72h_mm": 6.3,
+      "rainfall_7d_mm": 30.2,
+      "upstream_rainfall_72h_mm": 6.3,
+      "catchment_mean_rainfall_72h_mm": 10.63,
+      "hand_m": -3.0,
+      "temperature_c": 28.2,
+      "wind_speed_kmh": 16.2
+    },
+    {
+      "observation_id": "V9_OBS_048",
+      "event_id": "INDOFLOODS-gauge-939-10",
+      "region": "Manjira_NizamSagar",
+      "road_segment_id": "TGRAC_COLLECTOR_452",
+      "road_name": "Turkapally-Tunikipally road",
+      "error_type": "False Positive",
+      "true_label": 0,
+      "pred_label": 1,
+      "pred_prob": 0.6916,
+      "rainfall_24h_mm": 1.5,
+      "rainfall_72h_mm": 23.0,
+      "rainfall_7d_mm": 116.7,
+      "upstream_rainfall_72h_mm": 23.0,
+      "catchment_mean_rainfall_72h_mm": 42.1,
+      "hand_m": -3.0,
+      "temperature_c": 26.9,
+      "wind_speed_kmh": 24.7
+    }
+  ],
+  "latency_benchmark_ms": {
+    "feature_retrieval_cached": 0.2875494999998409,
+    "feature_preparation": 1.1229218999997101,
+    "xgboost_inference": 0.7435273000000961,
+    "total_local_end_to_end": 2.153998699999647
+  }
+}

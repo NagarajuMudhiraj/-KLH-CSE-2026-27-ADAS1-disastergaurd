@@ -1,0 +1,641 @@
+{
+  "strategy_A_event_holdout": {
+    "Dummy (Majority)": {
+      "val": {
+        "accuracy": 0.8333333333333334,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.5,
+        "pr_auc": 0.16666666666666666,
+        "brier_score": 0.16666666666666666,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "counts": {
+          "TP": 0,
+          "TN": 10,
+          "FP": 0,
+          "FN": 2
+        }
+      },
+      "test": {
+        "accuracy": 0.6875,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.5,
+        "pr_auc": 0.3125,
+        "brier_score": 0.3125,
+        "confusion_matrix": [
+          [
+            11,
+            0
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "counts": {
+          "TP": 0,
+          "TN": 11,
+          "FP": 0,
+          "FN": 5
+        }
+      }
+    },
+    "Logistic Regression": {
+      "val": {
+        "accuracy": 0.8333333333333334,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.9,
+        "pr_auc": 0.5833333333333333,
+        "brier_score": 0.11739742380148388,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "counts": {
+          "TP": 0,
+          "TN": 10,
+          "FP": 0,
+          "FN": 2
+        }
+      },
+      "test": {
+        "accuracy": 0.6875,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.7818181818181819,
+        "pr_auc": 0.7722222222222221,
+        "brier_score": 0.20011352501827795,
+        "confusion_matrix": [
+          [
+            11,
+            0
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "counts": {
+          "TP": 0,
+          "TN": 11,
+          "FP": 0,
+          "FN": 5
+        }
+      }
+    },
+    "Decision Tree": {
+      "val": {
+        "accuracy": 0.8333333333333334,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.5,
+        "pr_auc": 0.16666666666666666,
+        "brier_score": 0.16666666666666666,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "counts": {
+          "TP": 0,
+          "TN": 10,
+          "FP": 0,
+          "FN": 2
+        }
+      },
+      "test": {
+        "accuracy": 0.875,
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1": 0.75,
+        "roc_auc": 0.8,
+        "pr_auc": 0.725,
+        "brier_score": 0.125,
+        "confusion_matrix": [
+          [
+            11,
+            0
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "counts": {
+          "TP": 3,
+          "TN": 11,
+          "FP": 0,
+          "FN": 2
+        }
+      }
+    },
+    "Random Forest": {
+      "val": {
+        "accuracy": 0.8333333333333334,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 1.0,
+        "pr_auc": 1.0,
+        "brier_score": 0.09971605506959047,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "counts": {
+          "TP": 0,
+          "TN": 10,
+          "FP": 0,
+          "FN": 2
+        }
+      },
+      "test": {
+        "accuracy": 0.75,
+        "precision": 1.0,
+        "recall": 0.2,
+        "f1": 0.3333333333333333,
+        "roc_auc": 1.0,
+        "pr_auc": 1.0,
+        "brier_score": 0.11992521076154058,
+        "confusion_matrix": [
+          [
+            11,
+            0
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "counts": {
+          "TP": 1,
+          "TN": 11,
+          "FP": 0,
+          "FN": 4
+        }
+      }
+    },
+    "XGBoost V2": {
+      "val": {
+        "accuracy": 0.8333333333333334,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.5,
+        "pr_auc": 0.22619047619047616,
+        "brier_score": 0.14711906015872955,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "counts": {
+          "TP": 0,
+          "TN": 10,
+          "FP": 0,
+          "FN": 2
+        }
+      },
+      "test": {
+        "accuracy": 0.875,
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1": 0.75,
+        "roc_auc": 0.9636363636363636,
+        "pr_auc": 0.9266666666666665,
+        "brier_score": 0.12072747200727463,
+        "confusion_matrix": [
+          [
+            11,
+            0
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "counts": {
+          "TP": 3,
+          "TN": 11,
+          "FP": 0,
+          "FN": 2
+        }
+      }
+    }
+  },
+  "strategy_B_geographic_holdout": {
+    "Dummy (Majority)": {
+      "accuracy": 1.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": null,
+      "pr_auc": null,
+      "brier_score": 0.0,
+      "confusion_matrix": [
+        [
+          16,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 16,
+        "FP": 0,
+        "FN": 0
+      }
+    },
+    "Logistic Regression": {
+      "accuracy": 0.8125,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": null,
+      "pr_auc": null,
+      "brier_score": 0.1100967943504167,
+      "confusion_matrix": [
+        [
+          13,
+          3
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 13,
+        "FP": 3,
+        "FN": 0
+      }
+    },
+    "Decision Tree": {
+      "accuracy": 1.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": null,
+      "pr_auc": null,
+      "brier_score": 0.0,
+      "confusion_matrix": [
+        [
+          16,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 16,
+        "FP": 0,
+        "FN": 0
+      }
+    },
+    "Random Forest": {
+      "accuracy": 1.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": null,
+      "pr_auc": null,
+      "brier_score": 0.058725784561026416,
+      "confusion_matrix": [
+        [
+          16,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 16,
+        "FP": 0,
+        "FN": 0
+      }
+    },
+    "XGBoost V2": {
+      "accuracy": 1.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": null,
+      "pr_auc": null,
+      "brier_score": 0.03568284213542938,
+      "confusion_matrix": [
+        [
+          16,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 16,
+        "FP": 0,
+        "FN": 0
+      }
+    }
+  },
+  "grouped_cross_validation": {
+    "mean_acc": 0.8,
+    "std_acc": 0.1695582495781317,
+    "mean_prec": 0.4,
+    "std_prec": 0.48989794855663565,
+    "mean_rec": 0.4,
+    "std_rec": 0.48989794855663565,
+    "mean_f1": 0.4,
+    "std_f1": 0.48989794855663565,
+    "mean_auc": 0.7916666666666667,
+    "std_auc": 0.3608439182435161
+  },
+  "feature_ablation": {
+    "A. Weather Only": {
+      "accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.04999999999999999,
+      "pr_auc": 0.16666666666666666,
+      "brier_score": 0.3010832369327545,
+      "confusion_matrix": [
+        [
+          6,
+          4
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 6,
+        "FP": 4,
+        "FN": 2
+      }
+    },
+    "B. Road Features Only": {
+      "accuracy": 0.9166666666666666,
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8,
+      "roc_auc": 0.9,
+      "pr_auc": 0.5833333333333333,
+      "brier_score": 0.07361061125993729,
+      "confusion_matrix": [
+        [
+          9,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "counts": {
+        "TP": 2,
+        "TN": 9,
+        "FP": 1,
+        "FN": 0
+      }
+    },
+    "C. Weather + Road (Full)": {
+      "accuracy": 0.8333333333333334,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.5,
+      "pr_auc": 0.22619047619047616,
+      "brier_score": 0.14711906015872955,
+      "confusion_matrix": [
+        [
+          10,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 10,
+        "FP": 0,
+        "FN": 2
+      }
+    },
+    "D. Remove Rainfall": {
+      "accuracy": 0.8333333333333334,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.42500000000000004,
+      "pr_auc": 0.19642857142857142,
+      "brier_score": 0.14448489248752594,
+      "confusion_matrix": [
+        [
+          10,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 10,
+        "FP": 0,
+        "FN": 2
+      }
+    },
+    "E. Remove Elevation": {
+      "accuracy": 0.5833333333333334,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.42500000000000004,
+      "pr_auc": 0.19642857142857142,
+      "brier_score": 0.23739922046661377,
+      "confusion_matrix": [
+        [
+          7,
+          3
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 7,
+        "FP": 3,
+        "FN": 2
+      }
+    },
+    "F. Remove Road Type": {
+      "accuracy": 0.8333333333333334,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.475,
+      "pr_auc": 0.20833333333333331,
+      "brier_score": 0.14661051332950592,
+      "confusion_matrix": [
+        [
+          10,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 10,
+        "FP": 0,
+        "FN": 2
+      }
+    },
+    "G. Remove Road Surface": {
+      "accuracy": 0.8333333333333334,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.25,
+      "pr_auc": 0.16233766233766234,
+      "brier_score": 0.15368624031543732,
+      "confusion_matrix": [
+        [
+          10,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "counts": {
+        "TP": 0,
+        "TN": 10,
+        "FP": 0,
+        "FN": 2
+      }
+    }
+  },
+  "feature_importance_gain": {
+    "rainfall_24h_mm": 0.0584443025290966,
+    "temperature_c": 0.22874855995178223,
+    "wind_speed_kmh": 0.1255432516336441,
+    "elevation_m": 0.41136857867240906,
+    "road_length_m": 0.09731069207191467,
+    "road_type_arterial": 0.0,
+    "road_type_collector": 0.07858465611934662,
+    "road_type_highway": 0.0,
+    "road_surface_BT": 0.0,
+    "road_surface_CC": 0.0
+  },
+  "permutation_importance": {
+    "rainfall_24h_mm": 0.0,
+    "temperature_c": 0.016666666666666698,
+    "wind_speed_kmh": 0.0,
+    "elevation_m": 0.0,
+    "road_length_m": 0.0,
+    "road_type": 0.0,
+    "road_surface": 0.0
+  },
+  "errors_test": [
+    {
+      "observation_id": "V7_OBS_030",
+      "event_id": "INDOFLOODS-gauge-916-11",
+      "road_segment_id": "TGRAC_COLLECTOR_1730",
+      "road_name": " Tadadanpally'X' road to Singoor Project road",
+      "error_type": "False Negative",
+      "true_class": 1,
+      "pred_class": 0,
+      "pred_prob": 0.3245,
+      "rainfall_24h_mm": 1.0,
+      "temperature_c": 25.7,
+      "wind_speed_kmh": 37.6,
+      "elevation_m": 508.0,
+      "road_type": "collector",
+      "road_surface": "BT",
+      "road_length_m": 80.4,
+      "distance_to_flood_m": 619.9,
+      "explanation": "Road segment TGRAC_COLLECTOR_1730 ( Tadadanpally'X' road to Singoor Project road) at elevation 508.0m had low local precipitation (1.0mm) on peak event date; model assigned sub-threshold risk probability (0.325 < 0.50), under-predicting riparian flood exposure."
+    },
+    {
+      "observation_id": "V7_OBS_031",
+      "event_id": "INDOFLOODS-gauge-916-11",
+      "road_segment_id": "TGRAC_COLLECTOR_1731",
+      "road_name": " Tadadanpally'X' road to Singoor Project road",
+      "error_type": "False Negative",
+      "true_class": 1,
+      "pred_class": 0,
+      "pred_prob": 0.3004,
+      "rainfall_24h_mm": 1.0,
+      "temperature_c": 25.7,
+      "wind_speed_kmh": 37.6,
+      "elevation_m": 511.0,
+      "road_type": "collector",
+      "road_surface": "BT",
+      "road_length_m": 1321.6,
+      "distance_to_flood_m": 678.2,
+      "explanation": "Road segment TGRAC_COLLECTOR_1731 ( Tadadanpally'X' road to Singoor Project road) at elevation 511.0m had low local precipitation (1.0mm) on peak event date; model assigned sub-threshold risk probability (0.300 < 0.50), under-predicting riparian flood exposure."
+    }
+  ]
+}

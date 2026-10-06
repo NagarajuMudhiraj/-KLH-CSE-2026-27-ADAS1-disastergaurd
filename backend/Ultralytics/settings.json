@@ -1,0 +1,20 @@
+{
+  "settings_version": "0.0.7",
+  "datasets_dir": "D:\\datasets",
+  "weights_dir": "D:\\datasets_IDM(ADAS)\\weights",
+  "runs_dir": "D:\\datasets_IDM(ADAS)\\runs",
+  "uuid": "9331c902bf39dac4b920b4b3ada1016b82d675582a97878c90019bb6073fba13",
+  "sync": true,
+  "api_key": "",
+  "openai_api_key": "",
+  "clearml": true,
+  "comet": true,
+  "dvc": true,
+  "mlflow": true,
+  "neptune": true,
+  "raytune": true,
+  "tensorboard": false,
+  "wandb": false,
+  "vscode_msg": true,
+  "openvino_msg": true
+}

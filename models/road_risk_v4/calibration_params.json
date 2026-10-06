@@ -1,0 +1,8 @@
+{
+  "temperature_T": 1.7963346809050225,
+  "optimal_threshold_tau": 0.58,
+  "brier_score_raw": 0.21250328908211044,
+  "brier_score_calibrated": 0.19869320556748102,
+  "log_loss_raw": 0.6346042050283343,
+  "log_loss_calibrated": 0.5848662433586576
+}

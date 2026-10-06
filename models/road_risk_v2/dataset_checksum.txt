@@ -1,0 +1,4 @@
+dataset: data\processed\road_risk_dataset_v7.csv
+sha256: 066d1e44445eb6b2eeecdd4cef7d611c2fcfe2eb573e8ffc0c9ecab1e1b74658
+rows: 68
+timestamp: 2026-09-30T19:45:00+05:30

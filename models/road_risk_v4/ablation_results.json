@@ -1,0 +1,314 @@
+{
+  "A. Local weather only": {
+    "accuracy": 0.7692307692307693,
+    "precision": 0.5714285714285714,
+    "recall": 1.0,
+    "f1": 0.7272727272727273,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.12919680774211884,
+    "confusion_matrix": [
+      [
+        6,
+        3
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 6,
+      "FP": 3,
+      "FN": 0
+    },
+    "class_diversity": "SUFFICIENT"
+  },
+  "B. Local weather + HAND": {
+    "accuracy": 0.5384615384615384,
+    "precision": 0.4,
+    "recall": 1.0,
+    "f1": 0.5714285714285714,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.2475801557302475,
+    "confusion_matrix": [
+      [
+        3,
+        6
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 3,
+      "FP": 6,
+      "FN": 0
+    },
+    "class_diversity": "SUFFICIENT"
+  },
+  "C. Local weather + Upstream rainfall": {
+    "accuracy": 0.7692307692307693,
+    "precision": 0.5714285714285714,
+    "recall": 1.0,
+    "f1": 0.7272727272727273,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.1263599991798401,
+    "confusion_matrix": [
+      [
+        6,
+        3
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 6,
+      "FP": 3,
+      "FN": 0
+    },
+    "class_diversity": "SUFFICIENT"
+  },
+  "D. Local weather + Catchment rainfall": {
+    "accuracy": 0.7692307692307693,
+    "precision": 0.5714285714285714,
+    "recall": 1.0,
+    "f1": 0.7272727272727273,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.13221867382526398,
+    "confusion_matrix": [
+      [
+        6,
+        3
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 6,
+      "FP": 3,
+      "FN": 0
+    },
+    "class_diversity": "SUFFICIENT"
+  },
+  "E. Local weather + HAND + Catchment rainfall": {
+    "accuracy": 0.6153846153846154,
+    "precision": 0.4444444444444444,
+    "recall": 1.0,
+    "f1": 0.6153846153846154,
+    "roc_auc": 0.9722222222222222,
+    "pr_auc": 0.94375,
+    "brier_score": 0.264912486076355,
+    "confusion_matrix": [
+      [
+        4,
+        5
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 4,
+      "FP": 5,
+      "FN": 0
+    },
+    "class_diversity": "SUFFICIENT"
+  },
+  "F. Full V4 (All 8 features)": {
+    "accuracy": 0.5384615384615384,
+    "precision": 0.4,
+    "recall": 1.0,
+    "f1": 0.5714285714285714,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.23562787473201752,
+    "confusion_matrix": [
+      [
+        3,
+        6
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 3,
+      "FP": 6,
+      "FN": 0
+    },
+    "class_diversity": "SUFFICIENT"
+  },
+  "G. Full V4 minus rainfall_24h": {
+    "accuracy": 0.6153846153846154,
+    "precision": 0.4444444444444444,
+    "recall": 1.0,
+    "f1": 0.6153846153846154,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.26628968119621277,
+    "confusion_matrix": [
+      [
+        4,
+        5
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 4,
+      "FP": 5,
+      "FN": 0
+    },
+    "class_diversity": "SUFFICIENT"
+  },
+  "H. Full V4 minus rainfall_72h": {
+    "accuracy": 0.6153846153846154,
+    "precision": 0.4444444444444444,
+    "recall": 1.0,
+    "f1": 0.6153846153846154,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.27006012201309204,
+    "confusion_matrix": [
+      [
+        4,
+        5
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 4,
+      "FP": 5,
+      "FN": 0
+    },
+    "class_diversity": "SUFFICIENT"
+  },
+  "I. Full V4 minus rainfall_7d": {
+    "accuracy": 0.6153846153846154,
+    "precision": 0.4444444444444444,
+    "recall": 1.0,
+    "f1": 0.6153846153846154,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.26373183727264404,
+    "confusion_matrix": [
+      [
+        4,
+        5
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 4,
+      "FP": 5,
+      "FN": 0
+    },
+    "class_diversity": "SUFFICIENT"
+  },
+  "J. Full V4 minus upstream_rainfall": {
+    "accuracy": 0.5384615384615384,
+    "precision": 0.4,
+    "recall": 1.0,
+    "f1": 0.5714285714285714,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.27720534801483154,
+    "confusion_matrix": [
+      [
+        3,
+        6
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 3,
+      "FP": 6,
+      "FN": 0
+    },
+    "class_diversity": "SUFFICIENT"
+  },
+  "K. Full V4 minus catchment_rainfall": {
+    "accuracy": 0.5384615384615384,
+    "precision": 0.4,
+    "recall": 1.0,
+    "f1": 0.5714285714285714,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.25437575578689575,
+    "confusion_matrix": [
+      [
+        3,
+        6
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 3,
+      "FP": 6,
+      "FN": 0
+    },
+    "class_diversity": "SUFFICIENT"
+  },
+  "L. Full V4 minus HAND": {
+    "accuracy": 0.7692307692307693,
+    "precision": 0.5714285714285714,
+    "recall": 1.0,
+    "f1": 0.7272727272727273,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "brier_score": 0.12699469923973083,
+    "confusion_matrix": [
+      [
+        6,
+        3
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "counts": {
+      "TP": 4,
+      "TN": 6,
+      "FP": 3,
+      "FN": 0
+    },
+    "class_diversity": "SUFFICIENT"
+  }
+}

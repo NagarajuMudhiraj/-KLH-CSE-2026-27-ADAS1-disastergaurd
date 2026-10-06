@@ -1,0 +1,25 @@
+{
+  "model_name": "road_risk_v4",
+  "algorithm": "XGBClassifier",
+  "python_version": "3.12.14",
+  "xgboost_version": "3.4.1",
+  "random_seed": 42,
+  "n_estimators": 50,
+  "max_depth": 3,
+  "learning_rate": 0.05,
+  "subsample": 0.8,
+  "colsample_bytree": 0.8,
+  "scale_pos_weight": 4.285714285714286,
+  "eval_metric": "logloss",
+  "objective": "binary:logistic",
+  "features": [
+    "rainfall_24h_mm",
+    "rainfall_72h_mm",
+    "rainfall_7d_mm",
+    "temperature_c",
+    "wind_speed_kmh",
+    "upstream_rainfall_72h_mm",
+    "catchment_mean_rainfall_72h_mm",
+    "hand_m"
+  ]
+}

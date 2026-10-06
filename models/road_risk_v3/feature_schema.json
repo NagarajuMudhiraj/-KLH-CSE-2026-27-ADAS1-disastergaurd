@@ -1,0 +1,175 @@
+{
+  "model_version": "3.0.0",
+  "phase": "Phase 14 Model Training & Benchmark",
+  "updated_at": "2026-09-30T20:10:00+05:30",
+  "status": "ACTIVE_FEATURE_CONTRACT",
+  "target": {
+    "name": "target_flood_exposure",
+    "type": "integer",
+    "unit": "binary_flag",
+    "classes": {
+      "0": "NOT_EXPOSED",
+      "1": "FLOOD_EXPOSED"
+    },
+    "description": "Indicates whether a road segment intersects an active riverine flood hazard corridor (within 2,500m of an overflowing CWC river gauging reach). Does NOT imply confirmed direct pavement submergence or road closure."
+  },
+  "features": [
+    {
+      "name": "rainfall_24h_mm",
+      "type": "float",
+      "unit": "mm",
+      "category": "DYNAMIC_WEATHER",
+      "historical_source": "Open-Meteo Historical Archive (ERA5 Reanalysis)",
+      "real_time_source": "Open-Meteo Forecast / IMD Real-Time API",
+      "derivation": "Precipitation accumulated during the 24 hours up to observation time at road centroid",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    },
+    {
+      "name": "rainfall_72h_mm",
+      "type": "float",
+      "unit": "mm",
+      "category": "DYNAMIC_WEATHER",
+      "historical_source": "Open-Meteo Historical Archive (ERA5 Reanalysis)",
+      "real_time_source": "Open-Meteo Forecast / IMD Real-Time API (past 72h accumulation)",
+      "derivation": "Cumulative precipitation accumulated during the 72 hours (3 days) up to observation date at road centroid",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    },
+    {
+      "name": "rainfall_7d_mm",
+      "type": "float",
+      "unit": "mm",
+      "category": "DYNAMIC_WEATHER",
+      "historical_source": "Open-Meteo Historical Archive (ERA5 Reanalysis)",
+      "real_time_source": "Open-Meteo Forecast / IMD Real-Time API (past 7d accumulation)",
+      "derivation": "Cumulative precipitation accumulated during the 7 days up to observation date at road centroid",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    },
+    {
+      "name": "upstream_rainfall_72h_mm",
+      "type": "float",
+      "unit": "mm",
+      "category": "UPSTREAM_HYDROLOGY",
+      "historical_source": "Open-Meteo Historical Archive (ERA5 Reanalysis) at upstream gauge/catchment inlet",
+      "real_time_source": "Open-Meteo Forecast API queried at upstream catchment centroid",
+      "derivation": "Cumulative precipitation over the 72 hours preceding observation date at the upstream hydrological inlet/gauge",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_WITH_PROVIDER"
+    },
+    {
+      "name": "temperature_c",
+      "type": "float",
+      "unit": "celsius",
+      "category": "DYNAMIC_WEATHER",
+      "historical_source": "Open-Meteo Historical Archive (ERA5 Reanalysis)",
+      "real_time_source": "Open-Meteo Real-Time Weather API / In-Vehicle OAT Sensor",
+      "derivation": "Daily mean surface air temperature at 2m above ground",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    },
+    {
+      "name": "wind_speed_kmh",
+      "type": "float",
+      "unit": "km/h",
+      "category": "DYNAMIC_WEATHER",
+      "historical_source": "Open-Meteo Historical Archive (ERA5 Reanalysis)",
+      "real_time_source": "Open-Meteo Real-Time Weather API",
+      "derivation": "Daily maximum wind speed at 10m above ground",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    },
+    {
+      "name": "relative_elevation_m",
+      "type": "float",
+      "unit": "meters",
+      "category": "RELATIVE_HYDROLOGY_TERRAIN",
+      "historical_source": "Copernicus GLO-30 DEM",
+      "real_time_source": "Pre-indexed river channel DEM datum lookup by road segment coordinate",
+      "derivation": "road_elevation_m minus static_river_channel_datum_m (relative vertical clearance above regional drainage)",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    },
+    {
+      "name": "road_type",
+      "type": "string",
+      "unit": "categorical",
+      "categories": [
+        "highway",
+        "arterial",
+        "collector"
+      ],
+      "category": "ROAD",
+      "historical_source": "TGRAC GIS RnB Roads Classification",
+      "real_time_source": "Local OSM Highway Tag / Route Metadata",
+      "derivation": "Administrative highway hierarchy classification",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    },
+    {
+      "name": "road_surface",
+      "type": "string",
+      "unit": "categorical",
+      "categories": [
+        "BT",
+        "CC"
+      ],
+      "category": "ROAD",
+      "historical_source": "TGRAC GIS RnB Roads Surface",
+      "real_time_source": "Local OSM Surface Tag / Municipal GIS Layer",
+      "derivation": "Pavement material specification (BT = Bituminous, CC = Cement Concrete)",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    }
+  ],
+  "excluded_and_quarantined_variables": [
+    {
+      "name": "road_length_m",
+      "status": "PERMANENTLY_EXCLUDED",
+      "reason": "Phase 12 demonstrated that road_length_m acts as an exact 1-to-1 surrogate for road identity, causing severe spatial memorization and distractor noise. Removing it improved unseen-road ROC-AUC from 0.7556 to 0.8459."
+    },
+    {
+      "name": "elevation_m",
+      "status": "SUPERSEDED",
+      "reason": "Absolute elevation above sea level is heavily confounded with basin identity (Godavari at 50m vs Deccan plateau at 500m). Superseded by relative_elevation_m."
+    },
+    {
+      "name": "distance_to_flood_m",
+      "status": "QUARANTINED",
+      "reason": "Direct spatial component of the ground-truth label definition."
+    },
+    {
+      "name": "gauge_water_level_m",
+      "status": "QUARANTINED",
+      "reason": "Concurrent event water level used to trigger the flood exposure label."
+    },
+    {
+      "name": "gauge_warning_level_m",
+      "status": "QUARANTINED",
+      "reason": "Static threshold used to define flood event initiation."
+    },
+    {
+      "name": "flood_stage",
+      "status": "QUARANTINED",
+      "reason": "Event severity tier directly derived from gauge water level."
+    },
+    {
+      "name": "spatial_evidence_type",
+      "status": "QUARANTINED",
+      "reason": "Annotation metadata denoting negative control or proximity proxy."
+    }
+  ],
+  "future_unsupported_features": [
+    {
+      "name": "upstream_discharge",
+      "status": "FUTURE_PROVIDER",
+      "reason": "Hourly upstream volumetric river discharge (cumecs) requires real-time CWC/FFWC telemetry integration not currently accessible."
+    },
+    {
+      "name": "stage_change_rate",
+      "status": "FUTURE_PROVIDER",
+      "reason": "Requires sub-daily antecedent river gauge timeseries at t-6h, t-12h. Not available in daily historical catalogs."
+    }
+  ]
+}

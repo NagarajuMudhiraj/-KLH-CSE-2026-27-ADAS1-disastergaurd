@@ -1,0 +1,25 @@
+{
+  "statistical_mean_accuracy": 0.7096153846153846,
+  "statistical_accuracy_std": 0.1310517310569294,
+  "calibrated_overall_accuracy": 0.7794117647058824,
+  "calibrated_overall_recall": 0.7777777777777778,
+  "calibrated_overall_precision": 0.56,
+  "calibrated_overall_f1": 0.6511627906976745,
+  "calibrated_overall_roc_auc": 0.7333333333333333,
+  "confusion_matrix": [
+    [
+      39,
+      11
+    ],
+    [
+      4,
+      14
+    ]
+  ],
+  "counts": {
+    "TP": 14,
+    "TN": 39,
+    "FP": 11,
+    "FN": 4
+  }
+}

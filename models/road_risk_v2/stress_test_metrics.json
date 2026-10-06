@@ -1,0 +1,173 @@
+{
+  "leave_one_event_out": [
+    {
+      "held_out_event": "INDOFLOODS-gauge-925-1",
+      "region": "Godavari_Lower",
+      "n_rows": 4,
+      "pos_count": 3,
+      "neg_count": 1,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "held_out_event": "INDOFLOODS-gauge-925-2",
+      "region": "Godavari_Lower",
+      "n_rows": 4,
+      "pos_count": 3,
+      "neg_count": 1,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "held_out_event": "INDOFLOODS-gauge-925-3",
+      "region": "Godavari_Lower",
+      "n_rows": 4,
+      "pos_count": 3,
+      "neg_count": 1,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "held_out_event": "INDOFLOODS-gauge-925-6",
+      "region": "Godavari_Lower",
+      "n_rows": 4,
+      "pos_count": 3,
+      "neg_count": 1,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "held_out_event": "INDOFLOODS-gauge-916-1",
+      "region": "Manjira_Singur",
+      "n_rows": 4,
+      "pos_count": 2,
+      "neg_count": 2,
+      "accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "held_out_event": "INDOFLOODS-gauge-916-8",
+      "region": "Manjira_Singur",
+      "n_rows": 4,
+      "pos_count": 2,
+      "neg_count": 2,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "held_out_event": "INDOFLOODS-gauge-916-11",
+      "region": "Manjira_Singur",
+      "n_rows": 4,
+      "pos_count": 2,
+      "neg_count": 2,
+      "accuracy": 0.75,
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8
+    },
+    {
+      "held_out_event": "INDOFLOODS-gauge-939-6",
+      "region": "Manjira_NizamSagar",
+      "n_rows": 4,
+      "pos_count": 0,
+      "neg_count": 4,
+      "accuracy": 1.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "held_out_event": "INDOFLOODS-gauge-939-7",
+      "region": "Manjira_NizamSagar",
+      "n_rows": 4,
+      "pos_count": 0,
+      "neg_count": 4,
+      "accuracy": 1.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "held_out_event": "INDOFLOODS-gauge-939-10",
+      "region": "Manjira_NizamSagar",
+      "n_rows": 4,
+      "pos_count": 0,
+      "neg_count": 4,
+      "accuracy": 1.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "held_out_event": "INDOFLOODS-gauge-917-3",
+      "region": "Krishna_Agraharam",
+      "n_rows": 4,
+      "pos_count": 0,
+      "neg_count": 4,
+      "accuracy": 1.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "held_out_event": "INDOFLOODS-gauge-917-5",
+      "region": "Krishna_Agraharam",
+      "n_rows": 4,
+      "pos_count": 0,
+      "neg_count": 4,
+      "accuracy": 1.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "held_out_event": "INDOFLOODS-gauge-917-6",
+      "region": "Krishna_Agraharam",
+      "n_rows": 4,
+      "pos_count": 0,
+      "neg_count": 4,
+      "accuracy": 1.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  ],
+  "memorization_comparison": {
+    "Model A (Weather + Road)": {
+      "accuracy": 0.9375,
+      "precision": 0.8333333333333334,
+      "recall": 1.0,
+      "f1": 0.9090909090909091,
+      "roc_auc": 1.0,
+      "brier_score": 0.052462540566921234
+    },
+    "Model B (Weather Only)": {
+      "accuracy": 0.6875,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.7090909090909091,
+      "brier_score": 0.19557872414588928
+    },
+    "Model C (Road Only)": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "brier_score": 0.034001413732767105
+    }
+  }
+}

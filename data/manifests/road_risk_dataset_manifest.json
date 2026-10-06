@@ -1,0 +1,40 @@
+{
+  "dataset_manifest_version": "4.0.0",
+  "phase": "PHASE_6_PROVENANCE_GATE",
+  "created_at_utc": "2026-09-30T09:01:20.113889+00:00",
+  "dataset_files": {
+    "csv": "road_risk_dataset_v4.csv",
+    "parquet": "road_risk_dataset_v4.parquet",
+    "intermediate_jsonl": "road_risk_verified_observations_v4.jsonl"
+  },
+  "sha256_checksum_csv": "25c4d6e7b9503bd8d6ab6df1871b14799470c03076a7bd89f3ccb1dabb99ca37",
+  "total_records": 0,
+  "source_records_quarantined": 50,
+  "source_provenance_breakdown": {
+    "REAL_ELIGIBLE": 0,
+    "REAL_QUARANTINED": 50,
+    "SIMULATED": 0
+  },
+  "distinct_disaster_events": [],
+  "candidate_partitions": {
+    "TRAIN": 0,
+    "VALIDATION": 0,
+    "TEST_HOLDOUT": 0
+  },
+  "training_readiness": {
+    "status": "NOT_READY_FOR_MODEL_TRAINING",
+    "rationale": "No V4-eligible rows: one source event and no source-native capture coordinates/timestamps; traffic and road geography contain hardcoded fallbacks."
+  },
+  "quarantine": {
+    "source_dataset": "road_risk_dataset_v3.csv",
+    "count": 50,
+    "common_failures": [
+      "observation timestamp is a builder-assigned ERA5 slot, not a FloodNet capture timestamp",
+      "latitude/longitude and segment_id are builder-generated Houston jitter, not image geolocation",
+      "weather is joined at Houston centre, not a verified observation coordinate",
+      "traffic_level is the hardcoded 2.0 fallback",
+      "road_slope_pct is the hardcoded 0.5 fallback",
+      "road_type is the hardcoded highway fallback"
+    ]
+  }
+}

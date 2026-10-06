@@ -1,0 +1,1 @@
+observation_id,timestamp,latitude,longitude,segment_id,event_id,session_id,split_candidate,source,label_source,label_quality,data_quality,data_classification,rainfall_mm_h,rainfall_1h_mm,temperature_c,wind_speed_kmh,road_risk_status

@@ -1,0 +1,34 @@
+{
+  "model_type": "XGBClassifier",
+  "dataset": "data\\processed\\road_risk_dataset_v7.csv",
+  "dataset_checksum_sha256": "066d1e44445eb6b2eeecdd4cef7d611c2fcfe2eb573e8ffc0c9ecab1e1b74658",
+  "dataset_version": "v7.0",
+  "n_rows": 68,
+  "n_train_rows": 40,
+  "n_val_rows": 12,
+  "n_test_rows": 16,
+  "random_seed": 42,
+  "n_estimators": 50,
+  "max_depth": 3,
+  "learning_rate": 0.05,
+  "subsample": 0.8,
+  "colsample_bytree": 0.8,
+  "scale_pos_weight": 2.6363636363636362,
+  "features": [
+    "rainfall_24h_mm",
+    "temperature_c",
+    "wind_speed_kmh",
+    "elevation_m",
+    "road_length_m",
+    "road_type",
+    "road_surface"
+  ],
+  "target": "target_flood_exposure",
+  "quarantined_variables": [
+    "distance_to_flood_m",
+    "gauge_water_level_m",
+    "gauge_warning_level_m",
+    "flood_stage",
+    "spatial_evidence_type"
+  ]
+}

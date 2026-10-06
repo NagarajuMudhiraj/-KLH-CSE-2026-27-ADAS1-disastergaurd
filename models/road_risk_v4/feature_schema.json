@@ -1,0 +1,141 @@
+{
+  "model_version": "4.0.0-draft",
+  "phase": "Phase 15 Representation & Dataset Expansion",
+  "updated_at": "2026-09-30T20:40:00+05:30",
+  "status": "CANDIDATE_FEATURE_CONTRACT",
+  "target": {
+    "name": "target_flood_exposure",
+    "type": "integer",
+    "unit": "binary_flag",
+    "classes": {
+      "0": "NOT_EXPOSED",
+      "1": "FLOOD_EXPOSED"
+    },
+    "description": "Indicates whether a road segment intersects an active riverine flood hazard corridor (within 2,500m of an overflowing CWC river gauging reach). Does NOT imply confirmed direct pavement submergence, road closure, or traffic accident."
+  },
+  "candidate_features": [
+    {
+      "name": "rainfall_24h_mm",
+      "type": "float",
+      "unit": "mm",
+      "category": "DYNAMIC_WEATHER",
+      "historical_source": "Open-Meteo Historical Archive (ERA5 Reanalysis)",
+      "real_time_source": "Open-Meteo Forecast / IMD Real-Time API",
+      "derivation": "Precipitation accumulated during the 24 hours up to observation time at road centroid",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    },
+    {
+      "name": "rainfall_72h_mm",
+      "type": "float",
+      "unit": "mm",
+      "category": "DYNAMIC_WEATHER",
+      "historical_source": "Open-Meteo Historical Archive (ERA5 Reanalysis)",
+      "real_time_source": "Open-Meteo Past 72h Precipitation Sum API",
+      "derivation": "Cumulative precipitation accumulated during the 72 hours (3 days) up to observation date at road centroid",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    },
+    {
+      "name": "rainfall_7d_mm",
+      "type": "float",
+      "unit": "mm",
+      "category": "DYNAMIC_WEATHER",
+      "historical_source": "Open-Meteo Historical Archive (ERA5 Reanalysis)",
+      "real_time_source": "Open-Meteo Past 7d Precipitation Sum API",
+      "derivation": "Cumulative precipitation accumulated during the 7 days up to observation date at road centroid",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    },
+    {
+      "name": "temperature_c",
+      "type": "float",
+      "unit": "celsius",
+      "category": "DYNAMIC_WEATHER",
+      "historical_source": "Open-Meteo Historical Archive (ERA5 Reanalysis)",
+      "real_time_source": "Open-Meteo Real-Time Weather API / In-Vehicle OAT Sensor",
+      "derivation": "Daily mean surface air temperature at 2m above ground",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    },
+    {
+      "name": "wind_speed_kmh",
+      "type": "float",
+      "unit": "km/h",
+      "category": "DYNAMIC_WEATHER",
+      "historical_source": "Open-Meteo Historical Archive (ERA5 Reanalysis)",
+      "real_time_source": "Open-Meteo Real-Time Weather API",
+      "derivation": "Daily maximum wind speed at 10m above ground",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    },
+    {
+      "name": "upstream_rainfall_72h_mm",
+      "type": "float",
+      "unit": "mm",
+      "category": "UPSTREAM_HYDROLOGY",
+      "historical_source": "Open-Meteo Historical Archive (ERA5 Reanalysis) at upstream gauge coordinate",
+      "real_time_source": "Open-Meteo Forecast API queried at upstream catchment inlet",
+      "derivation": "Cumulative precipitation over the 72 hours preceding observation date at the upstream hydrological inlet/gauge",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_WITH_PROVIDER"
+    },
+    {
+      "name": "catchment_mean_rainfall_72h_mm",
+      "type": "float",
+      "unit": "mm",
+      "category": "UPSTREAM_HYDROLOGY",
+      "historical_source": "CWC IndoFloods Catchment Precipitation (T3d)",
+      "real_time_source": "IMD/CWC River Basin Spatial Weather Grids",
+      "derivation": "Spatially averaged 3-day precipitation across the entire upstream catchment basin polygon",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_WITH_PROVIDER"
+    },
+    {
+      "name": "hand_m",
+      "type": "float",
+      "unit": "meters",
+      "category": "RELATIVE_HYDROLOGY_TERRAIN",
+      "historical_source": "Copernicus GLO-30 DEM + CWC/HydroSHEDS River Centerlines",
+      "real_time_source": "Pre-indexed static 2D HAND raster lookup by road segment GPS coordinate",
+      "derivation": "Height Above Nearest Drainage: z_road_centroid minus z_nearest_drainage_reach",
+      "leakage_status": "LEAKAGE_FREE",
+      "availability": "AVAILABLE_NOW"
+    }
+  ],
+  "excluded_geographic_proxies": [
+    {
+      "name": "road_length_m",
+      "reason": "100% unique float per segment; acts as a direct surrogate for road identity, causing severe spatial memorization."
+    },
+    {
+      "name": "road_type",
+      "reason": "Phase 14 proved road_type=collector was responsible for 4 of 5 unseen-road false positives and is geographically clustered."
+    },
+    {
+      "name": "road_surface",
+      "reason": "Severely unbalanced (CC on only 1 road segment) and geographically confounded."
+    },
+    {
+      "name": "elevation_m",
+      "reason": "Absolute sea-level elevation fails cross-basin transfer because floodplain base levels vary by hundreds of meters across basins."
+    }
+  ],
+  "quarantined_variables": [
+    "distance_to_flood_m",
+    "gauge_water_level_m",
+    "gauge_warning_level_m",
+    "flood_stage",
+    "flood_intersection_ratio",
+    "spatial_evidence_type",
+    "observation_id",
+    "event_id",
+    "road_segment_id",
+    "road_name"
+  ],
+  "future_hydrological_features": [
+    "upstream_stage_lag_6h_m",
+    "upstream_discharge_lag_6h_cumec",
+    "stage_change_rate_6h_m_per_hr"
+  ]
+}

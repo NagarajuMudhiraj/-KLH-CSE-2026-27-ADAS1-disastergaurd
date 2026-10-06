@@ -1,0 +1,215 @@
+{
+  "timestamp_utc": "2026-09-30T05:54:27.579936+00:00",
+  "total_records": 85,
+  "label_distribution": {
+    "SAFE": {
+      "count": 22,
+      "percentage": 25.88
+    },
+    "RISKY": {
+      "count": 45,
+      "percentage": 52.94
+    },
+    "BLOCKED": {
+      "count": 18,
+      "percentage": 21.18
+    }
+  },
+  "label_sources": {
+    "INDEPENDENT_GROUND_TRUTH_ENGINE": 85
+  },
+  "data_quality_breakdown": {
+    "HIGH": {
+      "count": 85,
+      "percentage": 100.0
+    }
+  },
+  "source_provenance_breakdown": {
+    "REALISTIC_SIMULATION": {
+      "count": 85,
+      "percentage": 100.0
+    }
+  },
+  "feature_statistics": {
+    "rainfall_mm_h": {
+      "min": 0.0,
+      "max": 17.46,
+      "mean": 1.824,
+      "std": 4.834,
+      "zero_pct": 87.1
+    },
+    "rainfall_10min_mm": {
+      "min": 0.0,
+      "max": 22.04,
+      "mean": 3.873,
+      "std": 6.469,
+      "zero_pct": 61.2
+    },
+    "rainfall_1h_mm": {
+      "min": 0.0,
+      "max": 154.3,
+      "mean": 26.98,
+      "std": 43.86,
+      "zero_pct": 61.2
+    },
+    "visibility_m": {
+      "min": 0.0,
+      "max": 9376.4,
+      "mean": 4508.718,
+      "std": 3716.695,
+      "zero_pct": 32.9
+    },
+    "temperature_c": {
+      "min": 8.9,
+      "max": 32.2,
+      "mean": 22.595,
+      "std": 4.391,
+      "zero_pct": 0.0
+    },
+    "wind_speed_kmh": {
+      "min": 0.0,
+      "max": 56.8,
+      "mean": 13.172,
+      "std": 13.23,
+      "zero_pct": 14.1
+    },
+    "traffic_level": {
+      "min": 3.0,
+      "max": 3.0,
+      "mean": 3.0,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "vehicle_density": {
+      "min": 30.0,
+      "max": 30.0,
+      "mean": 30.0,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "congestion_change": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "vehicle_speed_kmh": {
+      "min": 40.0,
+      "max": 40.0,
+      "mean": 40.0,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "acceleration_mps2": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "braking_intensity": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "road_slope_pct": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "elevation_m": {
+      "min": 200.0,
+      "max": 200.0,
+      "mean": 200.0,
+      "std": 0.0,
+      "zero_pct": 0.0
+    },
+    "road_type": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "vehicle_count": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 0.647,
+      "std": 1.165,
+      "zero_pct": 68.2
+    },
+    "person_count": {
+      "min": 0.0,
+      "max": 2.0,
+      "mean": 0.176,
+      "std": 0.513,
+      "zero_pct": 88.2
+    },
+    "fire_detected": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "smoke_detected": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.118,
+      "std": 0.322,
+      "zero_pct": 88.2
+    },
+    "flood_detected": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "obstacle_count": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "hazard_count": {
+      "min": 0.0,
+      "max": 3.0,
+      "mean": 0.588,
+      "std": 0.872,
+      "zero_pct": 64.7
+    },
+    "hazard_distance_m": {
+      "min": 14.8,
+      "max": 500.0,
+      "mean": 334.689,
+      "std": 223.946,
+      "zero_pct": 0.0
+    },
+    "flood_report": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    },
+    "road_closure_report": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "zero_pct": 100.0
+    }
+  },
+  "audit_summary": {
+    "is_valid": true,
+    "total_violations": 106,
+    "critical_violations": 0
+  }
+}

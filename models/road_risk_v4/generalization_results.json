@@ -1,0 +1,56 @@
+{
+  "unseen_road": {
+    "test_accuracy": 0.8333333333333334,
+    "test_precision": 0.7,
+    "test_recall": 1.0,
+    "test_f1": 0.8235294117647058,
+    "test_roc_auc": 1.0,
+    "test_pr_auc": 1.0,
+    "test_brier_score": 0.12305111438035965,
+    "counts": {
+      "TP": 7,
+      "TN": 8,
+      "FP": 3,
+      "FN": 0
+    }
+  },
+  "cross_basin_fold_A": {
+    "test_accuracy": 0.4,
+    "test_precision": 0.0,
+    "test_recall": 0.0,
+    "test_f1": 0.0,
+    "test_roc_auc": 0.375,
+    "counts": {
+      "TP": 0,
+      "TN": 8,
+      "FP": 0,
+      "FN": 12
+    }
+  },
+  "cross_basin_fold_B": {
+    "test_accuracy": 0.625,
+    "test_precision": 0.0,
+    "test_recall": 0.0,
+    "test_f1": 0.0,
+    "test_roc_auc": 0.5666666666666667,
+    "counts": {
+      "TP": 0,
+      "TN": 10,
+      "FP": 0,
+      "FN": 6
+    }
+  },
+  "combined_generalization": {
+    "test_accuracy": 0.5,
+    "test_precision": 0.0,
+    "test_recall": 0.0,
+    "test_f1": 0.0,
+    "test_roc_auc": 0.5,
+    "counts": {
+      "TP": 0,
+      "TN": 2,
+      "FP": 0,
+      "FN": 2
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "features": [
+    {
+      "name": "rainfall_24h_mm",
+      "type": "float",
+      "source": "Open-Meteo Historical Reanalysis"
+    },
+    {
+      "name": "temperature_c",
+      "type": "float",
+      "source": "Open-Meteo Historical Reanalysis"
+    },
+    {
+      "name": "wind_speed_kmh",
+      "type": "float",
+      "source": "Open-Meteo Historical Reanalysis"
+    },
+    {
+      "name": "elevation_m",
+      "type": "float",
+      "source": "Open-Meteo Elevation API (Copernicus DEM 90m)"
+    },
+    {
+      "name": "road_type",
+      "type": "string",
+      "categories": [
+        "highway",
+        "arterial",
+        "collector",
+        "local"
+      ],
+      "source": "TGRAC GIS"
+    },
+    {
+      "name": "road_surface",
+      "type": "string",
+      "categories": [
+        "BT",
+        "CC",
+        "WBM",
+        "Earthen"
+      ],
+      "source": "TGRAC GIS"
+    },
+    {
+      "name": "road_length_m",
+      "type": "float",
+      "source": "TGRAC GIS Polyline"
+    }
+  ],
+  "target": {
+    "name": "target_flood_exposure",
+    "type": "int",
+    "classes": {
+      "0": "NOT_EXPOSED",
+      "1": "FLOOD_EXPOSED"
+    }
+  }
+}
