@@ -10,7 +10,11 @@ const CLASS_COLORS = {
   smoke: '#94a3b8',          // Gray
   pedestrian: '#eab308',     // Yellow-Gold
   person: '#eab308',
+  victim: '#eab308',
   vehicle: '#10b981',        // Emerald Green
+  car: '#10b981',
+  cyclist: '#a855f7',        // Purple
+  obstacle: '#a855f7',
   damage: '#f97316'          // Orange
 };
 
@@ -60,19 +64,29 @@ export const CameraHUDModal = ({
         throw new Error('Camera device access API is not supported in this browser.');
       }
 
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-          width: { ideal: 640 },
-          height: { ideal: 480 },
-          facingMode: { ideal: 'environment' } // Prefer front ADAS / rear road camera on mobile/vehicle
-        },
-        audio: false
-      });
+      let stream;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            width: { ideal: 640 },
+            height: { ideal: 480 },
+            facingMode: { ideal: 'environment' }
+          },
+          audio: false
+        });
+      } catch {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: false
+        });
+      }
 
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        await videoRef.current.play();
-        setCameraActive(true);
+        videoRef.current.onloadedmetadata = () => {
+          videoRef.current.play().catch(e => console.warn('Play error:', e));
+          setCameraActive(true);
+        };
       }
     } catch (err) {
       console.warn('Physical camera start notice:', err.message);
@@ -214,6 +228,7 @@ export const CameraHUDModal = ({
               if (!blob) return resolve();
               const formData = new FormData();
               formData.append('file', blob, 'frame.jpg');
+              formData.append('enable_sahi', 'false');
               if (currentLocation) {
                 formData.append('lat', currentLocation.lat);
                 formData.append('lng', currentLocation.lng);

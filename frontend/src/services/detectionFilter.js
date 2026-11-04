@@ -24,7 +24,7 @@ const SERIOUS_HAZARD_TYPES = [
 
 export class DetectionFilter {
   constructor(options = {}) {
-    this.minConfidence = options.minConfidence || 0.55;
+    this.minConfidence = options.minConfidence || 0.35;
     this.persistenceThreshold = options.persistenceThreshold || 3; // N frames
     this.cooldownSeconds = options.cooldownSeconds || 45; // seconds before re-dispatching same hazard at same location
     

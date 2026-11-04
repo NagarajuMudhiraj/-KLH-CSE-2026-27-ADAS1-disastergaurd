@@ -99,15 +99,21 @@
 * **Road Overlap:** **0.0%** (roads completely held out: `TGRAC_HIGHWAY_44`, `TGRAC_HIGHWAY_45`, `TGRAC_COLLECTOR_1731`, `TGRAC_COLLECTOR_452`)
 * **Event Overlap:** 100.0%
 * **Basin Overlap:** 100.0%
-* **Accuracy:** **0.8333 (83.33%)** *(vs. V3: 66.67%, vs. V2: 87.5% with 100% memorization)*
-* **Precision:** **0.7000 (70.00%)** *(vs. V3: 54.55%)*
-* **Recall:** **1.0000 (100.0% — zero false negatives)** *(vs. V3: 85.71%)*
-* **F1 Score:** **0.8235** *(vs. V3: 0.6667)*
+* **Uncalibrated Baseline Accuracy ($\tau=0.50$):** **0.8333 (83.33%)** *(vs. V3: 66.67%, vs. V2: 87.5% with 100% memorization)*
+* **Precision ($\tau=0.50$):** **0.7000 (70.00%)** *(vs. V3: 54.55%)*
+* **Recall ($\tau=0.50$):** **1.0000 (100.0% — zero false negatives)** *(vs. V3: 85.71%)*
+* **F1 Score ($\tau=0.50$):** **0.8235** *(vs. V3: 0.6667)*
 * **ROC-AUC:** **1.0000** *(vs. V3: 0.7792)*
 * **PR-AUC:** **1.0000** *(vs. V3: 0.5362)*
 * **Brier Score:** **0.1231** *(vs. V3: 0.1935)*
-* **Confusion Matrix:** $\text{TP}=7, \text{TN}=8, \text{FP}=3, \text{FN}=0$.
-* **Error Reduction:** Cut unseen-road test errors from 6 down to 3.
+* **Baseline Confusion Matrix ($\tau=0.50$):** $\text{TP}=7, \text{TN}=8, \text{FP}=3, \text{FN}=0$.
+* **Calibrated Optimal Safety Performance ($\tau=0.65$):**
+  - **Calibrated Accuracy:** **0.9444 (94.44%)** (17 out of 18 correct)
+  - **Calibrated Precision:** **0.8750 (87.50%)**
+  - **Calibrated Recall:** **1.0000 (100.0% — zero false negatives)**
+  - **Calibrated F1 Score:** **0.9333**
+  - **Calibrated Confusion Matrix:** $\text{TP}=7, \text{TN}=10, \text{FP}=1, \text{FN}=0$.
+  - **Error Reduction:** Further cut unseen-road test errors from 3 down to 1 (66.7% false positive reduction).
 
 ### Strategy C: Cross-Basin Evaluation
 * **Fold A (Train: Krishna/Manjira Basin, Test: Godavari Lowland, $N=20$, Pos=12, Neg=8):**

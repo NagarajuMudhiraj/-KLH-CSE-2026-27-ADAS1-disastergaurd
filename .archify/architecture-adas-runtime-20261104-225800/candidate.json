@@ -1,0 +1,414 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "ADAS Intelligent Vehicle Assistance — Runtime Architecture",
+    "output": ".archify/architecture-adas-runtime-20261104-225800/adas-runtime.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/NagarajuMudhiraj/-KLH-CSE-2026-27-ADAS1-disastergaurd.git",
+      "provider": "github",
+      "revision": "9ad0c95809ddf5df08ac7d4488b188aa7c0b1ae9"
+    }
+  },
+  "components": [
+    {
+      "id": "driver",
+      "type": "external",
+      "label": "Vehicle Driver",
+      "sublabel": "In-Cabin HUD / Mobile",
+      "pos": [40, 50],
+      "size": [130, 60],
+      "icon": "person"
+    },
+    {
+      "id": "camera",
+      "type": "external",
+      "label": "Dashcam Camera",
+      "sublabel": "Real-Time Frame Stream",
+      "pos": [40, 180],
+      "size": [130, 60],
+      "icon": "external"
+    },
+    {
+      "id": "admin",
+      "type": "external",
+      "label": "Emergency Admin",
+      "sublabel": "Dispatcher Operations",
+      "pos": [40, 310],
+      "size": [130, 60],
+      "icon": "person"
+    },
+    {
+      "id": "hud_app",
+      "type": "frontend",
+      "label": "React 19 HUD Portal",
+      "sublabel": "Vite 8 :5173 Client",
+      "tag": "SPA",
+      "pos": [240, 50],
+      "size": [150, 64],
+      "icon": "frontend",
+      "sources": [
+        {
+          "path": "frontend/src/App.jsx",
+          "line": 14,
+          "end_line": 50,
+          "label": "Driver & Admin Portals"
+        }
+      ]
+    },
+    {
+      "id": "hud_camera",
+      "type": "frontend",
+      "label": "Live Camera HUD",
+      "sublabel": "Bounding Box Canvas",
+      "pos": [240, 180],
+      "size": [150, 64],
+      "icon": "frontend",
+      "sources": [
+        {
+          "path": "frontend/src/components/camera/CameraHUDModal.jsx",
+          "line": 20,
+          "end_line": 60,
+          "label": "Camera HUD Overlay"
+        }
+      ]
+    },
+    {
+      "id": "spatial_radar",
+      "type": "frontend",
+      "label": "Spatial Disaster Radar",
+      "sublabel": "Leaflet Dynamic Map",
+      "pos": [240, 310],
+      "size": [150, 64],
+      "icon": "frontend",
+      "sources": [
+        {
+          "path": "frontend/src/pages/DisasterRadar.jsx",
+          "line": 370,
+          "end_line": 410,
+          "label": "Leaflet Risk Layer"
+        }
+      ]
+    },
+    {
+      "id": "auth_jwt",
+      "type": "security",
+      "label": "Auth & JWT Gate",
+      "sublabel": "PyJWT & Passlib bcrypt",
+      "tag": "Bearer",
+      "pos": [470, 50],
+      "size": [140, 64],
+      "icon": "security",
+      "sources": [
+        {
+          "path": "backend/app/api/auth.py",
+          "line": 20,
+          "end_line": 50,
+          "label": "Authentication Router"
+        }
+      ]
+    },
+    {
+      "id": "fastapi_gateway",
+      "type": "backend",
+      "label": "FastAPI Gateway",
+      "sublabel": "REST Endpoints :8000",
+      "tag": "Uvicorn",
+      "pos": [470, 180],
+      "size": [150, 70],
+      "icon": "backend",
+      "sources": [
+        {
+          "path": "backend/app/main.py",
+          "line": 37,
+          "end_line": 75,
+          "label": "FastAPI App & Routers"
+        }
+      ]
+    },
+    {
+      "id": "ws_hub",
+      "type": "messagebus",
+      "label": "WebSocket Stream Hub",
+      "sublabel": "/ws/emergency & /ws/disasters",
+      "tag": "Pub/Sub",
+      "pos": [470, 310],
+      "size": [140, 64],
+      "icon": "messagebus",
+      "sources": [
+        {
+          "path": "backend/app/api/emergency.py",
+          "line": 37,
+          "end_line": 46,
+          "label": "WebSocket Feed"
+        }
+      ]
+    },
+    {
+      "id": "yolo_engine",
+      "type": "backend",
+      "label": "YOLOv11s Perception",
+      "sublabel": "Flood/Fire/Smoke/Damage",
+      "tag": "Edge Vision",
+      "pos": [690, 50],
+      "size": [160, 64],
+      "icon": "backend",
+      "sources": [
+        {
+          "path": "backend/app/services/ai_service.py",
+          "line": 44,
+          "end_line": 72,
+          "label": "YOLOv11 Master Detector"
+        }
+      ]
+    },
+    {
+      "id": "xgboost_model",
+      "type": "backend",
+      "label": "XGBoost V4 Hydro Model",
+      "sublabel": "HAND & Antecedent Rain",
+      "tag": "100% Recall",
+      "pos": [690, 180],
+      "size": [160, 64],
+      "icon": "backend",
+      "sources": [
+        {
+          "path": "backend/app/services/ai_service.py",
+          "line": 107,
+          "end_line": 130,
+          "label": "XGBoost V4 Classifier"
+        }
+      ]
+    },
+    {
+      "id": "astar_routing",
+      "type": "backend",
+      "label": "Disaster-Aware A*",
+      "sublabel": "Hann Window Lateral Detour",
+      "tag": "<25ms",
+      "pos": [690, 310],
+      "size": [160, 64],
+      "icon": "backend",
+      "sources": [
+        {
+          "path": "backend/app/services/astar_routing.py",
+          "line": 15,
+          "end_line": 50,
+          "label": "A* Pathfinding"
+        }
+      ]
+    },
+    {
+      "id": "risk_fusion",
+      "type": "backend",
+      "label": "Risk Fusion Engine",
+      "sublabel": "Score 0-100 & Guidance",
+      "tag": "Fusion",
+      "pos": [920, 50],
+      "size": [150, 64],
+      "icon": "backend",
+      "sources": [
+        {
+          "path": "backend/app/services/risk_service.py",
+          "line": 4,
+          "end_line": 45,
+          "label": "Risk Score Synthesis"
+        }
+      ]
+    },
+    {
+      "id": "mongodb_store",
+      "type": "database",
+      "label": "MongoDB Storage",
+      "sublabel": "Atlas or In-Memory Mock",
+      "tag": "NoSQL",
+      "pos": [920, 180],
+      "size": [150, 64],
+      "icon": "database",
+      "sources": [
+        {
+          "path": "backend/app/database/mongodb.py",
+          "line": 128,
+          "end_line": 160,
+          "label": "MongoDB Manager"
+        }
+      ]
+    },
+    {
+      "id": "external_apis",
+      "type": "cloud",
+      "label": "Geospatial Data APIs",
+      "sublabel": "Open-Meteo & GLO-30 DEM",
+      "tag": "External",
+      "pos": [920, 440],
+      "size": [150, 64],
+      "icon": "cloud",
+      "sources": [
+        {
+          "path": "backend/app/api/weather.py",
+          "line": 10,
+          "end_line": 40,
+          "label": "Weather Provider"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Vehicle Onboard HUD Client",
+      "wraps": ["hud_app", "hud_camera", "spatial_radar"]
+    },
+    {
+      "kind": "security-group",
+      "label": "FastAPI Core Application & Intelligence Services",
+      "wraps": [
+        "auth_jwt",
+        "fastapi_gateway",
+        "ws_hub",
+        "yolo_engine",
+        "xgboost_model",
+        "astar_routing",
+        "risk_fusion",
+        "mongodb_store"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "driver-to-hud",
+      "from": "driver",
+      "to": "hud_app",
+      "label": "Interacts"
+    },
+    {
+      "id": "camera-to-hud",
+      "from": "camera",
+      "to": "hud_camera",
+      "label": "Video Frames",
+      "variant": "emphasis"
+    },
+    {
+      "id": "admin-to-radar",
+      "from": "admin",
+      "to": "spatial_radar",
+      "label": "Monitors"
+    },
+    {
+      "id": "hud-to-auth",
+      "from": "hud_app",
+      "to": "auth_jwt",
+      "label": "Bearer JWT",
+      "variant": "security"
+    },
+    {
+      "id": "hud-to-gateway",
+      "from": "hud_app",
+      "to": "fastapi_gateway",
+      "label": "REST API"
+    },
+    {
+      "id": "camera-to-gateway",
+      "from": "hud_camera",
+      "to": "fastapi_gateway",
+      "label": "POST /predict",
+      "variant": "emphasis"
+    },
+    {
+      "id": "radar-to-gateway",
+      "from": "spatial_radar",
+      "to": "fastapi_gateway",
+      "label": "Query Route"
+    },
+    {
+      "id": "ws-to-radar",
+      "from": "ws_hub",
+      "to": "spatial_radar",
+      "label": "Hazard Stream",
+      "variant": "dashed"
+    },
+    {
+      "id": "gateway-to-yolo",
+      "from": "fastapi_gateway",
+      "to": "yolo_engine",
+      "label": "Image Buffer"
+    },
+    {
+      "id": "gateway-to-xgb",
+      "from": "fastapi_gateway",
+      "to": "xgboost_model",
+      "label": "Environmental Data",
+      "variant": "emphasis"
+    },
+    {
+      "id": "gateway-to-astar",
+      "from": "fastapi_gateway",
+      "to": "astar_routing",
+      "label": "Route Request"
+    },
+    {
+      "id": "yolo-to-fusion",
+      "from": "yolo_engine",
+      "to": "risk_fusion",
+      "label": "Visual Hazards",
+      "variant": "emphasis"
+    },
+    {
+      "id": "xgb-to-fusion",
+      "from": "xgboost_model",
+      "to": "risk_fusion",
+      "label": "Hydro Exposure"
+    },
+    {
+      "id": "fusion-to-store",
+      "from": "risk_fusion",
+      "to": "mongodb_store",
+      "label": "Persist Scores",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "astar-to-store",
+      "from": "astar_routing",
+      "to": "mongodb_store",
+      "label": "Active Hazards"
+    },
+    {
+      "id": "xgb-to-external",
+      "from": "xgboost_model",
+      "to": "external_apis",
+      "label": "Rain & DEM",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "In-Vehicle Perception & Edge HUD",
+      "items": [
+        "React 19 Automotive HUD with Dark Glassmorphism interface",
+        "Live camera stream with real-time YOLOv11 bounding box HUD",
+        "Disaster Radar rendering dynamic risk zones via Leaflet & CartoDB tiles"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "AI Dual Inference & Dynamic Routing",
+      "items": [
+        "Ultralytics YOLOv11s detecting 6 master disaster hazard classes",
+        "XGBoost V4 modeling road inundation with HAND & antecedent rainfall",
+        "Disaster-Aware A* pathfinding synthesizing Hann-window lateral detours in <25ms"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Gateway, Fusion & Resilient Storage",
+      "items": [
+        "FastAPI REST API with JWT Bearer authentication and role-based access control",
+        "Centralized multi-modal sensor fusion scoring hazards from 0 to 100",
+        "MongoDB Atlas primary storage with zero-dependency in-memory mock fallback"
+      ]
+    }
+  ]
+}

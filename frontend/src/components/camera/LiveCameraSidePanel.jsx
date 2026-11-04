@@ -10,7 +10,11 @@ const CLASS_COLORS = {
   smoke: '#94a3b8',          // Gray
   pedestrian: '#eab308',     // Yellow-Gold
   person: '#eab308',
+  victim: '#eab308',
   vehicle: '#10b981',        // Emerald Green
+  car: '#10b981',
+  cyclist: '#a855f7',        // Purple
+  obstacle: '#a855f7',
   damage: '#f97316'          // Orange
 };
 
@@ -60,28 +64,42 @@ export const LiveCameraSidePanel = ({
         throw new Error('Camera access API is not supported in this browser.');
       }
 
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-          width: { ideal: 640 },
-          height: { ideal: 480 },
-          facingMode: { ideal: 'environment' }
-        },
-        audio: false
-      });
+      let stream;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            width: { ideal: 640 },
+            height: { ideal: 480 },
+            facingMode: { ideal: 'environment' }
+          },
+          audio: false
+        });
+      } catch (e1) {
+        // Fallback to simple unconstrained video for maximum compatibility
+        console.warn('Environment constraint fallback:', e1);
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: false
+        });
+      }
 
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        await videoRef.current.play();
-        setCameraActive(true);
+        videoRef.current.onloadedmetadata = () => {
+          videoRef.current.play().catch(e => console.warn('Play error:', e));
+          setCameraActive(true);
+        };
       }
     } catch (err) {
-      console.warn('Live camera access notice:', err.message);
+      console.warn('Live camera access error:', err.message);
       setCameraActive(false);
       setCameraError(
         err.name === 'NotAllowedError'
           ? 'Camera permission denied. Please allow camera permissions in your browser address bar.'
           : err.name === 'NotFoundError'
-          ? 'No camera input hardware found on this system.'
+          ? 'No camera hardware found on this system.'
+          : err.name === 'NotReadableError'
+          ? 'Camera is in use by another application. Please close other camera apps and retry.'
           : err.message || 'Unable to access camera hardware.'
       );
     }
@@ -186,19 +204,19 @@ export const LiveCameraSidePanel = ({
       const t0 = performance.now();
 
       try {
-        if (videoRef.current && canvasRef.current && videoRef.current.readyState >= 2) {
-          const video = videoRef.current;
-          const canvas = canvasRef.current;
+        const video = videoRef.current;
+        const canvas = canvasRef.current;
 
-          const vw = video.videoWidth || 640;
-          const vh = video.videoHeight || 480;
+        if (video && canvas && video.readyState >= 2 && video.videoWidth > 0) {
+          const vw = video.videoWidth;
+          const vh = video.videoHeight;
 
           canvas.width = vw;
           canvas.height = vh;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(video, 0, 0, vw, vh);
 
-          // Sync overlay canvas size to container only when altered (prevents blanking canvas)
+          // Sync overlay canvas size to container only when altered
           if (overlayCanvasRef.current && containerRef.current) {
             const cw = containerRef.current.clientWidth;
             const ch = containerRef.current.clientHeight;
@@ -214,6 +232,7 @@ export const LiveCameraSidePanel = ({
               if (!blob) return resolve();
               const formData = new FormData();
               formData.append('file', blob, 'frame.jpg');
+              formData.append('enable_sahi', 'false'); // Non-blocking live video
               if (currentLocation) {
                 formData.append('lat', currentLocation.lat);
                 formData.append('lng', currentLocation.lng);
@@ -254,7 +273,7 @@ export const LiveCameraSidePanel = ({
       setInferenceMs(elapsed > 0 ? elapsed : 35);
 
       if (isRunningRef.current) {
-        timeoutId = setTimeout(runInferenceCycle, 180);
+        timeoutId = setTimeout(runInferenceCycle, 160);
       }
     };
 
@@ -321,7 +340,7 @@ export const LiveCameraSidePanel = ({
               </span>
             </div>
             <div style={{ fontSize: '0.68rem', color: '#94a3b8' }}>
-              Real-Time YOLOv11 Road Detection
+              Real-Time YOLOv11 Live Road Hazard Perception
             </div>
           </div>
         </div>
@@ -383,6 +402,7 @@ export const LiveCameraSidePanel = ({
       >
         <video
           ref={videoRef}
+          autoPlay
           playsInline
           muted
           style={{
@@ -408,13 +428,13 @@ export const LiveCameraSidePanel = ({
           >
             <AlertCircle size={32} color="#ef4444" />
             <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#f8fafc', maxWidth: '300px' }}>
-              {cameraError || 'Accessing camera stream...'}
+              {cameraError || 'Accessing camera hardware...'}
             </div>
             <button
               onClick={startCamera}
               className="btn btn-secondary"
               style={{
-                padding: '6px 12px',
+                padding: '6px 14px',
                 fontSize: '0.74rem',
                 display: 'flex',
                 alignItems: 'center',
@@ -422,7 +442,8 @@ export const LiveCameraSidePanel = ({
                 background: '#0284c7',
                 color: '#ffffff',
                 border: 'none',
-                borderRadius: '6px'
+                borderRadius: '6px',
+                cursor: 'pointer'
               }}
             >
               <RefreshCw size={12} /> Retry Camera Access

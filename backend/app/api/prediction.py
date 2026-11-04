@@ -13,6 +13,7 @@ async def predict_disaster_image(
     file: UploadFile = File(...),
     lat: Optional[float] = Form(None),
     lng: Optional[float] = Form(None),
+    enable_sahi: Optional[bool] = Form(False),
     current_user: dict = Depends(get_optional_user)
 ):
     if not file.content_type.startswith("image/"):
@@ -22,8 +23,17 @@ async def predict_disaster_image(
     username = current_user.get("username", "Live Driver Camera") if current_user else "Live Driver Camera"
     
     try:
-        results = fusion_engine.evaluate_environment(image_bytes=contents, lat=lat, lng=lng)
+        # Run CPU-bound PyTorch/YOLO inference in worker thread to prevent blocking async event loop
+        results = await asyncio.to_thread(
+            fusion_engine.evaluate_environment,
+            image_bytes=contents,
+            lat=lat,
+            lng=lng,
+            use_sahi=bool(enable_sahi)
+        )
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"AI model prediction failed: {str(e)}")
 
     visual = results["visual_evidence"]
@@ -52,8 +62,8 @@ async def predict_disaster_image(
     detections = visual.get("detections", [])
 
     # 1. EXCLUDE PEDESTRIANS: If prediction or all detections are only pedestrians, do not queue as hazard
-    is_pedestrian_only = (pred_lower in ["person", "pedestrian"]) or (
-        bool(detections) and all(d.get("class_name", "").lower() in ["person", "pedestrian"] for d in detections)
+    is_pedestrian_only = any(p in pred_lower for p in ["person", "pedestrian", "victim"]) or (
+        bool(detections) and all(any(p in d.get("class_name", "").lower() for p in ["person", "pedestrian", "victim"]) for d in detections)
     )
 
     # 2. Check for actual hazards: Flood, Fire, Smoke, Road Damage, Pothole, Landslide, Accident, Block

@@ -12,16 +12,17 @@ class FusionService:
         traffic: Optional[float] = None,
         water_level: Optional[float] = None,
         lat: Optional[float] = None,
-        lng: Optional[float] = None
+        lng: Optional[float] = None,
+        use_sahi: bool = False
     ) -> Dict[str, Any]:
         """
         Combines YOLO visual detection with XGBoost environmental prediction
         and feeds it into the Risk Engine to generate a final Risk Score.
         """
-        # 1. Process Visual Data (YOLOv11)
+        # 1. Process Visual Data (YOLOv11 with optional SAHI multi-scale slicing)
         yolo_result = {"detections": []}
         if image_bytes:
-            yolo_result = ai_engine.predict_image(image_bytes)
+            yolo_result = ai_engine.predict_image(image_bytes, use_sahi=use_sahi)
 
         # 2. Process Environmental Data (XGBoost)
         xgb_result = None
