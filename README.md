@@ -1,8 +1,42 @@
 # Intelligent Vehicle Assistance During Disasters (DisasterShield ADAS)
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.12" />
+  <img src="https://img.shields.io/badge/FastAPI-2.0-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 19" />
+  <img src="https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite 8" />
+  <img src="https://img.shields.io/badge/YOLO-v11s-00FFFF?style=for-the-badge&logo=ultralytics&logoColor=black" alt="YOLOv11s" />
+  <img src="https://img.shields.io/badge/XGBoost-V4-FF6600?style=for-the-badge" alt="XGBoost V4" />
+  <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License MIT" />
+</p>
+
 An AI-powered automotive assistance framework and navigation service engineered to protect drivers and emergency teams during severe environmental disasters (flash floods, approaching wildfires, smoke plumes, and severe road pavement collapse). 
 
 The platform unites **edge computer vision (YOLOv11s)**, **hydrologically grounded machine learning (XGBoost V4 with Copernicus GLO-30 HAND)**, and **disaster-aware dynamic A\* routing** inside a modern **React 19 Automotive HUD**.
+
+---
+
+## 📖 About the Project
+
+### The Problem
+Conventional GPS navigation systems (such as Google Maps and Waze) rely purely on mobile crowdsourced telemetry and velocity delays. During extreme natural disasters (pluvial flash floods, encroaching wildfire fronts, seismic landslides, and road collapse), these legacy platforms fail catastrophically:
+- **Misleading Routes:** Submerged or destroyed corridors with zero moving vehicles are often registered as "zero-traffic / high-speed" routes, directing civilian traffic straight into life-threatening hazards.
+- **Reporting Lag:** Crowdsourced hazard warnings exhibit substantial delays (30–120 minutes) and break down completely when cellular towers suffer power outages.
+- **Topographic Blindness:** Existing commercial systems have zero hydrological awareness, ignoring elevation, drainage connectivity, and upstream basin inflow.
+
+### The Solution: DisasterShield ADAS
+**DisasterShield ADAS** eliminates these failure modes through an end-to-end multi-tier safety architecture:
+1. **Onboard Edge Vision:** Processes forward-facing vehicle dashcam feeds in real time ($<40\text{ ms}$) to identify physical hazards (inundated water surfaces, flame fronts, smoke, structural fissures, and stranded victims).
+2. **Hydrologically Grounded ML:** Preemptively predicts road-corridor inundation beyond camera line-of-sight by evaluating European Space Agency (ESA) Copernicus GLO-30 Height Above Nearest Drainage (HAND) and multi-day antecedent rainfall.
+3. **Disaster-Aware Dynamic Routing:** Computes evasion corridors around active disaster zones using custom A\* cost functions and raised-cosine Hann-window lateral detours in under 25 ms.
+4. **Resilient Local Operations:** Continues operating locally on vehicle edge compute with zero-dependency in-memory mock fallbacks during cellular or network dropouts.
+
+---
+
+## 🏷️ Tags & Topics
+
+`#ADAS` `#ComputerVision` `#YOLOv11` `#XGBoost` `#DisasterManagement` `#FloodDetection` `#WildfireDetection` `#AutonomousVehicles` `#SmartMobility` `#FastAPI` `#React19` `#Leaflet` `#AStarPathfinding` `#SensorFusion` `#EmergencyResponse`
 
 ---
 
