@@ -10,7 +10,7 @@ The platform unites **edge computer vision (YOLOv11s)**, **hydrologically ground
 
 - 🖼️ **Multi-Hazard Edge Vision**: Dashcam perception via **Ultralytics YOLOv11s** detecting 6 disaster categories (`Flood`, `Fire`, `Smoke`, `Person`, `Vehicle`, `Road Damage`), supplemented with a dedicated real-time nano tracker and optional SAHI multi-scale slicing.
 - 🌊 **Hydrologically Grounded Risk Prediction**: 8-feature tree-boosted classifier (**XGBoost V4**) integrating European Space Agency (ESA) Copernicus GLO-30 Height Above Nearest Drainage (HAND) with antecedent precipitation (24h, 72h, 7d, and upstream catchment inflow), achieving **100% safety recall** on unseen road corridors.
-- 🛣️ **Disaster-Aware Dynamic A\* Pathfinding**: Real-time graph routing incorporating Haversine heuristics, inverse-distance hazard proximity decay, and smooth **raised-cosine Hann-window lateral detours** computed in $<25\text{ ms}$.
+- 🛣️ **Disaster-Aware Dynamic A\* Pathfinding**: Real-time graph routing incorporating Haversine heuristics, inverse-distance hazard proximity decay, and smooth **raised-cosine Hann-window lateral detours** computed in under 25 ms.
 - 🚨 **Emergency SOS & Live Dispatch**: Instant SOS beacon dispatching GPS telemetry, driver information, and hazard observations to dispatchers via real-time WebSockets (`/ws/emergency`).
 - 🗺️ **Spatial Disaster Radar**: Interactive Leaflet HUD mapping active risk radii, impassable road closures, and nearby humanitarian relief shelters.
 - 🔐 **Role-Based JWT Security**: PyJWT and Passlib bcrypt authentication providing dedicated interfaces for Citizen Drivers and Command Center Admins.
@@ -21,57 +21,59 @@ The platform unites **edge computer vision (YOLOv11s)**, **hydrologically ground
 ## 🏗️ System Architecture
 
 Explore the standalone interactive runtime architecture diagram with dark/light themes and live animated signal traces:  
-👉 **[Open Interactive Architecture Diagram](file:///d:/datasets_IDM(ADAS)/.archify/architecture-adas-runtime-20261104-225800/adas-runtime.html)**
+👉 **[Open Interactive Architecture Diagram](./.archify/architecture-adas-runtime-20261104-225800/adas-runtime.html)**
 
 ```mermaid
 flowchart LR
-    subgraph INGRESS["External Actors & Inputs"]
-        DRIVER["Vehicle Driver<br/>(In-Cabin HUD / Mobile)"]
-        CAMERA["Dashcam Camera<br/>(Real-Time Video Stream)"]
-        ADMIN["Emergency Admin<br/>(Disaster Dispatch Center)"]
+    subgraph INGRESS["External Actors and Inputs"]
+        DRIVER["Vehicle Driver<br/>In-Cabin HUD or Mobile"]
+        CAMERA["Dashcam Camera<br/>Real-Time Video Stream"]
+        ADMIN["Emergency Admin<br/>Disaster Dispatch Center"]
     end
 
-    subgraph CLIENT["Vehicle Onboard HUD Client (React 19 + Vite 8)"]
-        HUD["React 19 HUD Portal<br/>(Driver & Admin SPA)"]
-        CAM_HUD["Live Camera HUD<br/>(Bounding Box Overlay)"]
-        RADAR["Spatial Disaster Radar<br/>(Leaflet Risk Map)"]
+    subgraph CLIENT["Vehicle Onboard HUD Client"]
+        HUD["React 19 HUD Portal<br/>Driver and Admin SPA"]
+        CAM_HUD["Live Camera HUD<br/>Bounding Box Overlay"]
+        RADAR["Spatial Disaster Radar<br/>Leaflet Risk Map"]
     end
 
-    subgraph BACKEND["FastAPI Core & Intelligence Services (:8000)"]
-        AUTH["JWT Auth Gate<br/>(PyJWT / Passlib)"]
-        GATEWAY["FastAPI Gateway<br/>(Uvicorn REST Endpoints)"]
-        WS["WebSocket Stream Hub<br/>(/ws/emergency & /ws/disasters)"]
-
-        subgraph AI_ENGINES["Dual AI Perception & Pathfinding"]
-            YOLO["YOLOv11s Perception<br/>(Flood, Fire, Smoke, Damage)"]
-            XGB["XGBoost V4 Hydro Model<br/>(HAND + Antecedent Rain)"]
-            ASTAR["Disaster-Aware A* Routing<br/>(Hann Lateral Detours <25ms)"]
-        end
-
-        FUSION["Risk Fusion Engine<br/>(Composite Score 0–100)"]
-        DB[("MongoDB Storage<br/>(Atlas / In-Memory Mock)")]
+    subgraph GATEWAY_TIER["FastAPI Gateway and Services"]
+        AUTH["JWT Auth Gate<br/>PyJWT and Passlib"]
+        GATEWAY["FastAPI Gateway<br/>Uvicorn REST Endpoints"]
+        WS["WebSocket Stream Hub<br/>Live Alerts and SOS"]
+        FUSION["Risk Fusion Engine<br/>Composite Score 0 to 100"]
+        DB[("MongoDB Storage<br/>Atlas or In-Memory Mock")]
     end
 
-    subgraph EXTERNAL["Geospatial & External APIs"]
-        GEO["Open-Meteo & GLO-30 DEM<br/>(Weather & Drainage)"]
+    subgraph AI_ENGINES["Dual AI and Routing Intelligence"]
+        YOLO["YOLOv11s Perception<br/>Flood, Fire, Smoke, Damage"]
+        XGB["XGBoost V4 Hydro Model<br/>HAND and Antecedent Rain"]
+        ASTAR["Disaster-Aware A-Star<br/>Hann Detours under 25ms"]
+    end
+
+    subgraph EXTERNAL["Geospatial and External APIs"]
+        GEO["Open-Meteo and GLO-30 DEM<br/>Weather and Drainage"]
     end
 
     DRIVER --> HUD
     CAMERA --> CAM_HUD
     ADMIN --> RADAR
+
     HUD -->|Bearer JWT| AUTH
     HUD -->|REST API| GATEWAY
     CAM_HUD -->|POST /predict| GATEWAY
-    RADAR -->|Query Route & SOS| GATEWAY
+    RADAR -->|Query Route and SOS| GATEWAY
     WS -.->|Live Hazard Stream| RADAR
+
     GATEWAY -->|Image Buffer| YOLO
-    GATEWAY -->|Telemetry & Hydro| XGB
+    GATEWAY -->|Telemetry and Hydro| XGB
     GATEWAY -->|Route Request| ASTAR
+
     YOLO -->|Visual BBoxes| FUSION
     XGB -->|Hydro Exposure| FUSION
     FUSION -->|Persist Scores| DB
     ASTAR -->|Query Obstacles| DB
-    XGB -.->|Rainfall & HAND Data| GEO
+    XGB -.->|Rain and HAND Data| GEO
 ```
 
 ---
@@ -212,10 +214,10 @@ The database automatically seeds operational test accounts upon launch:
 | Evaluation Dimension | Baseline System | DisasterShield ADAS Result | Performance Advantage |
 | :--- | :---: | :---: | :---: |
 | **Road Risk Recall (Unseen Roads)** | 60.0% (V2) | **100.0% (0 False Negatives)** | Zero critical hazards missed |
-| **Road Risk Calibrated Accuracy** | 50.0% (V2) | **94.44% ($\tau^* = 0.65$)** | $+44.44\%$ generalization gain |
+| **Road Risk Calibrated Accuracy** | 50.0% (V2) | **94.44% (tau = 0.65)** | +44.44% generalization gain |
 | **Visual Disaster mAP@0.5** | — | **71.64%** (YOLOv11s, 50 epochs) | Robust multi-hazard classification |
-| **Small Object Yield (SAHI)** | Baseline Single-Pass | **$+66.7\%$ to $+100\%$ Recall** | Distant aerial & dashcam obstacles |
-| **Algorithmic Latency** | — | **$28.54\text{ ms}$ Total** | Real-time edge execution ($>35\text{ FPS}$) |
+| **Small Object Yield (SAHI)** | Baseline Single-Pass | **+66.7% to +100% Recall** | Distant aerial & dashcam obstacles |
+| **Algorithmic Latency** | — | **28.54 ms Total** | Real-time edge execution (35+ FPS) |
 
 ---
 
@@ -233,11 +235,11 @@ The database automatically seeds operational test accounts upon launch:
 ## 📄 Documentation Links
 
 For deep dives into architectural contracts and data schemas:
-- 🏛️ [System Architecture Guide](file:///d:/datasets_IDM(ADAS)/docs/architecture.md)
-- 🗄️ [Database Schemas & Collections](file:///d:/datasets_IDM(ADAS)/docs/database.md)
-- 📡 [API Endpoints Specification](file:///d:/datasets_IDM(ADAS)/docs/api_docs.md)
-- 🧪 [XGBoost V4 Model Card & Feature Contracts](file:///d:/datasets_IDM(ADAS)/docs/road_risk_v4_model_card.md)
-- 🏋️ [Model Training & Dataset Pipeline Guide](file:///d:/datasets_IDM(ADAS)/docs/training_guide.md)
+- 🏛️ [System Architecture Guide](./docs/architecture.md)
+- 🗄️ [Database Schemas & Collections](./docs/database.md)
+- 📡 [API Endpoints Specification](./docs/api_docs.md)
+- 🧪 [XGBoost V4 Model Card & Feature Contracts](./docs/road_risk_v4_model_card.md)
+- 🏋️ [Model Training & Dataset Pipeline Guide](./docs/training_guide.md)
 
 ---
 
