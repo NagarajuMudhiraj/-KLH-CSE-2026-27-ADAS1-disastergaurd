@@ -183,6 +183,10 @@ export const api = {
     const res = await apiClient.get('/hazards/admin/reports');
     return res.data;
   },
+  purgePendingReports: async () => {
+    const res = await apiClient.post('/hazards/admin/reports/purge');
+    return res.data;
+  },
   listHazards: async () => {
     const res = await apiClient.get('/hazards/list');
     return res.data;

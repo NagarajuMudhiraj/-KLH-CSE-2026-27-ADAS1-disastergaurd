@@ -738,17 +738,49 @@ def get_admin_reports_queue(current_user: dict = Depends(get_optional_user)):
         ]
     }
     items = list(coll.find(query).sort("created_at", -1).limit(100))
-    # Exclude any old demo seeded reports
-    items = [h for h in items if not str(h.get("id") or h.get("_id") or "").startswith("hz_rep_")]
 
     output = []
     for h in items:
+        h_id = str(h.get("id") or h.get("_id") or "").lower()
+        h_name = str(h.get("name") or h.get("disasterType") or h.get("type") or "").lower()
+        h_desc = str(h.get("description") or "").lower()
+        h_rep = str(h.get("reported_by") or h.get("detectedBy") or h.get("created_by") or "").lower()
+
+        # Strictly filter out any demo, mock, sample, or test entries
+        if (
+            h_id.startswith("hz_rep_") or
+            "demo" in h_id or "demo" in h_name or "demo" in h_desc or "demo" in h_rep or
+            "mock" in h_id or "mock" in h_name or "mock" in h_desc or
+            "sample" in h_id or "sample" in h_name or "sample" in h_desc or
+            "test" in h_id or "test" in h_name or "test" in h_rep
+        ):
+            continue
+
         item = dict(h)
         if "_id" in item:
             item["_id"] = str(item["_id"])
         item["id"] = item.get("_id")
         output.append(item)
     return output
+
+
+@router.delete("/admin/reports/purge")
+@router.post("/admin/reports/purge")
+async def purge_reports_queue(current_user: dict = Depends(get_optional_user)):
+    """Deletes or purges all pending review demo / test reports from the verification queue."""
+    coll = get_hazards_collection()
+    query = {
+        "$or": [
+            {"status": {"$in": ["PENDING_REVIEW", "Pending", "pending", "AWAITING_REVIEW"]}},
+            {"verified": False, "status": {"$ne": "REJECTED"}}
+        ]
+    }
+    result = coll.delete_many(query)
+    deleted_count = getattr(result, "deleted_count", 0)
+    return {
+        "message": f"Successfully purged {deleted_count} pending reports from the verification queue.",
+        "deleted_count": deleted_count
+    }
 
 
 

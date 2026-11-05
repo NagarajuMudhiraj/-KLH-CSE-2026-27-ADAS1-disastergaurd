@@ -502,6 +502,21 @@ def admin_get_reports_queue(current_user: dict = Depends(get_current_user)):
     items = list(coll.find(query).sort("created_at", -1).limit(100))
     output = []
     for h in items:
+        h_id = str(h.get("id") or h.get("_id") or "").lower()
+        h_name = str(h.get("name") or h.get("disasterType") or h.get("type") or "").lower()
+        h_desc = str(h.get("description") or "").lower()
+        h_rep = str(h.get("reported_by") or h.get("detectedBy") or h.get("created_by") or "").lower()
+
+        # Strictly exclude demo / sample / test records
+        if (
+            h_id.startswith("hz_rep_") or
+            "demo" in h_id or "demo" in h_name or "demo" in h_desc or "demo" in h_rep or
+            "mock" in h_id or "mock" in h_name or "mock" in h_desc or
+            "sample" in h_id or "sample" in h_name or "sample" in h_desc or
+            "test" in h_id or "test" in h_name or "test" in h_rep
+        ):
+            continue
+
         item = dict(h)
         if "_id" in item:
             item["_id"] = str(item["_id"])

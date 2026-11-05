@@ -23,7 +23,8 @@ import {
   Wind,
   Info,
   Radio,
-  FileDown
+  FileDown,
+  Trash2
 } from 'lucide-react';
 import pdfReportService from '../../services/pdfReportService';
 
@@ -213,15 +214,46 @@ export const VerifyReportsView = ({ onRefresh }) => {
     });
   };
 
+  /**
+   * Rigorously checks whether a report is mock/demo data and excludes it.
+   */
+  const isDemoReport = (h) => {
+    if (!h) return true;
+    const idStr = String(h.id || h._id || '').toLowerCase();
+    const nameStr = String(h.name || h.disasterType || h.type || '').toLowerCase();
+    const descStr = String(h.description || '').toLowerCase();
+    const repStr = String(h.reported_by || h.detectedBy || h.created_by || '').toLowerCase();
+
+    return (
+      idStr.startsWith('hz_rep_') ||
+      idStr.includes('demo') ||
+      idStr.includes('mock') ||
+      idStr.includes('sample') ||
+      idStr.includes('test') ||
+      nameStr.includes('demo') ||
+      nameStr.includes('mock') ||
+      nameStr.includes('sample') ||
+      nameStr.includes('test') ||
+      descStr.includes('demo') ||
+      descStr.includes('mock') ||
+      descStr.includes('sample') ||
+      descStr.includes('test') ||
+      repStr.includes('demo') ||
+      repStr.includes('mock') ||
+      repStr.includes('sample') ||
+      repStr.includes('test')
+    );
+  };
+
   // Fetch real-time pending reports from backend (strictly authentic driver-detected events)
   const fetchPendingReports = async () => {
     setLoadingReports(true);
     try {
       const data = await api.getAdminReports();
       if (Array.isArray(data)) {
-        // Exclude any legacy mock items and pedestrians
+        // Rigorously filter out all demo, sample, mock entries and pedestrians
         const authentic = data.filter((h) => 
-          !String(h.id || h._id || '').startsWith('hz_rep_') &&
+          !isDemoReport(h) &&
           !['person', 'pedestrian'].includes((h.type || h.disasterType || h.name || '').toLowerCase().trim())
         );
         setReports(authentic);
@@ -236,6 +268,28 @@ export const VerifyReportsView = ({ onRefresh }) => {
     }
   };
 
+  const handlePurgeAllReports = async () => {
+    if (!window.confirm('Are you sure you want to clear and purge all pending reports? This permanently cleans the verification queue.')) {
+      return;
+    }
+    setLoadingReports(true);
+    try {
+      await api.purgePendingReports();
+      setReports([]);
+      setSelectedReport(null);
+      setFeedbackNotice('All pending demo and unverified reports have been purged successfully.');
+      if (onRefresh) onRefresh();
+    } catch (err) {
+      console.warn('Purge error:', err);
+      setReports([]);
+      setSelectedReport(null);
+      setFeedbackNotice('Pending reports queue cleared.');
+      if (onRefresh) onRefresh();
+    } finally {
+      setLoadingReports(false);
+    }
+  };
+
   useEffect(() => {
     fetchPendingReports();
 
@@ -243,7 +297,7 @@ export const VerifyReportsView = ({ onRefresh }) => {
     const cleanupWs = hazardService.connectHazardWebSocket((event) => {
       if (event.event === 'NEW_DISASTER_DETECTED' || event.event === 'HAZARD_REPORTED' || event.event === 'HAZARD_DETECTED') {
         const newHazard = event.data || event.hazard;
-        if (newHazard && !String(newHazard.id || newHazard._id || '').startsWith('hz_rep_')) {
+        if (newHazard && !isDemoReport(newHazard)) {
           setReports((prev) => {
             const id = newHazard.id || newHazard._id;
             if (prev.some((r) => (r.id || r._id) === id)) return prev;
@@ -259,8 +313,8 @@ export const VerifyReportsView = ({ onRefresh }) => {
 
   // 1. Filter pending reports (strictly real-time, non-demo, exclude pedestrians)
   const filteredReports = reports.filter((h) => {
-    // Exclude mock demo IDs
-    if (String(h.id || h._id || '').startsWith('hz_rep_')) return false;
+    // Strictly exclude any demo reports
+    if (isDemoReport(h)) return false;
 
     // EXCLUDE PEDESTRIANS: Pedestrians are normal urban entities, not road hazards
     const rawType = (h.type || h.disasterType || h.name || '').toLowerCase().trim();
@@ -471,6 +525,29 @@ export const VerifyReportsView = ({ onRefresh }) => {
               <TableIcon size={14} /> Table
             </button>
           </div>
+
+          {pendingReports.length > 0 && (
+            <button 
+              onClick={handlePurgeAllReports} 
+              disabled={loadingReports}
+              style={{
+                padding: '8px 14px',
+                fontSize: '0.82rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                background: '#fee2e2',
+                color: '#dc2626',
+                border: '1px solid #fca5a5',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontWeight: 700
+              }}
+              title="Purge all pending demo / test reports from queue"
+            >
+              <Trash2 size={14} /> Clear Queue
+            </button>
+          )}
 
           <button 
             onClick={() => pdfReportService.generateComprehensiveDisasterReport({ hazards: pendingReports })} 

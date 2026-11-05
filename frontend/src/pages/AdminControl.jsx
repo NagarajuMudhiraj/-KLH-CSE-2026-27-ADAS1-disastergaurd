@@ -58,10 +58,21 @@ export const AdminControl = ({ onLogout }) => {
       setHazards(hazardList);
       setEmergencies(sosList);
 
-      const cleanPending = Array.isArray(pendingReports) ? pendingReports.filter(h => 
-        !String(h.id || h._id || '').startsWith('hz_rep_') &&
-        !['person', 'pedestrian'].includes((h.type || h.disasterType || h.name || '').toLowerCase().trim())
-      ) : [];
+      const cleanPending = Array.isArray(pendingReports) ? pendingReports.filter(h => {
+        const idStr = String(h.id || h._id || '').toLowerCase();
+        const nameStr = String(h.name || h.disasterType || h.type || '').toLowerCase();
+        const descStr = String(h.description || '').toLowerCase();
+        const repStr = String(h.reported_by || h.detectedBy || '').toLowerCase();
+        if (
+          idStr.startsWith('hz_rep_') ||
+          idStr.includes('demo') || idStr.includes('mock') || idStr.includes('sample') || idStr.includes('test') ||
+          nameStr.includes('demo') || nameStr.includes('mock') || nameStr.includes('sample') || nameStr.includes('test') ||
+          descStr.includes('demo') || descStr.includes('mock') || descStr.includes('sample') || descStr.includes('test') ||
+          repStr.includes('demo') || repStr.includes('mock') || repStr.includes('sample') || repStr.includes('test')
+        ) return false;
+        if (['person', 'pedestrian'].includes(nameStr.trim())) return false;
+        return true;
+      }) : [];
       setPendingCount(cleanPending.length);
     } finally {
       setLoading(false);
