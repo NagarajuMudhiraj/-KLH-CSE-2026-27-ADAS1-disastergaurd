@@ -57,6 +57,10 @@ Conventional GPS navigation systems (such as Google Maps and Waze) rely purely o
 Explore the standalone interactive runtime architecture diagram with dark/light themes and live animated signal traces:  
 👉 **[Open Interactive Architecture Diagram](./.archify/architecture-adas-runtime-20261104-225800/adas-runtime.html)**
 
+<p align="center">
+  <img src="./docs/architecture-runtime-diagram.png" alt="ADAS Intelligent Vehicle Assistance Runtime Architecture" width="100%" />
+</p>
+
 ```mermaid
 flowchart LR
     subgraph INGRESS["External Actors and Inputs"]

@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "D:\\datasets_IDM(ADAS)\\.archify\\architecture-adas-runtime-20261104-225800\\candidate.json",
+    "sha256": "703324040e7d0141fa05d666b9ca4de10dd378fc090202f305d642e201c4eff4",
+    "bytes": 10729
+  },
+  "artifact": {
+    "path": "D:\\datasets_IDM(ADAS)\\.archify\\architecture-adas-runtime-20261104-225800\\adas-runtime.html",
+    "sha256": "5f1aa466cb72e9f3f18320c2a39345633465805601e6bb713a84ddcd8c376a35",
+    "bytes": 870741
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "D:\\datasets_IDM(ADAS)\\.archify\\architecture-adas-runtime-20261104-225800\\review-3\\adas-runtime.finalize.json",
+    "summaryReceipt": "D:\\datasets_IDM(ADAS)\\.archify\\architecture-adas-runtime-20261104-225800\\review-3\\adas-runtime.finalize-summary.json",
+    "browserCheckReceipt": "D:\\datasets_IDM(ADAS)\\.archify\\architecture-adas-runtime-20261104-225800\\review-3\\adas-runtime.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-04T17:30:32.119Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 2909,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  },
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "routesOverSuggestedBends": 4
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [],
+      "detours": [
+        {
+          "relationship": {
+            "id": "hud-to-gateway",
+            "from": "hud_app",
+            "to": "fastapi_gateway",
+            "label": "REST API",
+            "collectionIndex": 4,
+            "artifactIndex": 5
+          },
+          "bends": 3,
+          "stretch": 1
+        },
+        {
+          "relationship": {
+            "id": "radar-to-gateway",
+            "from": "spatial_radar",
+            "to": "fastapi_gateway",
+            "label": "Query Route",
+            "collectionIndex": 6,
+            "artifactIndex": 7
+          },
+          "bends": 3,
+          "stretch": 1
+        },
+        {
+          "relationship": {
+            "id": "gateway-to-xgb",
+            "from": "fastapi_gateway",
+            "to": "xgboost_model",
+            "label": "Environmental Data",
+            "collectionIndex": 9,
+            "artifactIndex": 10
+          },
+          "bends": 3,
+          "stretch": 1
+        },
+        {
+          "relationship": {
+            "id": "gateway-to-astar",
+            "from": "fastapi_gateway",
+            "to": "astar_routing",
+            "label": "Route Request",
+            "collectionIndex": 10,
+            "artifactIndex": 11
+          },
+          "bends": 3,
+          "stretch": 1
+        }
+      ],
+      "truncated": false
+    },
+    "hints": [
+      "hud_app → fastapi_gateway needs 3 bends: move node hud_app or fastapi_gateway so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "spatial_radar → fastapi_gateway needs 3 bends: move node spatial_radar or fastapi_gateway so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "fastapi_gateway → xgboost_model needs 3 bends: move node fastapi_gateway or xgboost_model so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "fastapi_gateway → astar_routing needs 3 bends: move node fastapi_gateway or astar_routing so they share a row or column with matching centers, or sit diagonally with a clear corner."
+    ],
+    "repair": "Trace these relationships at the desktop viewport. For Architecture, use references/architecture-layout-repair.md: reflow a blocked main path or tangled connected scene, and repair an isolated defect locally only when the surrounding composition is accepted. Preserve all semantic content and user-fixed geometry. Rerun finalize once after the edit."
+  }
+}

@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "receiptId": "a9d24053-1790-4356-9a9b-148766b56d87",
+  "receiptId": "249132ba-1cdd-4ccc-bf6f-7a8f694e1dea",
   "status": "current",
   "command": "deliver",
   "type": "architecture",
   "input": "D:\\datasets_IDM(ADAS)\\.archify\\architecture-adas-runtime-20261104-225800\\candidate.json",
   "output": "D:\\datasets_IDM(ADAS)\\.archify\\architecture-adas-runtime-20261104-225800\\adas-runtime.html",
   "specification": {
-    "sha256": "62a03879b2160f4bea8bac700a45f9ee0da02afa8cb9429195ff69ad63b3fdd6",
-    "bytes": 10212
+    "sha256": "703324040e7d0141fa05d666b9ca4de10dd378fc090202f305d642e201c4eff4",
+    "bytes": 10729
   },
   "artifact": {
-    "sha256": "f420c5d6c80295586c83ddd1a019341c0677d47fb50075998b278cfe656e18e4",
-    "bytes": 871301
+    "sha256": "5f1aa466cb72e9f3f18320c2a39345633465805601e6bb713a84ddcd8c376a35",
+    "bytes": 870741
   }
 }
