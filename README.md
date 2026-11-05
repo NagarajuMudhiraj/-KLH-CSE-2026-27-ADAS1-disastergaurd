@@ -16,10 +16,6 @@
   <strong>An Intelligent Driver Assistance System (ADAS) & Resilient Evacuation Navigation Platform engineered to safeguard vehicular mobility during extreme environmental catastrophes.</strong>
 </p>
 
-<p align="center">
-  <img src="./docs/hud_live_camera_route.png" alt="DisasterShield Live ADAS Console" width="95%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
-</p>
-
 ---
 
 ## 📑 Table of Contents
