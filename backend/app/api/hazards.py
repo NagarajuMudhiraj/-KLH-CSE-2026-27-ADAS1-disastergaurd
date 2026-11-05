@@ -217,8 +217,10 @@ async def report_hazard(
         "created_at": now,
         "updated_at": now
     }
-    if data.image_base64:
-        doc["image_base64"] = data.image_base64
+    img_val = data.image_base64 or data.image_url or data.imageUrl
+    if img_val:
+        doc["image_base64"] = img_val
+        doc["image_url"] = img_val
     if data.depth_cm is not None:
         doc["depth_cm"] = float(data.depth_cm)
 

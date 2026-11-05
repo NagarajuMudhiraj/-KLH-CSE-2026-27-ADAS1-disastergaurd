@@ -234,6 +234,8 @@ class HazardReportInput(BaseModel):
     address: Optional[str] = "GPS Location"
     description: Optional[str] = ""
     image_base64: Optional[str] = None
+    image_url: Optional[str] = None
+    imageUrl: Optional[str] = None
     depth_cm: Optional[float] = None
 
 class HazardVerificationInput(BaseModel):

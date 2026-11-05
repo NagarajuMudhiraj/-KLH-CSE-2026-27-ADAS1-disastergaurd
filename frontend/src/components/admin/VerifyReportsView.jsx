@@ -29,22 +29,168 @@ import pdfReportService from '../../services/pdfReportService';
 
 /**
  * Normalizes authentic image properties from real driver detections and dashcam frames.
- * Returns null if no authentic photo was provided by the driver.
+ * Returns null if no authentic photo was provided by the driver or if format is invalid.
  */
 export const getHazardImage = (h) => {
   if (!h) return null;
-  const raw = h.image_url || h.imageUrl || h.annotated_image_url || h.image || h.photo || h.photo_url || h.snapshot || h.evidence_image || h.thumbnail;
-  if (raw && typeof raw === 'string' && raw.trim().length > 0) {
-    if (raw.startsWith('http') || raw.startsWith('data:') || raw.startsWith('/')) {
-      return raw;
+  const raw = h.image_url || h.imageUrl || h.annotated_image_url || h.image || h.photo || h.photo_url || h.snapshot || h.evidence_image || h.thumbnail || h.image_base64;
+  if (!raw || typeof raw !== 'string') return null;
+
+  const trimmed = raw.trim();
+  if (trimmed.length === 0) return null;
+
+  // Filter out literal null/undefined/boolean strings
+  const lower = trimmed.toLowerCase();
+  if (['null', 'undefined', 'none', 'nan', 'false', 'true', '[object object]'].includes(lower)) {
+    return null;
+  }
+
+  // Complete data URI
+  if (trimmed.startsWith('data:image/')) {
+    return trimmed;
+  }
+
+  // Full HTTP/HTTPS or blob URL
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('blob:')) {
+    return trimmed;
+  }
+
+  // Raw Base64 magic headers:
+  // JPEG starts with /9j/
+  // PNG starts with iVBOR
+  // GIF starts with R0lGOD
+  // WebP starts with UklGR
+  if (trimmed.startsWith('/9j/')) {
+    return `data:image/jpeg;base64,${trimmed}`;
+  }
+  if (trimmed.startsWith('iVBOR')) {
+    return `data:image/png;base64,${trimmed}`;
+  }
+  if (trimmed.startsWith('R0lGOD')) {
+    return `data:image/gif;base64,${trimmed}`;
+  }
+  if (trimmed.startsWith('UklGR')) {
+    return `data:image/webp;base64,${trimmed}`;
+  }
+
+  // If it starts with /:
+  if (trimmed.startsWith('/')) {
+    // If it looks like a valid static file path (e.g. /static/..., /api/...), return as path
+    if (trimmed.length < 500 && trimmed.includes('.')) {
+      return trimmed;
     }
-    return `data:image/jpeg;base64,${raw}`;
+    // Otherwise it is likely base64 starting with a slash
+    return `data:image/jpeg;base64,${trimmed}`;
   }
-  if (h.image_base64 && typeof h.image_base64 === 'string' && h.image_base64.trim().length > 0) {
-    return h.image_base64.startsWith('data:') ? h.image_base64 : `data:image/jpeg;base64,${h.image_base64}`;
+
+  // Raw base64 string without data prefix
+  if (trimmed.length > 50 && !trimmed.includes(' ')) {
+    return `data:image/jpeg;base64,${trimmed}`;
   }
-  // Authentic: return null if no photo attached by driver (do not fake images)
+
   return null;
+};
+
+/**
+ * Modern visual placeholder for hazards without photos or whose images failed to load.
+ */
+const HazardVisualPlaceholder = ({ hazard, height = '210px', isModal = false }) => {
+  const rawType = (hazard?.type || hazard?.disasterType || hazard?.name || '').toLowerCase().trim();
+
+  let theme = {
+    bg: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+    border: 'rgba(148, 163, 184, 0.25)',
+    iconColor: '#38bdf8',
+    Icon: Radio,
+    title: 'GPS Incident Corridor',
+    desc: 'Live telemetry verified • No photo evidence attached'
+  };
+
+  if (rawType.includes('flood') || rawType.includes('water') || rawType.includes('submerg')) {
+    theme = {
+      bg: 'linear-gradient(135deg, #082f49 0%, #0c4a6e 60%, #0369a1 100%)',
+      border: 'rgba(56, 189, 248, 0.35)',
+      iconColor: '#38bdf8',
+      Icon: Droplets,
+      title: 'Flood Inundation Corridor',
+      desc: 'Hydrological sensor active • Depth & coordinates verified'
+    };
+  } else if (rawType.includes('fire') || rawType.includes('flame') || rawType.includes('blaze')) {
+    theme = {
+      bg: 'linear-gradient(135deg, #450a0a 0%, #7f1d1d 60%, #b91c1c 100%)',
+      border: 'rgba(239, 68, 68, 0.35)',
+      iconColor: '#f87171',
+      Icon: Flame,
+      title: 'Active Wildfire Front',
+      desc: 'Thermal hazard corridor • GPS perimeter monitored'
+    };
+  } else if (rawType.includes('smoke') || rawType.includes('haze')) {
+    theme = {
+      bg: 'linear-gradient(135deg, #1e293b 0%, #334155 60%, #475569 100%)',
+      border: 'rgba(148, 163, 184, 0.35)',
+      iconColor: '#94a3b8',
+      Icon: Wind,
+      title: 'Smoke Dispersion Corridor',
+      desc: 'Atmospheric visibility reduced • Live coordinates verified'
+    };
+  } else if (rawType.includes('damage') || rawType.includes('pothole') || rawType.includes('crack') || rawType.includes('asphalt')) {
+    theme = {
+      bg: 'linear-gradient(135deg, #451a03 0%, #78350f 60%, #b45309 100%)',
+      border: 'rgba(245, 158, 11, 0.35)',
+      iconColor: '#fbbf24',
+      Icon: AlertTriangle,
+      title: 'Pavement Structural Damage',
+      desc: 'Road cavity hazard • Depth telemetry registered'
+    };
+  } else if (rawType.includes('landslide') || rawType.includes('mud') || rawType.includes('debris')) {
+    theme = {
+      bg: 'linear-gradient(135deg, #38240f 0%, #5c3817 60%, #784a1e 100%)',
+      border: 'rgba(217, 119, 6, 0.35)',
+      iconColor: '#f59e0b',
+      Icon: AlertTriangle,
+      title: 'Landslide Debris Hazard',
+      desc: 'Corridor obstruction • GPS coordinates active'
+    };
+  }
+
+  const { Icon, bg, border, iconColor, title, desc } = theme;
+
+  return (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: height,
+      width: '100%',
+      background: bg,
+      border: `1px solid ${border}`,
+      color: '#f8fafc',
+      flexDirection: 'column',
+      gap: isModal ? '12px' : '8px',
+      padding: '20px',
+      textAlign: 'center',
+      boxSizing: 'border-box'
+    }}>
+      <div style={{
+        width: isModal ? '64px' : '48px',
+        height: isModal ? '64px' : '48px',
+        borderRadius: '50%',
+        background: 'rgba(255, 255, 255, 0.1)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.25)'
+      }}>
+        <Icon size={isModal ? 32 : 24} color={iconColor} />
+      </div>
+      <span style={{ fontSize: isModal ? '1.05rem' : '0.86rem', fontWeight: 800, color: '#f8fafc' }}>
+        {title}
+      </span>
+      <span style={{ fontSize: isModal ? '0.82rem' : '0.74rem', color: '#cbd5e1', maxWidth: '320px' }}>
+        {desc}
+      </span>
+    </div>
+  );
 };
 
 export const VerifyReportsView = ({ onRefresh }) => {
@@ -56,6 +202,16 @@ export const VerifyReportsView = ({ onRefresh }) => {
   const [viewMode, setViewMode] = useState('CARDS'); // 'CARDS' or 'TABLE'
   const [selectedReport, setSelectedReport] = useState(null);
   const [adminNote, setAdminNote] = useState('');
+  const [failedImages, setFailedImages] = useState(new Set());
+
+  const handleImageError = (hazardId) => {
+    if (!hazardId) return;
+    setFailedImages((prev) => {
+      const updated = new Set(prev);
+      updated.add(String(hazardId));
+      return updated;
+    });
+  };
 
   // Fetch real-time pending reports from backend (strictly authentic driver-detected events)
   const fetchPendingReports = async () => {
@@ -430,16 +586,17 @@ export const VerifyReportsView = ({ onRefresh }) => {
                     width: '100%',
                     height: '210px',
                     background: '#090d16',
-                    cursor: imgSrc ? 'pointer' : 'default',
+                    cursor: (imgSrc && !failedImages.has(String(id))) ? 'pointer' : 'default',
                     overflow: 'hidden'
                   }}
-                  onClick={() => imgSrc && setSelectedReport(h)}
-                  title={imgSrc ? "Click to inspect driver photo evidence in high resolution" : "Driver reported via GPS without photo"}
+                  onClick={() => imgSrc && !failedImages.has(String(id)) && setSelectedReport(h)}
+                  title={imgSrc && !failedImages.has(String(id)) ? "Click to inspect driver photo evidence in high resolution" : "Live telemetry verified"}
                 >
-                  {imgSrc ? (
+                  {imgSrc && !failedImages.has(String(id)) ? (
                     <img 
                       src={imgSrc} 
                       alt={hazardTitle}
+                      onError={() => handleImageError(id)}
                       style={{
                         width: '100%',
                         height: '100%',
@@ -450,15 +607,7 @@ export const VerifyReportsView = ({ onRefresh }) => {
                       onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1.0)'}
                     />
                   ) : (
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#94a3b8', flexDirection: 'column', gap: '8px', background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 100%)' }}>
-                      <Radio size={36} color="#38bdf8" style={{ opacity: 0.8 }} />
-                      <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#f8fafc' }}>
-                        Driver GPS Hazard Alert
-                      </span>
-                      <span style={{ fontSize: '0.74rem', color: '#94a3b8' }}>
-                        No photo attached • Live GPS coordinates verified
-                      </span>
-                    </div>
+                    <HazardVisualPlaceholder hazard={h} height="210px" />
                   )}
 
                   {/* Overlay Badges */}
@@ -519,7 +668,7 @@ export const VerifyReportsView = ({ onRefresh }) => {
                   </div>
 
                   {/* Zoom Action Icon Overlay */}
-                  {imgSrc && (
+                  {imgSrc && !failedImages.has(String(id)) && (
                     <div style={{
                       position: 'absolute',
                       bottom: '10px',
@@ -736,7 +885,7 @@ export const VerifyReportsView = ({ onRefresh }) => {
 
                       {/* Visual Evidence Thumbnail */}
                       <td>
-                        {imgSrc ? (
+                        {imgSrc && !failedImages.has(String(id)) ? (
                           <div
                             onClick={() => setSelectedReport(h)}
                             style={{
@@ -751,7 +900,12 @@ export const VerifyReportsView = ({ onRefresh }) => {
                             }}
                             title="Click to inspect full photo evidence"
                           >
-                            <img src={imgSrc} alt="Hazard Evidence" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <img 
+                              src={imgSrc} 
+                              alt="Hazard Evidence" 
+                              onError={() => handleImageError(id)}
+                              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                            />
                             <div style={{
                               position: 'absolute',
                               bottom: 0,
@@ -765,8 +919,8 @@ export const VerifyReportsView = ({ onRefresh }) => {
                             </div>
                           </div>
                         ) : (
-                          <span style={{ fontSize: '0.74rem', color: '#94a3b8', fontStyle: 'italic' }}>
-                            GPS Only (No Photo)
+                          <span style={{ fontSize: '0.74rem', color: '#94a3b8', fontStyle: 'italic', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <Radio size={12} color="#0284c7" /> GPS Only
                           </span>
                         )}
                       </td>
@@ -995,10 +1149,11 @@ export const VerifyReportsView = ({ onRefresh }) => {
                 padding: '16px',
                 borderRight: '1px solid rgba(255, 255, 255, 0.08)'
               }}>
-                {getHazardImage(selectedReport) ? (
+                {selectedReport && getHazardImage(selectedReport) && !failedImages.has(String(selectedReport.id || selectedReport._id)) ? (
                   <img 
                     src={getHazardImage(selectedReport)} 
                     alt="Driver Photo Evidence"
+                    onError={() => handleImageError(String(selectedReport.id || selectedReport._id))}
                     style={{
                       maxWidth: '100%',
                       maxHeight: '480px',
@@ -1008,11 +1163,7 @@ export const VerifyReportsView = ({ onRefresh }) => {
                     }}
                   />
                 ) : (
-                  <div style={{ textAlign: 'center', color: '#64748b', padding: '40px' }}>
-                    <Radio size={48} color="#38bdf8" style={{ margin: '0 auto 12px' }} />
-                    <p style={{ color: '#ffffff', fontWeight: 700 }}>Driver Submitted via GPS Only</p>
-                    <p style={{ fontSize: '0.8rem' }}>No camera snapshot was attached to this report.</p>
-                  </div>
+                  <HazardVisualPlaceholder hazard={selectedReport} height="360px" isModal={true} />
                 )}
               </div>
 
