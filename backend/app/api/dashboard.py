@@ -101,8 +101,12 @@ def get_prediction_history(
 ):
     pred_coll = get_predictions_collection()
     query = {}
-    if user_filter:
+    if current_user.get("role") != "admin":
+        # Non-admin drivers are strictly restricted to their own prediction records
+        query["username"] = current_user.get("username")
+    elif user_filter:
         query["username"] = user_filter
+
     if disaster_type:
         query["prediction"] = disaster_type
 

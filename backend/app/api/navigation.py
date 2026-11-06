@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect, Depends
+from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect, Depends, Query, status
 from pydantic import BaseModel, Field
 from typing import List, Dict, Any, Optional
 from datetime import datetime
@@ -6,7 +6,7 @@ import asyncio
 
 from app.database.mongodb import get_disaster_zones_collection, get_hazards_collection, get_disasters_collection
 from app.services.dijkstra_routing import dijkstra_engine
-from app.utils.security import require_admin
+from app.utils.security import require_admin, decode_token
 
 router = APIRouter(prefix="/api/navigation", tags=["Google Maps Disaster Navigation & Dijkstra"])
 
@@ -216,8 +216,15 @@ def plan_dijkstra_route(req: RoutePlanRequest):
     return result
 
 @router.websocket("/ws/disasters")
-async def websocket_disaster_feed(websocket: WebSocket):
+async def websocket_disaster_feed(
+    websocket: WebSocket,
+    token: Optional[str] = Query(None)
+):
     """WebSocket stream for real-time disaster alerts & dynamic route re-evaluations."""
+    if not token or not decode_token(token):
+        await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
+        return
+
     await disaster_ws_manager.connect(websocket)
     try:
         while True:

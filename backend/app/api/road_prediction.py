@@ -149,42 +149,20 @@ def save_route_history(data: RouteHistorySaveInput, current_user: dict = Depends
     return {"message": "Route history saved", "route": doc}
 
 @router.get("/routes/history")
-def get_routes_history(current_user: dict = Depends(get_optional_user)):
+def get_routes_history(current_user: dict = Depends(get_current_user)):
     from app.database.mongodb import get_travel_history_collection
     coll = get_travel_history_collection()
-    items = list(coll.find({}))
-    if not items:
-        # Default mock history if collection is empty
-        return [
-            {
-                "_id": "rh_1",
-                "origin_name": "Chennai Central Hub",
-                "destination_name": "OMR Tech Park",
-                "distance_km": 14.8,
-                "duration_min": 26,
-                "safety_score": 96,
-                "status": "Completed Safe",
-                "rerouted": True,
-                "reroute_reason": "Autonomous reroute around Flash Flood Barrier",
-                "timestamp": "2026-10-02T11:20:00Z"
-            },
-            {
-                "_id": "rh_2",
-                "origin_name": "Airport Cargo Terminal",
-                "destination_name": "City Logistics Center",
-                "distance_km": 18.2,
-                "duration_min": 32,
-                "safety_score": 92,
-                "status": "Completed Safe",
-                "rerouted": False,
-                "reroute_reason": None,
-                "timestamp": "2026-10-01T16:45:00Z"
-            }
-        ]
+    query = {}
+    if current_user.get("role") != "admin":
+        query["username"] = current_user.get("username")
+    items = list(coll.find(query))
+    output = []
     for it in items:
-        if "_id" in it:
-            it["_id"] = str(it["_id"])
-    return items
+        item = dict(it)
+        if "_id" in item:
+            item["_id"] = str(item["_id"])
+        output.append(item)
+    return output
 
 @router.get("/alerts/history")
 def get_alerts_history(current_user: dict = Depends(get_optional_user)):

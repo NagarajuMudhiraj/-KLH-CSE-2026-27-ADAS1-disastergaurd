@@ -1,13 +1,13 @@
-from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisconnect, Query, status
 from app.models.schemas import (
     EmergencySOSInput, EmergencySOSOutput, EmergencyAdminCreateInput,
     SOSStatusUpdateInput, RescueTeamAssignmentInput, DispatchServiceInput,
     NotifyContactsInput, DriverLocationUpdate
 )
 from app.database.mongodb import get_emergency_requests_collection, get_driver_telemetry_collection
-from app.utils.security import get_current_user
+from app.utils.security import get_current_user, decode_token
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 import asyncio
 
 router = APIRouter(prefix="/api", tags=["Emergency SOS"])
@@ -35,7 +35,14 @@ class ConnectionManager:
 ws_manager = ConnectionManager()
 
 @router.websocket("/ws/emergency")
-async def websocket_emergency_feed(websocket: WebSocket):
+async def websocket_emergency_feed(
+    websocket: WebSocket,
+    token: Optional[str] = Query(None)
+):
+    if not token or not decode_token(token):
+        await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
+        return
+
     await ws_manager.connect(websocket)
     try:
         while True:
@@ -93,7 +100,11 @@ async def send_emergency_sos(
 @router.get("/emergency/list")
 def get_emergency_list(current_user: dict = Depends(get_current_user)):
     sos_coll = get_emergency_requests_collection()
-    requests = sos_coll.find({}, limit=50)
+    query = {}
+    if current_user.get("role") != "admin":
+        username = current_user.get("username")
+        query = {"$or": [{"username": username}, {"reported_by": username}, {"user": username}]}
+    requests = sos_coll.find(query, limit=50)
     
     output = []
     for r in requests:
