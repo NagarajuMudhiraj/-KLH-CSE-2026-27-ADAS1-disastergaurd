@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import L from 'leaflet';
 import mapboxService from '../../services/mapboxService';
+import { escapeHtml } from '../../utils/sanitize';
 
 export const LiveMap = ({
   currentLocation,
@@ -507,7 +508,7 @@ export const LiveMap = ({
             font-size: 9px; font-weight: 800; text-transform: uppercase; margin-top: 2px;
             border: 1px solid rgba(255, 255, 255, 0.2); white-space: nowrap;
           ">
-            ${h.name || 'Hazard'} • ${h.severity || 'HIGH'}
+            ${escapeHtml(h.name || 'Hazard')} • ${escapeHtml(h.severity || 'HIGH')}
           </div>
         </div>
       `;
@@ -522,11 +523,17 @@ export const LiveMap = ({
         }
       });
 
+      const safeName = escapeHtml(h.name || h.type || 'Hazard');
+      const safeSeverity = escapeHtml(h.severity || 'High');
+      const safeAddress = escapeHtml(h.address || `${lat.toFixed(4)}, ${lng.toFixed(4)}`);
+      const safeDescription = h.description ? escapeHtml(h.description) : '';
+      const safeStatus = escapeHtml(h.status || 'Active');
+
       const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
         <div style="font-family:Inter, sans-serif; font-size:0.82rem; min-width:210px; line-height:1.4;">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; border-bottom:1px solid #e2e8f0; padding-bottom:4px;">
             <strong style="color:${isAdminSource ? '#6d28d9' : '#dc2626'}; font-size:0.95rem;">
-              ${iconEmoji} ${h.name || h.type}
+              ${iconEmoji} ${safeName}
             </strong>
             <span style="
               font-size:0.68rem; font-weight:800; padding:2px 6px; border-radius:4px;
@@ -534,15 +541,15 @@ export const LiveMap = ({
               color:${isAdminSource ? '#6d28d9' : '#dc2626'};
               border:1px solid ${isAdminSource ? '#ddd6fe' : '#fecaca'};
             ">
-              ${isAdminSource ? 'ADMIN SOURCE' : source}
+              ${isAdminSource ? 'ADMIN SOURCE' : escapeHtml(source)}
             </span>
           </div>
-          <div><strong>Severity:</strong> <span style="color:#b91c1c; font-weight:700;">${h.severity || 'High'}</span></div>
+          <div><strong>Severity:</strong> <span style="color:#b91c1c; font-weight:700;">${safeSeverity}</span></div>
           <div><strong>Source:</strong> <span>${isAdminSource ? 'Admin Reported Hazard' : (source === 'USER' ? 'User Report' : 'AI Detected')}</span></div>
-          <div><strong>Location:</strong> <span style="color:#475569;">${h.address || `${lat.toFixed(4)}, ${lng.toFixed(4)}`}</span></div>
-          ${h.description ? `<div><strong>Description:</strong> <span style="color:#334155;">${h.description}</span></div>` : ''}
-          <div><strong>Distance:</strong> <span>${distanceText}</span></div>
-          <div><strong>Status:</strong> <span style="color:#059669; font-weight:700;">${h.status || 'Active'}</span></div>
+          <div><strong>Location:</strong> <span style="color:#475569;">${safeAddress}</span></div>
+          ${safeDescription ? `<div><strong>Description:</strong> <span style="color:#334155;">${safeDescription}</span></div>` : ''}
+          <div><strong>Distance:</strong> <span>${escapeHtml(distanceText)}</span></div>
+          <div><strong>Status:</strong> <span style="color:#059669; font-weight:700;">${safeStatus}</span></div>
         </div>
       `);
 

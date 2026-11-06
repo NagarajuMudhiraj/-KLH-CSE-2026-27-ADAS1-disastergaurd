@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import mapboxService from '../../services/mapboxService';
+import { escapeHtml } from '../../utils/sanitize';
 import { 
   MapPin, 
   Plus, 
@@ -98,7 +99,7 @@ export const AdminHazardMapView = ({ hazards = [], onNavigateToCreate, onRefresh
             font-size: 9px; font-weight: 800; text-transform: uppercase; margin-top: 2px;
             border: 1px solid rgba(255, 255, 255, 0.2); white-space: nowrap;
           ">
-            ${src} • ${h.severity || 'HIGH'}
+            ${escapeHtml(src)} • ${escapeHtml(h.severity || 'HIGH')}
           </div>
         </div>
       `;
@@ -107,11 +108,17 @@ export const AdminHazardMapView = ({ hazards = [], onNavigateToCreate, onRefresh
         setSelectedHazard({ ...h, lat, lng, src });
       });
 
+      const safeName = escapeHtml(h.name || h.type || 'Hazard');
+      const safeSeverity = escapeHtml(h.severity || 'High');
+      const safeAddress = escapeHtml(h.address || `${lat.toFixed(4)}, ${lng.toFixed(4)}`);
+      const safeNotes = h.description ? escapeHtml(h.description) : '';
+      const safeStatus = escapeHtml(h.status || 'Active');
+
       const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
         <div style="font-family:Inter, sans-serif; font-size:0.82rem; min-width:210px; line-height:1.4;">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
             <strong style="color:${isAdmin ? '#6d28d9' : '#0284c7'}; font-size:0.95rem;">
-              ${iconEmoji} ${h.name || h.type}
+              ${iconEmoji} ${safeName}
             </strong>
             <span style="
               font-size:0.68rem; font-weight:800; padding:2px 6px; border-radius:4px;
@@ -119,13 +126,13 @@ export const AdminHazardMapView = ({ hazards = [], onNavigateToCreate, onRefresh
               color:${isAdmin ? '#6d28d9' : '#0284c7'};
               border:1px solid ${isAdmin ? '#ddd6fe' : '#bae6fd'};
             ">
-              ${src}
+              ${escapeHtml(src)}
             </span>
           </div>
-          <div><strong>Severity:</strong> <span style="color:#b91c1c; font-weight:700;">${h.severity || 'High'}</span></div>
-          <div><strong>Address:</strong> <span style="color:#475569;">${h.address || `${lat.toFixed(4)}, ${lng.toFixed(4)}`}</span></div>
-          ${h.description ? `<div><strong>Notes:</strong> <span style="color:#334155;">${h.description}</span></div>` : ''}
-          <div><strong>Status:</strong> <span style="color:#059669; font-weight:700;">${h.status || 'Active'}</span></div>
+          <div><strong>Severity:</strong> <span style="color:#b91c1c; font-weight:700;">${safeSeverity}</span></div>
+          <div><strong>Address:</strong> <span style="color:#475569;">${safeAddress}</span></div>
+          ${safeNotes ? `<div><strong>Notes:</strong> <span style="color:#334155;">${safeNotes}</span></div>` : ''}
+          <div><strong>Status:</strong> <span style="color:#059669; font-weight:700;">${safeStatus}</span></div>
         </div>
       `);
 
