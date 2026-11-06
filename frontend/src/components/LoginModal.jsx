@@ -11,26 +11,12 @@ const LoginModal = ({ isOpen, onClose, targetRole = null, onLoginSuccess }) => {
   const [successMsg, setSuccessMsg] = useState('');
 
   // Form states
-  const [username, setUsername] = useState(targetRole === 'admin' ? 'admin' : 'driver');
-  const [password, setPassword] = useState(targetRole === 'admin' ? 'admin123' : 'driver123');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [role, setRole] = useState(targetRole === 'admin' ? 'admin' : 'driver');
+  const [role, setRole] = useState('driver');
 
   if (!isOpen) return null;
-
-  const handleQuickFill = (type) => {
-    setError('');
-    setSuccessMsg('');
-    if (type === 'driver') {
-      setUsername('driver');
-      setPassword('driver123');
-      setRole('driver');
-    } else {
-      setUsername('admin');
-      setPassword('admin123');
-      setRole('admin');
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -138,60 +124,6 @@ const LoginModal = ({ isOpen, onClose, targetRole = null, onLoginSuccess }) => {
             }
           </p>
         </div>
-
-        {/* Quick Demo Pre-fill Buttons */}
-        {!isRegister && (
-          <div style={{ marginBottom: '18px' }}>
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', marginBottom: '8px' }}>
-              Quick Demo Logins (Click to load):
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-              <button
-                type="button"
-                onClick={() => handleQuickFill('driver')}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '8px 12px',
-                  borderRadius: '8px',
-                  border: username === 'driver' ? '2px solid #0284c7' : '1px solid #e2e8f0',
-                  background: username === 'driver' ? '#f0f9ff' : '#f8fafc',
-                  cursor: 'pointer',
-                  textAlign: 'left'
-                }}
-              >
-                <Car size={16} color="#0284c7" />
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: '0.8rem', color: '#0f172a' }}>Driver Panel</div>
-                  <div style={{ fontSize: '0.7rem', color: '#64748b' }}>driver / driver123</div>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleQuickFill('admin')}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '8px 12px',
-                  borderRadius: '8px',
-                  border: username === 'admin' ? '2px solid #7c3aed' : '1px solid #e2e8f0',
-                  background: username === 'admin' ? '#f5f3ff' : '#f8fafc',
-                  cursor: 'pointer',
-                  textAlign: 'left'
-                }}
-              >
-                <Sliders size={16} color="#7c3aed" />
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: '0.8rem', color: '#0f172a' }}>Admin HQ</div>
-                  <div style={{ fontSize: '0.7rem', color: '#64748b' }}>admin / admin123</div>
-                </div>
-              </button>
-            </div>
-          </div>
-        )}
 
         {/* Feedback messages */}
         {error && (

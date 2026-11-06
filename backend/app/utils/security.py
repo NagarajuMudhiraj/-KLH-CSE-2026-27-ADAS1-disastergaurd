@@ -1,5 +1,6 @@
 import os
 import hashlib
+import bcrypt
 from datetime import datetime, timedelta
 from typing import Optional, Dict, Any
 from jose import JWTError, jwt
@@ -14,15 +15,37 @@ ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "1440
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
 def hash_password(password: str) -> str:
-    """Robust PBKDF2-HMAC-SHA256 password hashing."""
-    salt = "disaster_assistance_secure_salt_2026".encode('utf-8')
+    """Robust password hashing using bcrypt with per-user salted cost factor 12."""
     pwd_bytes = password.encode('utf-8')
-    hashed = hashlib.pbkdf2_hmac('sha256', pwd_bytes, salt, 100000)
-    return hashed.hex()
+    salt = bcrypt.gensalt(rounds=12)
+    return bcrypt.hashpw(pwd_bytes, salt).decode('utf-8')
+
+def _verify_legacy_pbkdf2(plain_password: str, hashed_password: str) -> bool:
+    """Legacy verifier for pre-existing PBKDF2-HMAC-SHA256 hashes."""
+    try:
+        salt = "disaster_assistance_secure_salt_2026".encode('utf-8')
+        pwd_bytes = plain_password.encode('utf-8')
+        computed = hashlib.pbkdf2_hmac('sha256', pwd_bytes, salt, 100000).hex()
+        return computed == hashed_password
+    except Exception:
+        return False
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    """Verify plain password against hashed password."""
-    return hash_password(plain_password) == hashed_password
+    """Verify plain password against hashed password supporting bcrypt with PBKDF2 legacy fallback."""
+    if not hashed_password or not plain_password:
+        return False
+    # Check if bcrypt hash ($2a$, $2b$, or $2y$)
+    if hashed_password.startswith(("$2a$", "$2b$", "$2y$")):
+        try:
+            return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
+        except Exception:
+            return False
+    # Fallback to legacy PBKDF2 verifier
+    return _verify_legacy_pbkdf2(plain_password, hashed_password)
+
+def needs_rehash(hashed_password: str) -> bool:
+    """Identifies legacy PBKDF2 or non-bcrypt hashes that require rehashing upon successful login."""
+    return not (hashed_password and hashed_password.startswith(("$2a$", "$2b$", "$2y$")))
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
     to_encode = data.copy()

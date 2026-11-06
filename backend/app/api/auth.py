@@ -1,7 +1,9 @@
 from fastapi import APIRouter, HTTPException, Depends, status
 from app.models.schemas import UserRegister, UserLogin, Token, UserProfile, UserProfileUpdate
 from app.database.mongodb import get_users_collection
-from app.utils.security import hash_password, verify_password, create_access_token, get_current_user
+from app.utils.security import (
+    hash_password, verify_password, create_access_token, get_current_user, needs_rehash
+)
 from datetime import datetime
 
 router = APIRouter(prefix="/api/auth", tags=["Authentication"])
@@ -55,6 +57,12 @@ def login(credentials: UserLogin):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid username or password"
         )
+
+    # Transparently upgrade legacy PBKDF2 hash to bcrypt on successful authentication
+    if needs_rehash(user["password"]):
+        upgraded_hash = hash_password(credentials.password)
+        users_coll.update_one({"_id": user["_id"]}, {"$set": {"password": upgraded_hash}})
+        user["password"] = upgraded_hash
 
     token = create_access_token(data={
         "sub": user["username"],

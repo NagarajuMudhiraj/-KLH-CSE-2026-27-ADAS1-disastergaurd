@@ -197,34 +197,44 @@ def get_disaster_zones_collection():
     return db_manager.get_collection("disaster_zones")
 
 def seed_default_users():
-    """Seeds default demo admin and driver credentials if not already present."""
+    """Seeds initial admin credentials from environment variables if configured, removing hardcoded admin/admin123."""
     from app.utils.security import hash_password
     users_coll = get_users_collection()
     
-    demo_users = [
-        {
-            "username": "admin",
-            "email": "admin@emergency.org",
-            "password": hash_password("admin123"),
-            "role": "admin",
-            "full_name": "HQ Incident Commander",
-            "createdAt": datetime.utcnow().isoformat()
-        },
-        {
-            "username": "driver",
-            "email": "driver@emergency.org",
-            "password": hash_password("driver123"),
-            "role": "driver",
-            "full_name": "Emergency Responder",
-            "createdAt": datetime.utcnow().isoformat()
-        }
-    ]
+    # Read admin credentials exclusively from environment variables
+    admin_user = os.getenv("INITIAL_ADMIN_USERNAME")
+    admin_pass = os.getenv("INITIAL_ADMIN_PASSWORD")
+    
+    if admin_user and admin_pass:
+        existing_admin = users_coll.find_one({"username": admin_user})
+        if not existing_admin:
+            users_coll.insert_one({
+                "username": admin_user,
+                "email": os.getenv("INITIAL_ADMIN_EMAIL", f"{admin_user}@emergency.org"),
+                "password": hash_password(admin_pass),
+                "role": "admin",
+                "full_name": "Incident Commander",
+                "createdAt": datetime.utcnow().isoformat()
+            })
+            print(f"[AUTH SEED] Initialized admin user from environment: {admin_user} (role: admin)")
+    else:
+        print("[AUTH SEED] No INITIAL_ADMIN_USERNAME/INITIAL_ADMIN_PASSWORD environment variables set; skipping admin auto-seed.")
 
-    for u in demo_users:
-        existing = users_coll.find_one({"username": u["username"]})
-        if not existing:
-            users_coll.insert_one(u)
-            print(f"[AUTH SEED] Created demo user: {u['username']} (role: {u['role']})")
+    # Driver account for development if configured
+    driver_user = os.getenv("INITIAL_DRIVER_USERNAME", "driver")
+    driver_pass = os.getenv("INITIAL_DRIVER_PASSWORD", "driver123")
+    if driver_user and driver_pass:
+        existing_driver = users_coll.find_one({"username": driver_user})
+        if not existing_driver:
+            users_coll.insert_one({
+                "username": driver_user,
+                "email": f"{driver_user}@emergency.org",
+                "password": hash_password(driver_pass),
+                "role": "driver",
+                "full_name": "Emergency Responder",
+                "createdAt": datetime.utcnow().isoformat()
+            })
+            print(f"[AUTH SEED] Initialized driver user: {driver_user} (role: driver)")
 
 
 def seed_initial_hazards():
