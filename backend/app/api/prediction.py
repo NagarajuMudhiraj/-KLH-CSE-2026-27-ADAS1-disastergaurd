@@ -1,25 +1,56 @@
 import asyncio
-from fastapi import APIRouter, UploadFile, File, Form, Depends, HTTPException, status
+import io
+from PIL import Image
+from fastapi import APIRouter, UploadFile, File, Form, Depends, HTTPException, status, Request
 from typing import Optional
 from app.services.fusion_service import fusion_engine
 from app.database.mongodb import get_predictions_collection
 from app.utils.security import get_optional_user
+from app.utils.rate_limit import limiter
 from datetime import datetime
 
 router = APIRouter(prefix="/api", tags=["Predictions"])
 
 @router.post("/predict-image")
+@limiter.limit("20/minute")
 async def predict_disaster_image(
+    request: Request,
     file: UploadFile = File(...),
     lat: Optional[float] = Form(None),
     lng: Optional[float] = Form(None),
     enable_sahi: Optional[bool] = Form(False),
     current_user: dict = Depends(get_optional_user)
 ):
-    if not file.content_type.startswith("image/"):
-        raise HTTPException(status_code=400, detail="Uploaded file must be an image.")
+    MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB limit
+    ALLOWED_IMAGE_TYPES = {"image/jpeg", "image/png", "image/webp"}
+
+    if file.content_type not in ALLOWED_IMAGE_TYPES:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Uploaded file type not supported. Only JPEG, PNG, and WebP images are permitted."
+        )
 
     contents = await file.read()
+    if len(contents) > MAX_FILE_SIZE:
+        raise HTTPException(
+            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+            detail="File size exceeds the 10 MB maximum upload limit."
+        )
+
+    # Magic-byte and structural verification using PIL
+    try:
+        img = Image.open(io.BytesIO(contents))
+        img.verify()
+        if img.format not in ["JPEG", "PNG", "WEBP"]:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid image format. Detected non-image file signature."
+            )
+    except Exception:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Corrupted or invalid image file. Magic-byte verification failed."
+        )
     username = current_user.get("username", "Live Driver Camera") if current_user else "Live Driver Camera"
     
     try:

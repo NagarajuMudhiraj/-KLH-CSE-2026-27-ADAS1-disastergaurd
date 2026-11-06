@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 from typing import Optional, Dict, Any, List
 from app.models.schemas import RoadPredictionInput, RoadPredictionOutput
@@ -6,6 +6,7 @@ from app.services.ai_service import ai_engine
 from app.services.fusion_service import fusion_engine
 from app.database.mongodb import get_predictions_collection
 from app.utils.security import get_current_user, get_optional_user
+from app.utils.rate_limit import limiter
 from datetime import datetime
 
 router = APIRouter(prefix="/api", tags=["Road Safety"])
@@ -18,7 +19,9 @@ class RiskCalculateInput(BaseModel):
     lng: Optional[float] = None
 
 @router.post("/predict-road", response_model=RoadPredictionOutput)
+@limiter.limit("60/minute")
 def predict_road_status(
+    request: Request,
     input_data: RoadPredictionInput,
     current_user: dict = Depends(get_optional_user)
 ):

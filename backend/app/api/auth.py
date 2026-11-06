@@ -1,9 +1,10 @@
-from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi import APIRouter, HTTPException, Depends, status, Request
 from app.models.schemas import UserRegister, UserLogin, Token, UserProfile, UserProfileUpdate
 from app.database.mongodb import get_users_collection
 from app.utils.security import (
     hash_password, verify_password, create_access_token, get_current_user, needs_rehash
 )
+from app.utils.rate_limit import limiter
 from datetime import datetime
 
 router = APIRouter(prefix="/api/auth", tags=["Authentication"])
@@ -48,7 +49,8 @@ def register(user_data: UserRegister):
     }
 
 @router.post("/login", response_model=Token)
-def login(credentials: UserLogin):
+@limiter.limit("10/minute")
+def login(request: Request, credentials: UserLogin):
     users_coll = get_users_collection()
     user = users_coll.find_one({"username": credentials.username})
     
