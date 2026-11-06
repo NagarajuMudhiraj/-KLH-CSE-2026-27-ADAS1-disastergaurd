@@ -8,7 +8,15 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from app.database.mongodb import get_users_collection
 
-SECRET_KEY = os.getenv("JWT_SECRET_KEY", "super_secret_jwt_key_disaster_assistance_2026_semester_project")
+from dotenv import load_dotenv
+load_dotenv()
+
+SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+if not SECRET_KEY:
+    raise RuntimeError(
+        "FATAL SECURITY CONFIG ERROR: JWT_SECRET_KEY environment variable is not set! "
+        "Application startup aborted to prevent insecure fallback secrets."
+    )
 ALGORITHM = os.getenv("ALGORITHM", "HS256")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "1440"))
 
