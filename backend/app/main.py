@@ -7,6 +7,9 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..
 os.environ.setdefault("YOLO_CONFIG_DIR", os.path.join(project_root, ".ultralytics-config"))
 
 # Load environment variables from .env file
+dotenv_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".env"))
+if os.path.exists(dotenv_path):
+    load_dotenv(dotenv_path)
 load_dotenv()
 
 from fastapi import FastAPI

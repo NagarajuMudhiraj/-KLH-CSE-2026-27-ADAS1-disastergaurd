@@ -9,6 +9,9 @@ from fastapi.security import OAuth2PasswordBearer
 from app.database.mongodb import get_users_collection
 
 from dotenv import load_dotenv
+dotenv_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".env"))
+if os.path.exists(dotenv_path):
+    load_dotenv(dotenv_path)
 load_dotenv()
 
 SECRET_KEY = os.getenv("JWT_SECRET_KEY")
