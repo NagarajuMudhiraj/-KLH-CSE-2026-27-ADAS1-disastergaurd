@@ -58,3 +58,4 @@ def test_sec04_bcrypt_and_migration():
 
 if __name__ == "__main__":
     test_sec04_bcrypt_and_migration()
+

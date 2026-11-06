@@ -34,3 +34,4 @@ def test_sec01_registration_privilege_escalation():
 
 if __name__ == "__main__":
     test_sec01_registration_privilege_escalation()
+

@@ -96,3 +96,4 @@ def test_sec06_sec08_websockets_and_isolation():
 
 if __name__ == "__main__":
     test_sec06_sec08_websockets_and_isolation()
+

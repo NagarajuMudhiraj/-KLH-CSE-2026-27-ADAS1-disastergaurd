@@ -64,3 +64,7 @@ floodnet/
 *.tar.gz
 *.tgz
 *.rar
+
+# Ultralytics runtime cache
+Ultralytics/
+.ultralytics-config/

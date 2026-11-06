@@ -20,3 +20,4 @@ export function escapeHtml(str) {
 export function sanitizeHtml(html) {
   return DOMPurify.sanitize(html);
 }
+
