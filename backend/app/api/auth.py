@@ -23,7 +23,7 @@ def register(user_data: UserRegister):
         "username": user_data.username,
         "email": user_data.email,
         "password": hashed_pwd,
-        "role": user_data.role or "driver",
+        "role": "driver",
         "createdAt": datetime.utcnow().isoformat()
     }
     
@@ -32,7 +32,7 @@ def register(user_data: UserRegister):
     token = create_access_token(data={
         "sub": user_data.username,
         "email": user_data.email,
-        "role": user_data.role or "driver"
+        "role": "driver"
     })
     
     return {
@@ -41,7 +41,7 @@ def register(user_data: UserRegister):
         "user": {
             "username": user_data.username,
             "email": user_data.email,
-            "role": user_data.role or "driver"
+            "role": "driver"
         }
     }
 

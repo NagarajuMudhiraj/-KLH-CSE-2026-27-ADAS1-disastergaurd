@@ -7,7 +7,6 @@ class UserRegister(BaseModel):
     username: str = Field(..., min_length=3, max_length=50)
     email: str
     password: str = Field(..., min_length=6)
-    role: Optional[str] = "driver"  # "driver" or "admin"
 
 class UserLogin(BaseModel):
     username: str

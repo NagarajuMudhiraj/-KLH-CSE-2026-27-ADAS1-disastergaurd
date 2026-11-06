@@ -45,7 +45,7 @@ const LoginModal = ({ isOpen, onClose, targetRole = null, onLoginSuccess }) => {
           setLoading(false);
           return;
         }
-        const res = await register({ username, email, password, role });
+        const res = await register({ username, email, password });
         if (res.success) {
           const destination = res.user.role === 'admin' ? 'Admin Command Center' : 'Driver ADAS Console';
           setSuccessMsg(`Account registered! Routing to ${destination}...`);
@@ -304,21 +304,6 @@ const LoginModal = ({ isOpen, onClose, targetRole = null, onLoginSuccess }) => {
               </button>
             </div>
           </div>
-
-          {/* Role selector if Registering */}
-          {isRegister && (
-            <div className="form-group">
-              <label className="form-label">Assign Portal Role</label>
-              <select
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                className="form-select"
-              >
-                <option value="driver">🚗 Vehicle Driver (Driver ADAS Console)</option>
-                <option value="admin">🛡️ HQ Incident Commander (Admin Command Center)</option>
-              </select>
-            </div>
-          )}
 
           {/* Destination notice */}
           <div 
