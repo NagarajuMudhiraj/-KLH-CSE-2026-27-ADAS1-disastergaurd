@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect, Depends
 from pydantic import BaseModel, Field
 from typing import List, Dict, Any, Optional
 from datetime import datetime
@@ -6,6 +6,7 @@ import asyncio
 
 from app.database.mongodb import get_disaster_zones_collection, get_hazards_collection, get_disasters_collection
 from app.services.dijkstra_routing import dijkstra_engine
+from app.utils.security import require_admin
 
 router = APIRouter(prefix="/api/navigation", tags=["Google Maps Disaster Navigation & Dijkstra"])
 
@@ -143,7 +144,10 @@ def get_disaster_zones(lat: Optional[float] = None, lng: Optional[float] = None)
     return output
 
 @router.post("/disaster-zones")
-async def create_disaster_zone(data: DisasterZoneInput):
+async def create_disaster_zone(
+    data: DisasterZoneInput,
+    current_user: dict = Depends(require_admin)
+):
     """Add a new disaster risk zone and broadcast live WebSocket update."""
     valid_risks = ["Green", "Yellow", "Red", "Purple"]
     if data.risk_level not in valid_risks:

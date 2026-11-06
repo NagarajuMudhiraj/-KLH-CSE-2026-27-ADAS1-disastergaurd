@@ -83,3 +83,14 @@ def get_optional_user(token: Optional[str] = Depends(optional_oauth2_scheme)) ->
         "email": user["email"],
         "role": user.get("role", "driver")
     }
+
+def require_admin(current_user: Dict[str, Any] = Depends(get_current_user)) -> Dict[str, Any]:
+    """Dependency that ensures the authenticated user possesses the 'admin' role."""
+    if current_user.get("role") != "admin":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Administrative privileges required to access this resource."
+        )
+    return current_user
+
+

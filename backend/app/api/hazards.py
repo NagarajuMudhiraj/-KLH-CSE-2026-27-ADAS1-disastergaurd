@@ -4,7 +4,7 @@ from app.models.schemas import (
     AdminHazardCreateInput, AdminHazardUpdateInput, AIDetectedHazardInput
 )
 from app.database.mongodb import get_hazards_collection, get_restricted_zones_collection
-from app.utils.security import get_current_user, get_optional_user
+from app.utils.security import get_current_user, get_optional_user, require_admin
 from datetime import datetime
 from typing import List, Optional, Dict, Any
 import math
@@ -291,7 +291,7 @@ def _build_hazard_id_query(hazard_id: str):
 @router.post("/admin/create")
 async def admin_create_hazard(
     data: AdminHazardCreateInput,
-    current_user: dict = Depends(get_optional_user)
+    current_user: dict = Depends(require_admin)
 ):
     coll = get_hazards_collection()
     now = datetime.utcnow().isoformat()
@@ -378,7 +378,7 @@ async def admin_create_hazard(
 async def admin_edit_hazard(
     hazard_id: str,
     data: AdminHazardUpdateInput,
-    current_user: dict = Depends(get_optional_user)
+    current_user: dict = Depends(require_admin)
 ):
     coll = get_hazards_collection()
     id_query = _build_hazard_id_query(hazard_id)
@@ -444,7 +444,7 @@ async def admin_update_hazard_status(
     hazard_id: str,
     status: Optional[str] = None,
     data: Optional[Dict[str, Any]] = None,
-    current_user: dict = Depends(get_optional_user)
+    current_user: dict = Depends(require_admin)
 ):
     extracted_status = status or (data.get("status") if isinstance(data, dict) else None)
     if not extracted_status:
@@ -487,7 +487,7 @@ async def admin_update_hazard_status(
 @router.delete("/admin/{hazard_id}")
 async def admin_delete_hazard(
     hazard_id: str,
-    current_user: dict = Depends(get_optional_user)
+    current_user: dict = Depends(require_admin)
 ):
     coll = get_hazards_collection()
     id_query = _build_hazard_id_query(hazard_id)
@@ -727,7 +727,7 @@ def get_route_hazard_impact(
 # 18, 19, 30: ADMIN VERIFICATION & REPORTS QUEUE
 # =========================================================================
 @router.get("/admin/reports")
-def get_admin_reports_queue(current_user: dict = Depends(get_optional_user)):
+def get_admin_reports_queue(current_user: dict = Depends(require_admin)):
     """Returns authentic pending submissions detected in real time by drivers and vehicle cameras."""
     coll = get_hazards_collection()
     # Find pending review reports
@@ -766,7 +766,7 @@ def get_admin_reports_queue(current_user: dict = Depends(get_optional_user)):
 
 @router.delete("/admin/reports/purge")
 @router.post("/admin/reports/purge")
-async def purge_reports_queue(current_user: dict = Depends(get_optional_user)):
+async def purge_reports_queue(current_user: dict = Depends(require_admin)):
     """Deletes or purges all pending review demo / test reports from the verification queue."""
     coll = get_hazards_collection()
     query = {
@@ -792,7 +792,7 @@ async def verify_hazard(
     data: Optional[HazardVerificationInput] = None,
     hazard_id: Optional[str] = None,
     action: Optional[str] = None,
-    current_user: dict = Depends(get_optional_user)
+    current_user: dict = Depends(require_admin)
 ):
     """
     Sections 18 & 19: Admin verifies or rejects potential AI camera or citizen hazard.
@@ -937,11 +937,8 @@ def list_restricted_zones(current_user: dict = Depends(get_current_user)):
 @router.post("/restricted-zones")
 async def create_restricted_zone(
     data: RestrictedZoneSchema,
-    current_user: dict = Depends(get_current_user)
+    current_user: dict = Depends(require_admin)
 ):
-    if current_user.get("role") != "admin":
-        raise HTTPException(status_code=403, detail="Admin access required.")
-
     coll = get_restricted_zones_collection()
     now = datetime.utcnow().isoformat()
     doc = {
@@ -965,11 +962,8 @@ async def create_restricted_zone(
 @router.delete("/restricted-zones/{zone_id}")
 async def delete_restricted_zone(
     zone_id: str,
-    current_user: dict = Depends(get_current_user)
+    current_user: dict = Depends(require_admin)
 ):
-    if current_user.get("role") != "admin":
-        raise HTTPException(status_code=403, detail="Admin access required.")
-
     coll = get_restricted_zones_collection()
     coll.delete_one({"_id": zone_id})
     return {"message": "Restricted zone removed.", "zone_id": zone_id}
