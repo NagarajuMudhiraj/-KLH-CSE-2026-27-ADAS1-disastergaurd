@@ -1,5 +1,4 @@
 import os
-import pickle
 import json
 import cv2
 import numpy as np
@@ -9,6 +8,7 @@ import base64
 import math
 import time
 from typing import Dict, Any, List, Tuple, Optional
+from xgboost import XGBClassifier
 
 class AIService:
     """AI Model Inference Engine for YOLOv11, XGBoost, and Route Safety Analysis."""
@@ -130,18 +130,21 @@ class AIService:
                 except Exception as e:
                     print(f"Notice: XGBoost V4 model load skipped ({e})")
 
-        xgb_path = os.path.join("models", "road_model.pkl")
+        xgb_path = os.path.join("models", "road_model.json")
         if not os.path.exists(xgb_path):
-            xgb_path = os.path.join("..", "models", "road_model.pkl")
+            xgb_path = os.path.join("..", "models", "road_model.json")
+        if not os.path.exists(xgb_path):
+            xgb_path = os.path.join(os.path.dirname(__file__), "..", "..", "models", "road_model.json")
 
         if os.path.exists(xgb_path):
             try:
-                print(f"Loading XGBoost legacy model from {xgb_path}...")
-                with open(xgb_path, "rb") as f:
-                    self.xgboost_model = pickle.load(f)
-                print("XGBoost legacy model loaded successfully!")
+                print(f"Loading XGBoost JSON model from {xgb_path}...")
+                clf = XGBClassifier()
+                clf.load_model(xgb_path)
+                self.xgboost_model = clf
+                print("XGBoost JSON model loaded successfully (zero pickle deserialization)!")
             except Exception as e:
-                print(f"Failed loading XGBoost pkl ({e}). Will use rule-based safety engine.")
+                print(f"Failed loading XGBoost JSON model ({e}). Will use rule-based safety engine.")
                 self.xgboost_model = None
         else:
             self.xgboost_model = None
