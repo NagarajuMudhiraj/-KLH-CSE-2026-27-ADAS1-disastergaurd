@@ -1,0 +1,4 @@
+# Exclude agent skills, rendered diagrams, and generated artifacts from GitHub language statistics
+.agents/** linguist-vendored
+.archify/** linguist-vendored
+graphify-out/** linguist-vendored
