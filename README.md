@@ -22,7 +22,11 @@
 </p>
 
 <p align="center">
-  <img src="./docs/social-preview.png" alt="DisasterShield ADAS Capabilities" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);" />
+  <a href="https://colab.research.google.com/github/NagarajuMudhiraj/-KLH-CSE-2026-27-ADAS1-disastergaurd/blob/main/demo.ipynb">
+    <img src="./docs/social-preview.png" alt="DisasterShield ADAS Capabilities" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);" />
+  </a>
+  <br />
+  <em>⚡ Click the banner above to launch the interactive perception & routing demo directly in Google Colab ⚡</em>
 </p>
 
 ---
