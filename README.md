@@ -135,7 +135,7 @@ ALL CORE ALGORITHM SUITES VALIDATED AND FUNCTIONAL IN A SINGLE MODULE.
 ## 🏗️ System Architecture
 
 Explore the standalone interactive runtime architecture diagram with dark/light themes and live animated signal traces:  
-👉 **[Open Interactive Architecture Diagram](./.archify/architecture-adas-runtime-20261104-225800/adas-runtime.html)**
+👉 **[Open Interactive Architecture Diagram (Live Web App)](https://nagarajumudhiraj.github.io/-KLH-CSE-2026-27-ADAS1-disastergaurd/)**
 
 <p align="center">
   <img src="./docs/architecture-runtime-diagram.png" alt="ADAS Intelligent Vehicle Assistance Runtime Architecture" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);" />
