@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software or its methodology in your research, please cite it as below."
+title: "DisasterShield ADAS: Intelligent Vehicle Assistance & Resilient Evacuation Navigation During Disasters"
+authors:
+  - family-names: "Mudhiraj"
+    given-names: "Nagaraju"
+version: 1.0.0
+date-released: "2026-11-20"
+license: "MIT"
+repository-code: "https://github.com/NagarajuMudhiraj/-KLH-CSE-2026-27-ADAS1-disastergaurd"
+url: "https://github.com/NagarajuMudhiraj/-KLH-CSE-2026-27-ADAS1-disastergaurd"
+abstract: "An Intelligent Driver Assistance System (ADAS) & Resilient Evacuation Navigation Platform engineered to safeguard vehicular mobility during extreme environmental catastrophes using YOLOv11s optical perception, Copernicus GLO-30 hydrological risk modeling, and sub-25ms evasive A* pathfinding."
+keywords:
+  - "adas"
+  - "autonomous vehicles"
+  - "computer vision"
+  - "flood detection"
+  - "emergency routing"
+  - "yolov11"
+  - "xgboost"
+  - "copernicus glo-30"
+  - "fastapi"
+  - "react19"
