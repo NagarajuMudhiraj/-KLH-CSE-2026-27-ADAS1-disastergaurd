@@ -2,3 +2,6 @@
 .agents/** linguist-vendored
 .archify/** linguist-vendored
 graphify-out/** linguist-vendored
+demo.ipynb linguist-documentation
+docs/** linguist-documentation
+

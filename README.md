@@ -13,7 +13,16 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/NagarajuMudhiraj/-KLH-CSE-2026-27-ADAS1-disastergaurd/actions"><img src="https://github.com/NagarajuMudhiraj/-KLH-CSE-2026-27-ADAS1-disastergaurd/actions/workflows/ci.yml/badge.svg" alt="CI Pipeline Status" /></a>
+  <a href="https://colab.research.google.com/github/NagarajuMudhiraj/-KLH-CSE-2026-27-ADAS1-disastergaurd/blob/main/demo.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a>
+</p>
+
+<p align="center">
   <strong>An Intelligent Driver Assistance System (ADAS) & Resilient Evacuation Navigation Platform engineered to safeguard vehicular mobility during extreme environmental catastrophes.</strong>
+</p>
+
+<p align="center">
+  <img src="./docs/social-preview.png" alt="DisasterShield ADAS Capabilities" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);" />
 </p>
 
 ---
