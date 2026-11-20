@@ -1,0 +1,39 @@
+# ==============================================================================
+# DisasterShield ADAS — Python Dependencies
+# ==============================================================================
+# To install all backend, perception, and routing engine requirements:
+#   pip install -r requirements.txt
+#
+# For quick pipeline verification without heavy ML frameworks:
+#   python core_pipeline_snippets.py
+# ==============================================================================
+
+# Fast API Gateway & Asynchronous Server
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+pydantic>=2.6.0
+pydantic-settings>=2.2.0
+python-multipart>=0.0.9
+
+# Database & Telemetry Persistence
+pymongo>=4.6.0
+
+# Defensive Security, Cryptography & Rate Limiting
+python-jose[cryptography]>=3.3.0
+bcrypt>=4.0.0
+slowapi>=0.1.9
+python-dotenv>=1.0.0
+
+# Level 1: Computer Vision & Edge Optical Perception
+opencv-python-headless>=4.9.0
+ultralytics>=8.1.0
+pillow>=10.2.0
+
+# Level 2 & 3: Hydrological Risk Predictor & Machine Learning
+xgboost>=2.0.0
+scikit-learn>=1.4.0
+numpy>=1.26.0
+pandas>=2.2.0
+
+# Geospatial Telemetry & External Data Ingestion
+requests>=2.31.0
