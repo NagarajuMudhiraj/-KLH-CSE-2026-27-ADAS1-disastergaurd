@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/XGBoost-V4-FF6600?style=for-the-badge" alt="XGBoost V4" />
   <img src="https://img.shields.io/badge/Copernicus-GLO--30-003399?style=for-the-badge" alt="Copernicus GLO-30" />
   <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
-  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License MIT" />
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License MIT" /></a>
 </p>
 
 <p align="center">
@@ -378,4 +378,4 @@ For detailed architectural contracts, mathematical proofs, and data models:
 
 ## ⚖️ License
 
-This project is licensed under the **MIT License** — feel free to use, modify, and distribute for academic, research, and commercial purposes.
+This project is licensed under the [MIT License](./LICENSE) — feel free to use, modify, and distribute for academic, research, and commercial purposes. See the full [LICENSE](./LICENSE) file for legal terms.
