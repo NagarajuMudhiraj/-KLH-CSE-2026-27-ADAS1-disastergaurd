@@ -179,22 +179,31 @@ flowchart LR
     DRIVER --> HUD
     CAMERA --> CAM_HUD
     ADMIN --> RADAR
+    ADMIN -->|Admin Dispatch| HUD
 
     HUD -->|Bearer JWT| AUTH
+    AUTH -->|Enforces RBAC| GATEWAY
+    AUTH -.->|Verify Bcrypt Hash| DB
     HUD -->|REST API| GATEWAY
     CAM_HUD -->|POST /predict| GATEWAY
-    RADAR -->|Query Route and SOS| GATEWAY
+    RADAR -->|Query Route & SOS| GATEWAY
+
+    GATEWAY -->|Broadcast SOS & Alerts| WS
     WS -.->|Live Hazard Stream| RADAR
+    WS -.->|Push Notifications| HUD
 
-    GATEWAY -->|Image Buffer| YOLO
-    GATEWAY -->|Telemetry and Hydro| XGB
+    GATEWAY -->|Image Buffer & CLAHE| YOLO
+    GATEWAY -->|Environmental Data| XGB
     GATEWAY -->|Route Request| ASTAR
+    ASTAR -->|Safe Detours <25ms| GATEWAY
 
+    GEO -.->|Rainfall & Drainage Elevation| XGB
     YOLO -->|Visual BBoxes| FUSION
     XGB -->|Hydro Exposure| FUSION
-    FUSION -->|Persist Scores| DB
-    ASTAR -->|Query Obstacles| DB
-    XGB -.->|Rain and HAND Data| GEO
+    FUSION -->|Hazard Cost Penalties| ASTAR
+    FUSION -->|Persist Threat Scores| DB
+    GATEWAY -->|Incident Logs & Users| DB
+    ASTAR -->|Query Active Hazards| DB
 ```
 
 ---

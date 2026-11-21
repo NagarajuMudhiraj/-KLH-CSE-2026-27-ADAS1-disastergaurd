@@ -5268,56 +5268,72 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <path data-edge-from="admin" data-edge-to="spatial_radar" data-edge-label="Monitors" data-edge-key="2" data-edge-id="admin-to-radar" data-composition-points="170,340;240,340" data-composition-crossover="halo" data-composition-independent="true" d="M 170 340 L 240 340" class="a-default" data-animate="edge" style="--step:2" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:3">
-          <path data-graph-role="automatic-crossover-underlay" d="M 390 75 L 470 75" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="hud_app" data-edge-to="auth_jwt" data-edge-label="Bearer JWT" data-edge-key="3" data-edge-id="hud-to-auth" data-composition-points="390,75;470,75" data-composition-crossover="halo" data-composition-independent="true" d="M 390 75 L 470 75" class="a-security" data-animate="edge" style="--step:3" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 105 310 L 105 251 Q 105 243 97 243 L 45 243 Q 37 243 37 235 L 37 146 Q 37 138 45 138 L 307 138 Q 315 138 315 130 L 315 114" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="admin" data-edge-to="hud_app" data-edge-label="Admin Portal" data-edge-key="3" data-edge-id="admin-to-hud" data-composition-points="105,310;105,243;37,243;37,138;315,138;315,114" data-composition-crossover="halo" data-composition-independent="true" d="M 105 310 L 105 251 Q 105 243 97 243 L 45 243 Q 37 243 37 235 L 37 146 Q 37 138 45 138 L 307 138 Q 315 138 315 130 L 315 114" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:4">
-          <path data-graph-role="automatic-crossover-underlay" d="M 390 89 L 406 89 Q 414 89 414 97 L 414 148 Q 414 156 422 156 L 530 156 Q 538 156 538 164 L 538 180" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="hud_app" data-edge-to="fastapi_gateway" data-edge-label="REST API" data-edge-key="4" data-edge-id="hud-to-gateway" data-composition-points="390,89;414,89;414,156;538,156;538,180" data-composition-crossover="halo" data-composition-independent="true" d="M 390 89 L 406 89 Q 414 89 414 97 L 414 148 Q 414 156 422 156 L 530 156 Q 538 156 538 164 L 538 180" class="a-default" data-animate="edge" style="--step:4" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 390 75 L 470 75" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="hud_app" data-edge-to="auth_jwt" data-edge-label="Bearer JWT" data-edge-key="4" data-edge-id="hud-to-auth" data-composition-points="390,75;470,75" data-composition-crossover="halo" data-composition-independent="true" d="M 390 75 L 470 75" class="a-security" data-animate="edge" style="--step:4" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:5">
-          <path data-graph-role="automatic-crossover-underlay" d="M 390 212 L 470 212" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="hud_camera" data-edge-to="fastapi_gateway" data-edge-label="POST /predict" data-edge-key="5" data-edge-id="camera-to-gateway" data-composition-points="390,212;470,212" data-composition-crossover="halo" data-composition-independent="true" d="M 390 212 L 470 212" class="a-emphasis" data-animate="edge" style="--step:5" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 545 114 L 545 139 Q 545 147 537 147 L 525 147 Q 517 147 517 155 L 517 180" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="auth_jwt" data-edge-to="fastapi_gateway" data-edge-label="Enforces RBAC" data-edge-key="5" data-edge-id="auth-to-gateway" data-composition-points="545,114;545,147;517,147;517,180" data-composition-crossover="halo" data-composition-independent="true" d="M 545 114 L 545 139 Q 545 147 537 147 L 525 147 Q 517 147 517 155 L 517 180" class="a-security" data-animate="edge" style="--step:5" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:6">
-          <path data-graph-role="automatic-crossover-underlay" d="M 390 335 L 406 335 Q 414 335 414 327 L 414 276 Q 414 268 422 268 L 530 268 Q 538 268 538 260 L 538 244" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="spatial_radar" data-edge-to="fastapi_gateway" data-edge-label="Query Route" data-edge-key="6" data-edge-id="radar-to-gateway" data-composition-points="390,335;414,335;414,268;538,268;538,244" data-composition-crossover="halo" data-composition-independent="true" d="M 390 335 L 406 335 Q 414 335 414 327 L 414 276 Q 414 268 422 268 L 530 268 Q 538 268 538 260 L 538 244" class="a-default" data-animate="edge" style="--step:6" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 390 89 L 440 89 Q 448 89 448 97 L 448 148 Q 448 156 456 156 L 523 156 Q 531 156 531 164 L 531 180" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="hud_app" data-edge-to="fastapi_gateway" data-edge-label="REST API" data-edge-key="6" data-edge-id="hud-to-gateway" data-composition-points="390,89;448,89;448,156;531,156;531,180" data-composition-crossover="halo" data-composition-independent="true" d="M 390 89 L 440 89 Q 448 89 448 97 L 448 148 Q 448 156 456 156 L 523 156 Q 531 156 531 164 L 531 180" class="a-default" data-animate="edge" style="--step:6" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:7">
-          <path data-graph-role="automatic-crossover-underlay" d="M 470 349 L 390 349" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="ws_hub" data-edge-to="spatial_radar" data-edge-label="Hazard Stream" data-edge-key="7" data-edge-id="ws-to-radar" data-composition-points="470,349;390,349" data-composition-crossover="halo" data-composition-independent="true" d="M 470 349 L 390 349" class="a-dashed" data-animate="edge" style="--step:7" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 390 212 L 470 212" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="hud_camera" data-edge-to="fastapi_gateway" data-edge-label="POST /predict" data-edge-key="7" data-edge-id="camera-to-gateway" data-composition-points="390,212;470,212" data-composition-crossover="halo" data-composition-independent="true" d="M 390 212 L 470 212" class="a-emphasis" data-animate="edge" style="--step:7" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:8">
-          <path data-graph-role="automatic-crossover-underlay" d="M 620 212 L 690 212" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="fastapi_gateway" data-edge-to="yolo_engine" data-edge-label="Image Buffer" data-edge-key="8" data-edge-id="gateway-to-yolo" data-composition-points="620,212;690,212" data-composition-crossover="halo" data-composition-independent="true" d="M 620 212 L 690 212" class="a-default" data-animate="edge" style="--step:8" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 390 335 L 406 335 Q 414 335 414 327 L 414 276 Q 414 268 422 268 L 530 268 Q 538 268 538 260 L 538 244" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="spatial_radar" data-edge-to="fastapi_gateway" data-edge-label="Query Route &amp; SOS" data-edge-key="8" data-edge-id="radar-to-gateway" data-composition-points="390,335;414,335;414,268;538,268;538,244" data-composition-crossover="halo" data-composition-independent="true" d="M 390 335 L 406 335 Q 414 335 414 327 L 414 276 Q 414 268 422 268 L 530 268 Q 538 268 538 260 L 538 244" class="a-default" data-animate="edge" style="--step:8" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:9">
-          <path data-graph-role="automatic-crossover-underlay" d="M 553.05 180 L 553.05 164 Q 553.05 156 561.05 156 L 658 156 Q 666 156 666 148 L 666 90 Q 666 82 674 82 L 690 82" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="fastapi_gateway" data-edge-to="xgboost_model" data-edge-label="Environmental Data" data-edge-key="9" data-edge-id="gateway-to-xgb" data-composition-points="553.05,180;553.05,156;666,156;666,82;690,82" data-composition-crossover="halo" data-composition-independent="true" d="M 553.05 180 L 553.05 164 Q 553.05 156 561.05 156 L 658 156 Q 666 156 666 148 L 666 90 Q 666 82 674 82 L 690 82" class="a-emphasis" data-animate="edge" style="--step:9" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 553.05 244 L 553.05 310" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="fastapi_gateway" data-edge-to="ws_hub" data-edge-label="Broadcast SOS" data-edge-key="9" data-edge-id="gateway-to-ws" data-composition-points="553.05,244;553.05,310" data-composition-crossover="halo" data-composition-independent="true" d="M 553.05 244 L 553.05 310" class="a-emphasis" data-animate="edge" style="--step:9" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:10">
-          <path data-graph-role="automatic-crossover-underlay" d="M 552 244 L 552 260 Q 552 268 560 268 L 658 268 Q 666 268 666 276 L 666 334 Q 666 342 674 342 L 690 342" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="fastapi_gateway" data-edge-to="astar_routing" data-edge-label="Route Request" data-edge-key="10" data-edge-id="gateway-to-astar" data-composition-points="552,244;552,268;666,268;666,342;690,342" data-composition-crossover="halo" data-composition-independent="true" d="M 552 244 L 552 260 Q 552 268 560 268 L 658 268 Q 666 268 666 276 L 666 334 Q 666 342 674 342 L 690 342" class="a-default" data-animate="edge" style="--step:10" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 470 349 L 390 349" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="ws_hub" data-edge-to="spatial_radar" data-edge-label="Hazard Stream" data-edge-key="10" data-edge-id="ws-to-radar" data-composition-points="470,349;390,349" data-composition-crossover="halo" data-composition-independent="true" d="M 470 349 L 390 349" class="a-dashed" data-animate="edge" style="--step:10" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:11">
-          <path data-graph-role="automatic-crossover-underlay" d="M 850 212 L 960 212" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="yolo_engine" data-edge-to="risk_fusion" data-edge-label="Visual Hazards" data-edge-key="11" data-edge-id="yolo-to-fusion" data-composition-points="850,212;960,212" data-composition-crossover="halo" data-composition-independent="true" d="M 850 212 L 960 212" class="a-emphasis" data-animate="edge" style="--step:11" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 620 205 L 690 205" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="fastapi_gateway" data-edge-to="yolo_engine" data-edge-label="Frames" data-edge-key="11" data-edge-id="gateway-to-yolo" data-composition-points="620,205;690,205" data-composition-crossover="halo" data-composition-independent="true" d="M 620 205 L 690 205" class="a-default" data-animate="edge" style="--step:11" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:12">
-          <path data-graph-role="automatic-crossover-underlay" d="M 770 114 L 770 139 Q 770 147 778 147 L 1027 147 Q 1035 147 1035 155 L 1035 180" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="xgboost_model" data-edge-to="risk_fusion" data-edge-label="Hydro Exposure" data-edge-key="12" data-edge-id="xgb-to-fusion" data-composition-points="770,114;770,147;1035,147;1035,180" data-composition-crossover="halo" data-composition-independent="true" d="M 770 114 L 770 139 Q 770 147 778 147 L 1027 147 Q 1035 147 1035 155 L 1035 180" class="a-default" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 559 180 L 559 164 Q 559 156 567 156 L 658 156 Q 666 156 666 148 L 666 90 Q 666 82 674 82 L 690 82" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="fastapi_gateway" data-edge-to="xgboost_model" data-edge-label="Environmental Data" data-edge-key="12" data-edge-id="gateway-to-xgb" data-composition-points="559,180;559,156;666,156;666,82;690,82" data-composition-crossover="halo" data-composition-independent="true" d="M 559 180 L 559 164 Q 559 156 567 156 L 658 156 Q 666 156 666 148 L 666 90 Q 666 82 674 82 L 690 82" class="a-emphasis" data-animate="edge" style="--step:12" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:13">
-          <path data-graph-role="automatic-crossover-underlay" d="M 1035 244 L 1035 310" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="risk_fusion" data-edge-to="mongodb_store" data-edge-label="Persist Scores" data-edge-key="13" data-edge-id="fusion-to-store" data-composition-points="1035,244;1035,310" data-composition-crossover="halo" data-composition-independent="true" d="M 1035 244 L 1035 310" class="a-default" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 620 219 L 647 219 Q 655 219 655 227 L 655 334 Q 655 342 663 342 L 690 342" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="fastapi_gateway" data-edge-to="astar_routing" data-edge-label="Route Request" data-edge-key="13" data-edge-id="gateway-to-astar" data-composition-points="620,219;655,219;655,342;690,342" data-composition-crossover="halo" data-composition-independent="true" d="M 620 219 L 647 219 Q 655 219 655 227 L 655 334 Q 655 342 663 342 L 690 342" class="a-default" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:14">
-          <path data-graph-role="automatic-crossover-underlay" d="M 850 342 L 960 342" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="astar_routing" data-edge-to="mongodb_store" data-edge-label="Active Hazards" data-edge-key="14" data-edge-id="astar-to-store" data-composition-points="850,342;960,342" data-composition-crossover="halo" data-composition-independent="true" d="M 850 342 L 960 342" class="a-default" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 850 212 L 960 212" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="yolo_engine" data-edge-to="risk_fusion" data-edge-label="Visual Hazards" data-edge-key="14" data-edge-id="yolo-to-fusion" data-composition-points="850,212;960,212" data-composition-crossover="halo" data-composition-independent="true" d="M 850 212 L 960 212" class="a-emphasis" data-animate="edge" style="--step:12" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:15">
-          <path data-graph-role="automatic-crossover-underlay" d="M 850 82 L 1180 82" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="xgboost_model" data-edge-to="external_apis" data-edge-label="Rain &amp; DEM" data-edge-key="15" data-edge-id="xgb-to-external" data-composition-points="850,82;1180,82" data-composition-crossover="halo" data-composition-independent="true" d="M 850 82 L 1180 82" class="a-dashed" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 770 114 L 770 139 Q 770 147 778 147 L 1027 147 Q 1035 147 1035 155 L 1035 180" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="xgboost_model" data-edge-to="risk_fusion" data-edge-label="Hydro Exposure" data-edge-key="15" data-edge-id="xgb-to-fusion" data-composition-points="770,114;770,147;1035,147;1035,180" data-composition-crossover="halo" data-composition-independent="true" d="M 770 114 L 770 139 Q 770 147 778 147 L 1027 147 Q 1035 147 1035 155 L 1035 180" class="a-default" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:16">
+          <path data-graph-role="automatic-crossover-underlay" d="M 1028 244 L 1028 269 Q 1028 277 1020 277 L 778 277 Q 770 277 770 285 L 770 310" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="risk_fusion" data-edge-to="astar_routing" data-edge-label="Cost Penalties" data-edge-key="16" data-edge-id="risk-to-astar" data-composition-points="1028,244;1028,277;770,277;770,310" data-composition-crossover="halo" data-composition-independent="true" d="M 1028 244 L 1028 269 Q 1028 277 1020 277 L 778 277 Q 770 277 770 285 L 770 310" class="a-emphasis" data-animate="edge" style="--step:12" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:17">
+          <path data-graph-role="automatic-crossover-underlay" d="M 1043.05 244 L 1043.05 310" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="risk_fusion" data-edge-to="mongodb_store" data-edge-label="Persist Scores" data-edge-key="17" data-edge-id="fusion-to-store" data-composition-points="1043.05,244;1043.05,310" data-composition-crossover="halo" data-composition-independent="true" d="M 1043.05 244 L 1043.05 310" class="a-default" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:18">
+          <path data-graph-role="automatic-crossover-underlay" d="M 850 342 L 960 342" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="astar_routing" data-edge-to="mongodb_store" data-edge-label="Active Hazards" data-edge-key="18" data-edge-id="astar-to-store" data-composition-points="850,342;960,342" data-composition-crossover="halo" data-composition-independent="true" d="M 850 342 L 960 342" class="a-default" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:19">
+          <path data-graph-role="automatic-crossover-underlay" d="M 1180 82 L 850 82" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="external_apis" data-edge-to="xgboost_model" data-edge-label="Rain &amp; DEM" data-edge-key="19" data-edge-id="external-to-xgb" data-composition-points="1180,82;850,82" data-composition-crossover="halo" data-composition-independent="true" d="M 1180 82 L 850 82" class="a-dashed" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
         </g>
 
         <!-- Components -->
@@ -5398,23 +5414,23 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="315" y="356" class="t-muted" font-size="9" text-anchor="middle">Leaflet Dynamic Map</text>
         </g>
 
-        <g id="node-auth_jwt" data-node-id="auth_jwt" data-node-label="Auth &amp; JWT Gate" tabindex="0" role="button" aria-label="Focus Auth &amp; JWT Gate, PyJWT &amp; Bcrypt RBAC, FastAPI Core Application &amp; Intelligence Services" aria-pressed="false" data-node-kind="security" data-node-sublabel="PyJWT &amp; Bcrypt RBAC" data-node-tag="Bearer" data-node-context="FastAPI Core Application &amp; Intelligence Services">
-          <title>Auth &amp; JWT Gate · PyJWT &amp; Bcrypt RBAC · FastAPI Core Application &amp; Intelligence Services · Bearer</title>
+        <g id="node-auth_jwt" data-node-id="auth_jwt" data-node-label="Auth &amp; JWT Gate" tabindex="0" role="button" aria-label="Focus Auth &amp; JWT Gate, PyJWT &amp; Passlib bcrypt, FastAPI Core Application &amp; Intelligence Services" aria-pressed="false" data-node-kind="security" data-node-sublabel="PyJWT &amp; Passlib bcrypt" data-node-tag="Bearer" data-node-context="FastAPI Core Application &amp; Intelligence Services">
+          <title>Auth &amp; JWT Gate · PyJWT &amp; Passlib bcrypt · FastAPI Core Application &amp; Intelligence Services · Bearer</title>
           <rect x="470" y="50" width="150" height="64" rx="8" class="c-mask"/>
-          <rect x="470" y="50" width="150" height="64" rx="8" class="c-security" data-animate="node" style="--step:4" stroke-width="1.5"/>
+          <rect x="470" y="50" width="150" height="64" rx="8" class="c-security" data-animate="node" style="--step:5" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(476 56) scale(0.6875)">
             <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
             <path d="m5.8 8 1.5 1.5 3-3"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="545" y="80" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Auth &amp; JWT Gate</text>
-        <text data-detail="context" x="545" y="96" class="t-muted" font-size="9" text-anchor="middle">PyJWT &amp; Bcrypt RBAC</text>
+        <text data-detail="context" x="545" y="96" class="t-muted" font-size="9" text-anchor="middle">PyJWT &amp; Passlib bcrypt</text>
         <text data-detail="fine" x="545" y="106" class="t-security" font-size="7" text-anchor="middle">Bearer</text>
         </g>
 
         <g id="node-fastapi_gateway" data-node-id="fastapi_gateway" data-node-label="FastAPI Gateway" tabindex="0" role="button" aria-label="Focus FastAPI Gateway, REST Endpoints :8000, FastAPI Core Application &amp; Intelligence Services" aria-pressed="false" data-node-kind="backend" data-node-sublabel="REST Endpoints :8000" data-node-tag="Uvicorn" data-node-context="FastAPI Core Application &amp; Intelligence Services">
           <title>FastAPI Gateway · REST Endpoints :8000 · FastAPI Core Application &amp; Intelligence Services · Uvicorn</title>
           <rect x="470" y="180" width="150" height="64" rx="8" class="c-mask"/>
-          <rect x="470" y="180" width="150" height="64" rx="8" class="c-backend" data-animate="node" style="--step:5" stroke-width="1.5"/>
+          <rect x="470" y="180" width="150" height="64" rx="8" class="c-backend" data-animate="node" style="--step:6" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(476 186) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5426,7 +5442,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-ws_hub" data-node-id="ws_hub" data-node-label="WebSocket Stream Hub" tabindex="0" role="button" aria-label="Focus WebSocket Stream Hub, /ws/emergency &amp; /ws/disasters, FastAPI Core Application &amp; Intelligence Services" aria-pressed="false" data-node-kind="messagebus" data-node-sublabel="/ws/emergency &amp; /ws/disasters" data-node-tag="Pub/Sub" data-node-context="FastAPI Core Application &amp; Intelligence Services">
           <title>WebSocket Stream Hub · /ws/emergency &amp; /ws/disasters · FastAPI Core Application &amp; Intelligence Services · Pub/Sub</title>
           <rect x="470" y="310" width="150" height="64" rx="8" class="c-mask"/>
-          <rect x="470" y="310" width="150" height="64" rx="8" class="c-messagebus" data-animate="node" style="--step:7" stroke-width="1.5"/>
+          <rect x="470" y="310" width="150" height="64" rx="8" class="c-messagebus" data-animate="node" style="--step:10" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="messagebus" class="semantic-sigil s-messagebus" transform="translate(476 316) scale(0.6875)">
             <path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/>
             <circle cx="5" cy="4.5" r="1" class="sigil-fill"/>
@@ -5441,7 +5457,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-xgboost_model" data-node-id="xgboost_model" data-node-label="XGBoost V4 Hydro Model" tabindex="0" role="button" aria-label="Focus XGBoost V4 Hydro Model, HAND &amp; Antecedent Rain, FastAPI Core Application &amp; Intelligence Services" aria-pressed="false" data-node-kind="backend" data-node-sublabel="HAND &amp; Antecedent Rain" data-node-tag="100% Recall" data-node-context="FastAPI Core Application &amp; Intelligence Services">
           <title>XGBoost V4 Hydro Model · HAND &amp; Antecedent Rain · FastAPI Core Application &amp; Intelligence Services · 100% Recall</title>
           <rect x="690" y="50" width="160" height="64" rx="8" class="c-mask"/>
-          <rect x="690" y="50" width="160" height="64" rx="8" class="c-backend" data-animate="node" style="--step:10" stroke-width="1.5"/>
+          <rect x="690" y="50" width="160" height="64" rx="8" class="c-backend" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(696 56) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5453,7 +5469,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-yolo_engine" data-node-id="yolo_engine" data-node-label="YOLOv11s Perception" tabindex="0" role="button" aria-label="Focus YOLOv11s Perception, Flood/Fire/Smoke/Damage, FastAPI Core Application &amp; Intelligence Services" aria-pressed="false" data-node-kind="backend" data-node-sublabel="Flood/Fire/Smoke/Damage" data-node-tag="Edge Vision" data-node-context="FastAPI Core Application &amp; Intelligence Services">
           <title>YOLOv11s Perception · Flood/Fire/Smoke/Damage · FastAPI Core Application &amp; Intelligence Services · Edge Vision</title>
           <rect x="690" y="180" width="160" height="64" rx="8" class="c-mask"/>
-          <rect x="690" y="180" width="160" height="64" rx="8" class="c-backend" data-animate="node" style="--step:9" stroke-width="1.5"/>
+          <rect x="690" y="180" width="160" height="64" rx="8" class="c-backend" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(696 186) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5465,7 +5481,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-astar_routing" data-node-id="astar_routing" data-node-label="Disaster-Aware A*" tabindex="0" role="button" aria-label="Focus Disaster-Aware A*, Hann Window Lateral Detour, FastAPI Core Application &amp; Intelligence Services" aria-pressed="false" data-node-kind="backend" data-node-sublabel="Hann Window Lateral Detour" data-node-tag="sub-25ms" data-node-context="FastAPI Core Application &amp; Intelligence Services">
           <title>Disaster-Aware A* · Hann Window Lateral Detour · FastAPI Core Application &amp; Intelligence Services · sub-25ms</title>
           <rect x="690" y="310" width="160" height="64" rx="8" class="c-mask"/>
-          <rect x="690" y="310" width="160" height="64" rx="8" class="c-backend" data-animate="node" style="--step:11" stroke-width="1.5"/>
+          <rect x="690" y="310" width="160" height="64" rx="8" class="c-backend" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(696 316) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5524,55 +5540,71 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <rect x="180.8" y="320" width="48.4" height="14" rx="3" class="c-mask"/>
           <text x="205" y="330" class="t-edge-default" font-size="8" text-anchor="middle">Monitors</text>
         </g>
-        <g data-detail="context" data-edge-from="hud_app" data-edge-to="auth_jwt" data-edge-label="Bearer JWT" data-edge-key="3" data-edge-id="hud-to-auth">
+        <g data-detail="context" data-edge-from="admin" data-edge-to="hud_app" data-edge-label="Admin Portal" data-edge-key="3" data-edge-id="admin-to-hud">
+          <rect x="31.400000000000006" y="269.5" width="67.6" height="14" rx="3" class="c-mask"/>
+          <text x="65.2" y="279.5" class="t-edge-default" font-size="8" text-anchor="middle">Admin Portal</text>
+        </g>
+        <g data-detail="context" data-edge-from="hud_app" data-edge-to="auth_jwt" data-edge-label="Bearer JWT" data-edge-key="4" data-edge-id="hud-to-auth">
           <rect x="401" y="55" width="58" height="14" rx="3" class="c-mask"/>
           <text x="430" y="65" class="t-edge-security" font-size="8" text-anchor="middle">Bearer JWT</text>
         </g>
-        <g data-detail="context" data-edge-from="hud_app" data-edge-to="fastapi_gateway" data-edge-label="REST API" data-edge-key="4" data-edge-id="hud-to-gateway">
-          <rect x="389.8" y="102.5" width="48.4" height="14" rx="3" class="c-mask"/>
-          <text x="414" y="112.5" class="t-edge-default" font-size="8" text-anchor="middle">REST API</text>
+        <g data-detail="context" data-edge-from="auth_jwt" data-edge-to="fastapi_gateway" data-edge-label="Enforces RBAC" data-edge-key="5" data-edge-id="auth-to-gateway">
+          <rect x="466.6" y="123.5" width="72.4" height="14" rx="3" class="c-mask"/>
+          <text x="502.8" y="133.5" class="t-edge-security" font-size="8" text-anchor="middle">Enforces RBAC</text>
         </g>
-        <g data-detail="context" data-edge-from="hud_camera" data-edge-to="fastapi_gateway" data-edge-label="POST /predict" data-edge-key="5" data-edge-id="camera-to-gateway">
+        <g data-detail="context" data-edge-from="hud_app" data-edge-to="fastapi_gateway" data-edge-label="REST API" data-edge-key="6" data-edge-id="hud-to-gateway">
+          <rect x="394.8" y="99" width="48.4" height="14" rx="3" class="c-mask"/>
+          <text x="419" y="109" class="t-edge-default" font-size="8" text-anchor="middle">REST API</text>
+        </g>
+        <g data-detail="context" data-edge-from="hud_camera" data-edge-to="fastapi_gateway" data-edge-label="POST /predict" data-edge-key="7" data-edge-id="camera-to-gateway">
           <rect x="393.8" y="192" width="72.4" height="14" rx="3" class="c-mask"/>
           <text x="430" y="202" class="t-edge-emphasis" font-size="8" text-anchor="middle">POST /predict</text>
         </g>
-        <g data-detail="context" data-edge-from="spatial_radar" data-edge-to="fastapi_gateway" data-edge-label="Query Route" data-edge-key="6" data-edge-id="radar-to-gateway">
-          <rect x="382.6" y="281.5" width="62.8" height="14" rx="3" class="c-mask"/>
-          <text x="414" y="291.5" class="t-edge-default" font-size="8" text-anchor="middle">Query Route</text>
+        <g data-detail="context" data-edge-from="spatial_radar" data-edge-to="fastapi_gateway" data-edge-label="Query Route &amp; SOS" data-edge-key="8" data-edge-id="radar-to-gateway">
+          <rect x="368.2" y="281.5" width="91.6" height="14" rx="3" class="c-mask"/>
+          <text x="414" y="291.5" class="t-edge-default" font-size="8" text-anchor="middle">Query Route &amp; SOS</text>
         </g>
-        <g data-detail="context" data-edge-from="ws_hub" data-edge-to="spatial_radar" data-edge-label="Hazard Stream" data-edge-key="7" data-edge-id="ws-to-radar">
+        <g data-detail="context" data-edge-from="fastapi_gateway" data-edge-to="ws_hub" data-edge-label="Broadcast SOS" data-edge-key="9" data-edge-id="gateway-to-ws">
+          <rect x="474.6499999999999" y="286.5" width="72.4" height="14" rx="3" class="c-mask"/>
+          <text x="510.8499999999999" y="296.5" class="t-edge-emphasis" font-size="8" text-anchor="middle">Broadcast SOS</text>
+        </g>
+        <g data-detail="context" data-edge-from="ws_hub" data-edge-to="spatial_radar" data-edge-label="Hazard Stream" data-edge-key="10" data-edge-id="ws-to-radar">
           <rect x="393.8" y="359" width="72.4" height="14" rx="3" class="c-mask"/>
           <text x="430" y="369" class="t-edge-dashed" font-size="8" text-anchor="middle">Hazard Stream</text>
         </g>
-        <g data-detail="context" data-edge-from="fastapi_gateway" data-edge-to="yolo_engine" data-edge-label="Image Buffer" data-edge-key="8" data-edge-id="gateway-to-yolo">
-          <rect x="621.2" y="192" width="67.6" height="14" rx="3" class="c-mask"/>
-          <text x="655" y="202" class="t-edge-default" font-size="8" text-anchor="middle">Image Buffer</text>
+        <g data-detail="context" data-edge-from="fastapi_gateway" data-edge-to="yolo_engine" data-edge-label="Frames" data-edge-key="11" data-edge-id="gateway-to-yolo">
+          <rect x="635.6" y="185" width="38.8" height="14" rx="3" class="c-mask"/>
+          <text x="655" y="195" class="t-edge-default" font-size="8" text-anchor="middle">Frames</text>
         </g>
-        <g data-detail="context" data-edge-from="fastapi_gateway" data-edge-to="xgboost_model" data-edge-label="Environmental Data" data-edge-key="9" data-edge-id="gateway-to-xgb">
-          <rect x="561.3249999999999" y="136" width="96.39999999999999" height="14" rx="3" class="c-mask"/>
-          <text x="609.525" y="146" class="t-edge-emphasis" font-size="8" text-anchor="middle">Environmental Data</text>
+        <g data-detail="context" data-edge-from="fastapi_gateway" data-edge-to="xgboost_model" data-edge-label="Environmental Data" data-edge-key="12" data-edge-id="gateway-to-xgb">
+          <rect x="564.3" y="136" width="96.39999999999999" height="14" rx="3" class="c-mask"/>
+          <text x="612.5" y="146" class="t-edge-emphasis" font-size="8" text-anchor="middle">Environmental Data</text>
         </g>
-        <g data-detail="context" data-edge-from="fastapi_gateway" data-edge-to="astar_routing" data-edge-label="Route Request" data-edge-key="10" data-edge-id="gateway-to-astar">
-          <rect x="572.8" y="248" width="72.4" height="14" rx="3" class="c-mask"/>
-          <text x="609" y="258" class="t-edge-default" font-size="8" text-anchor="middle">Route Request</text>
+        <g data-detail="context" data-edge-from="fastapi_gateway" data-edge-to="astar_routing" data-edge-label="Route Request" data-edge-key="13" data-edge-id="gateway-to-astar">
+          <rect x="618.8" y="260.5" width="72.4" height="14" rx="3" class="c-mask"/>
+          <text x="655" y="270.5" class="t-edge-default" font-size="8" text-anchor="middle">Route Request</text>
         </g>
-        <g data-detail="context" data-edge-from="yolo_engine" data-edge-to="risk_fusion" data-edge-label="Visual Hazards" data-edge-key="11" data-edge-id="yolo-to-fusion">
+        <g data-detail="context" data-edge-from="yolo_engine" data-edge-to="risk_fusion" data-edge-label="Visual Hazards" data-edge-key="14" data-edge-id="yolo-to-fusion">
           <rect x="866.4" y="192" width="77.2" height="14" rx="3" class="c-mask"/>
           <text x="905" y="202" class="t-edge-emphasis" font-size="8" text-anchor="middle">Visual Hazards</text>
         </g>
-        <g data-detail="context" data-edge-from="xgboost_model" data-edge-to="risk_fusion" data-edge-label="Hydro Exposure" data-edge-key="12" data-edge-id="xgb-to-fusion">
+        <g data-detail="context" data-edge-from="xgboost_model" data-edge-to="risk_fusion" data-edge-label="Hydro Exposure" data-edge-key="15" data-edge-id="xgb-to-fusion">
           <rect x="863.9" y="127" width="77.2" height="14" rx="3" class="c-mask"/>
           <text x="902.5" y="137" class="t-edge-default" font-size="8" text-anchor="middle">Hydro Exposure</text>
         </g>
-        <g data-detail="context" data-edge-from="risk_fusion" data-edge-to="mongodb_store" data-edge-label="Persist Scores" data-edge-key="13" data-edge-id="fusion-to-store">
-          <rect x="951.8" y="270" width="77.2" height="14" rx="3" class="c-mask"/>
-          <text x="990.4" y="280" class="t-edge-default" font-size="8" text-anchor="middle">Persist Scores</text>
+        <g data-detail="context" data-edge-from="risk_fusion" data-edge-to="astar_routing" data-edge-label="Cost Penalties" data-edge-key="16" data-edge-id="risk-to-astar">
+          <rect x="860.4" y="257" width="77.2" height="14" rx="3" class="c-mask"/>
+          <text x="899" y="267" class="t-edge-emphasis" font-size="8" text-anchor="middle">Cost Penalties</text>
         </g>
-        <g data-detail="context" data-edge-from="astar_routing" data-edge-to="mongodb_store" data-edge-label="Active Hazards" data-edge-key="14" data-edge-id="astar-to-store">
+        <g data-detail="context" data-edge-from="risk_fusion" data-edge-to="mongodb_store" data-edge-label="Persist Scores" data-edge-key="17" data-edge-id="fusion-to-store">
+          <rect x="1049.05" y="270" width="77.2" height="14" rx="3" class="c-mask"/>
+          <text x="1087.6499999999999" y="280" class="t-edge-default" font-size="8" text-anchor="middle">Persist Scores</text>
+        </g>
+        <g data-detail="context" data-edge-from="astar_routing" data-edge-to="mongodb_store" data-edge-label="Active Hazards" data-edge-key="18" data-edge-id="astar-to-store">
           <rect x="866.4" y="322" width="77.2" height="14" rx="3" class="c-mask"/>
           <text x="905" y="332" class="t-edge-default" font-size="8" text-anchor="middle">Active Hazards</text>
         </g>
-        <g data-detail="context" data-edge-from="xgboost_model" data-edge-to="external_apis" data-edge-label="Rain &amp; DEM" data-edge-key="15" data-edge-id="xgb-to-external">
+        <g data-detail="context" data-edge-from="external_apis" data-edge-to="xgboost_model" data-edge-label="Rain &amp; DEM" data-edge-key="19" data-edge-id="external-to-xgb">
           <rect x="986" y="62" width="58" height="14" rx="3" class="c-mask"/>
           <text x="1015" y="72" class="t-edge-dashed" font-size="8" text-anchor="middle">Rain &amp; DEM</text>
         </g>

@@ -296,11 +296,26 @@
       "label": "Monitors"
     },
     {
+      "id": "admin-to-hud",
+      "from": "admin",
+      "to": "hud_app",
+      "label": "Admin Portal"
+    },
+    {
       "id": "hud-to-auth",
       "from": "hud_app",
       "to": "auth_jwt",
       "label": "Bearer JWT",
       "variant": "security"
+    },
+    {
+      "id": "auth-to-gateway",
+      "from": "auth_jwt",
+      "to": "fastapi_gateway",
+      "label": "Enforces RBAC",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top"
     },
     {
       "id": "hud-to-gateway",
@@ -323,9 +338,18 @@
       "id": "radar-to-gateway",
       "from": "spatial_radar",
       "to": "fastapi_gateway",
-      "label": "Query Route",
+      "label": "Query Route & SOS",
       "fromSide": "right",
       "toSide": "bottom"
+    },
+    {
+      "id": "gateway-to-ws",
+      "from": "fastapi_gateway",
+      "to": "ws_hub",
+      "label": "Broadcast SOS",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top"
     },
     {
       "id": "ws-to-radar",
@@ -338,7 +362,7 @@
       "id": "gateway-to-yolo",
       "from": "fastapi_gateway",
       "to": "yolo_engine",
-      "label": "Image Buffer",
+      "label": "Frames",
       "fromSide": "right",
       "toSide": "left"
     },
@@ -356,7 +380,7 @@
       "from": "fastapi_gateway",
       "to": "astar_routing",
       "label": "Route Request",
-      "fromSide": "bottom",
+      "fromSide": "right",
       "toSide": "left"
     },
     {
@@ -377,6 +401,15 @@
       "toSide": "top"
     },
     {
+      "id": "risk-to-astar",
+      "from": "risk_fusion",
+      "to": "astar_routing",
+      "label": "Cost Penalties",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
       "id": "fusion-to-store",
       "from": "risk_fusion",
       "to": "mongodb_store",
@@ -393,13 +426,13 @@
       "toSide": "left"
     },
     {
-      "id": "xgb-to-external",
-      "from": "xgboost_model",
-      "to": "external_apis",
+      "id": "external-to-xgb",
+      "from": "external_apis",
+      "to": "xgboost_model",
       "label": "Rain & DEM",
       "variant": "dashed",
-      "fromSide": "right",
-      "toSide": "left"
+      "fromSide": "left",
+      "toSide": "right"
     }
   ],
   "cards": [
